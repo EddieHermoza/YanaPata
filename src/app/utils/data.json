@@ -1,0 +1,209 @@
+[
+    {
+      "nombre": "Consultas",
+      "presentacion": "Diagnóstico veterinario para su mascota.",
+      "img": "/images/etologia-mascotas.jpg",
+      "descripcion": "En YanaPata, estamos comprometidos con la salud y el bienestar de su mascota. Nuestro servicio de Consultas Veterinarias ofrece diagnósticos especializados para abordar las necesidades de su amigo peludo. Nuestro equipo de veterinarios altamente calificados está aquí para brindar atención y orientación, garantizando que su mascota esté en las mejores manos.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆ ☆ ☆ ",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        }
+      ]
+    },
+    {
+      "nombre": "Desparasitación",
+      "presentacion": "Elimine y proteja a su mascota contra los parásitos.",
+      "img": "/images/analisis-clinicos-mascotas.jpg",
+      "descripcion": "En YanaPata, comprendemos la importancia de mantener a su mascota libre de parásitos. Nuestro servicio de Desparasitación se centra en la eliminación y protección contra parásitos. Utilizamos métodos seguros y efectivos para garantizar que su mascota esté protegida de manera adecuada y pueda disfrutar de una vida saludable.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        }
+      ]
+    },
+    {
+      "nombre": "Vacunación",
+      "presentacion": "Vacunación para proteger a su mascota contra enfermedades.",
+      "img": "/images/cirugia-mascotas.jpg",
+      "descripcion": "La prevención es clave en YanaPata. Nuestro servicio de Vacunación Preventiva está diseñado para proteger a su mascota contra enfermedades comunes. Nuestro equipo de expertos le proporcionará las vacunas necesarias para mantener a su mascota en óptimas condiciones de salud.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        }
+      ]
+    },
+    {
+      "nombre": "Tratamientos",
+      "presentacion": "Cuidado de la salud y bienestar de su mascota.",
+      "img": "/images/peluqueria-mascotas.jpg",
+      "descripcion": "En YanaPata, nos enorgullece ofrecer tratamientos personalizados para sus mascotas. Nuestro objetivo es proporcionar atención médica adaptada a las necesidades específicas de su amigo de cuatro patas. Trabajaremos estrechamente con usted para garantizar que su mascota reciba el mejor cuidado posible.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        }
+      ]
+    },
+    {
+      "nombre": "Cirugías",
+      "presentacion": "Procedimientos quirúrgicos realizados por veterinarios experimentados.",
+      "img": "/images/peluqueria-mascotas.jpg",
+      "descripcion": "Nuestro equipo de veterinarios experimentados en YanaPata está preparado para llevar a cabo cirugías de vanguardia cuando sea necesario. Ya sea una cirugía de rutina o un procedimiento más complejo, puede confiar en nosotros para brindar atención quirúrgica de alta calidad a su mascota.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem"
+        }
+      ]
+    },
+    {
+      "nombre": "Baños y Cortes",
+      "presentacion": "Mime a su mascota con cuidados de belleza.",
+      "img": "/images/peluqueria-mascotas.jpg",
+      "descripcion": "En YanaPata, comprendemos la importancia del cuidado estético para el bienestar general de su mascota. Nuestro servicio de Baños y Cuidado Estético garantiza que su compañero peludo se vea y se sienta genial. Mimamos a su mascota con baños relajantes y cortes de pelo expertos.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolo sitadipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam "
+        }
+      ]
+    },
+    {
+      "nombre": "Análisis Clínicos",
+      "presentacion": "Pruebas médicas para la salud de su mascota.",
+      "img": "/images/peluqueria-mascotas.jpg",
+      "descripcion": "En YanaPata, valoramos la precisión en el diagnóstico. Nuestro servicio de Análisis Clínicos  utiliza pruebas médicas de última generación para evaluar la salud de su mascota. Obtendrá resultados confiables y una atención médica de calidad.",
+      "comentarios": [
+        {
+          "usuario": "Usuario 1",
+          "calificacion": "☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, "
+        },
+        {
+          "usuario": "Usuario 2",
+          "calificacion": "☆ ☆ ☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aliquam ipsa deserunt?Lorem20"
+        },
+        {
+          "usuario": "Usuario 3",
+          "calificacion": "☆ ☆ ☆",
+          "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus"
+        }
+      ]
+    },
+    {
+      "nombre": "Farmacia",
+      "presentacion": "Amplia variedad de medicamentos para tu mascota.",
+      "img": "/images/peluqueria-mascotas.jpg",
+      "descripcion": "Ofrecemos una amplia gama de medicamentos de alta calidad para su mascota. Todos los medicamentos son seleccionados cuidadosamente y están disponibles para satisfacer las necesidades específicas de su amigo peludo.",
+      "comentarios": [
+      {  
+        "usuario": "Usuario 1",
+        "calificacion": "☆ ☆ ☆",
+        "comentario" :"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus"
+      },
+      {
+        "usuario": "Usuario 2",
+        "calificacion": "☆ ☆ ☆ ☆ ☆",
+        "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus  aut ipsum dicta magnam corrupti "
+      },
+      {
+        "usuario": "Usuario 3",
+        "calificacion": "☆ ☆",
+        "comentario": "Comentario 3"
+      }
+    ]
+  },
+  {
+    "nombre": "Accesorios y Alimentos",
+    "presentacion": "Encuentra los mejores accesorios y alimentos para tu mascota.",
+    "img": "/images/peluqueria-mascotas.jpg",
+    "descripcion": "En YanaPata, nos enorgullece ofrecer una gran selección de accesorios y alimentos para mascotas. Encuentre los mejores productos que satisfagan las necesidades nutricionales y de entretenimiento de su mascota. Su felicidad y salud son nuestra prioridad.",
+    "comentarios": [
+      {
+        "usuario": "Usuario 1",
+        "calificacion": "☆ ☆ ☆ ☆",
+        "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus aut ipsum dicta magnam corrupti "
+      },
+      {
+        "usuario": "Usuario 2",
+        "calificacion": "☆ ☆ ☆ ☆",
+        "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio aut ipsum dicta magnam corrupti, doloribus"
+      },
+      {
+        "usuario": "Usuario 3",
+        "calificacion": "☆ ☆ ☆",
+        "comentario": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos atque expedita alias ducimus et voluptates explicabo magni eius ratione dolorem distinctio  aut ipsum dicta magnam corrupti  aut ipsum dicta magnam corrupti  aut ipsum dicta magnam corrupti"
+      }
+    ]
+  }
+]
