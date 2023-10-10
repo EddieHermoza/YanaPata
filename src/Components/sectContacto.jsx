@@ -6,7 +6,7 @@ export default function Contacto() {
     <section id="Contacto" className="py-[100px]">
         <div className="relative flex flex-col space-y-4 items-center justify-center p-5 mb-6">
             <h2 className="text-5xl filter saturate-200 text-verde-rgb">Contáctanos</h2>
-            <p className="text-xl text-center">&quot;Si desea más información. Comuníquese con nosotros usando el formulario, redes sociales o visitando nuestro local&quot;</p>
+            <p className="max-sm:text-base text-xl text-center">&quot;Si desea más información. Comuníquese con nosotros usando el formulario, redes sociales o visitando nuestro local&quot;</p>
         </div>
         <div className="mb-6">
         </div>

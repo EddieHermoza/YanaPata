@@ -5,9 +5,9 @@ import {LiaBoneSolid} from "react-icons/lia";
 
 const ServicioCard = ({ title, desc, img}) => {
   return (
-      <div className="cursor-default relative group w-full items-center justify-center overflow-hidden border border-black" data-aos="zoom-in">
+      <div className="cursor-default relative group w-full items-center justify-center overflow-hidden " data-aos="zoom-in">
         <div className="relative">
-          <Image className="object-cover object-center brightness-75 group-hover:scale-110 group-hover:brightness-50 transform duration-300" src={img} alt={title} width={800} height={500} loading='lazy'/>
+          <Image className="object-cover object-center brightness-75 group-hover:scale-110 group-hover:brightness-50 transform duration-300" src={img} alt={title} width={800} height={500}/>
           <div className='absolute inset-0 w-full h-full filter saturate-200'>
           <h2 className='z-20 absolute top-1/2 -translate-y-1/2 group-hover:top-[25%] max-sm:text-3xl text-4xl text-white text-shadow-lg shadow-black text-center w-full transform duration-200 group-hover:text-verde-rgb filter saturate-200 '>{title}</h2>
           <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transform duration-200">

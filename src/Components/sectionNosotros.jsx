@@ -6,7 +6,7 @@ export default function Nosotros() {
         <div className="flex flex-col space-y-5 items-center justify-center">
             <Image src="/images/YanaPata.png" width={200} height={200} alt="Logo" className="mx-auto filter saturate-200"/>
             <div className="flex justify-center">
-                <p className="text-[calc(1rem+1vw)] text-center w-full px-[calc(10px+1vw)]">&quot;Nos dedicamos a brindar el mejor cuidado y atención para tus amigos peludos. Nuestra veterinaria es el hogar de un equipo apasionado que se preocupa por la salud y el bienestar de tus mascotas&quot;</p>
+                <p className="sm:text-[calc(1rem+1vw)] text-center w-full px-[calc(10px+1vw)]">&quot;Nos dedicamos a brindar el mejor cuidado y atención para tus amigos peludos. Nuestra veterinaria es el hogar de un equipo apasionado que se preocupa por la salud y el bienestar de tus mascotas&quot;</p>
             </div>
             <div className="cursor-default flex flex-wrap items-center justify-center gap-x-24 py-10">
 

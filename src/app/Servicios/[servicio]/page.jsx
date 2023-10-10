@@ -1,4 +1,4 @@
-import Navbar from "@/Components/Navbar";
+
 import Ubicacion from "@/Components/sectUbicacion";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import dataServicios from "@/app/utils/data.json";
 import {AiOutlineLeft,AiOutlineRight} from "react-icons/ai"
 import {BsWhatsapp} from "react-icons/bs"
 import {MdPets} from "react-icons/md"
-import PortadaServicios from "@/Components/PortadaServicios";
+import PortadaDinamica from "@/Components/PortadaDinamica";
 
 function ServicioPage({ params }) {
     
@@ -27,13 +27,11 @@ function ServicioPage({ params }) {
 
     return (
         <>
-        <Navbar/>
-            <main className="overflow-hidden">
-                <PortadaServicios
+            <PortadaDinamica
                     titulo={servicioActual.nombre}
                     desc={servicioActual.presentacion}
                     img={servicioActual.img}
-                />
+            />
                 <section>
                     <div className="flex  max-xl:flex-col gap-10 md:p-10">
                         <div className="xl:w-1/2 flex flex-col  gap-10 p-5" >
@@ -42,14 +40,18 @@ function ServicioPage({ params }) {
                                 <span className="w-[25%] h-[6px] bg-verde-rgb filter saturate-200 mt-3"></span>
                             </div>
                             <p data-aos="fade-left" data-aos-delay="300" data-aos-duration="1400" className="max-sm:text-base text-xl">{servicioActual.descripcion}</p>
-                            <Link data-aos="fade-left" data-aos-delay="400" data-aos-duration="1600" className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-200 bg-[rgb(36,210,101)] rounded-full text-xl gap-2 max-w-[340px] "  target="_blank" href="https://wa.me/+51952488753">
-                               <BsWhatsapp size={40}/>
-                                Envíanos un mensaje
-                            </Link>
-                            <Link data-aos="fade-left" data-aos-delay="500" data-aos-duration="1800" className="p-2 text-white flex items-center justify-center filter saturate-200 hover:saturate-[3] hover:shadow-lg transform duration-200 bg-verde-rgb rounded-full text-xl gap-2 max-w-[340px] h-[60px]" href="../Solicitud">
-                                <MdPets size={40}/>
-                                Solicita una cita
-                            </Link>
+                            <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="1600">
+                                <Link  className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-300  bg-[rgb(36,210,101)] rounded-full text-xl gap-2 max-w-[340px] "  target="_blank" href="https://wa.me/+51952488753">
+                                <BsWhatsapp size={40}/>
+                                    Envíanos un mensaje
+                                </Link>
+                            </div>
+                            <div data-aos="fade-left" data-aos-delay="500" data-aos-duration="1800">
+                                <Link  className="p-2 text-white flex items-center justify-center filter saturate-200 hover:saturate-[3] hover:shadow-lg transform duration-300 bg-verde-rgb rounded-full text-xl gap-2 max-w-[340px] h-[60px]" href="../Solicitud">
+                                    <MdPets size={40}/>
+                                    Solicita una cita
+                                </Link>
+                            </div>
                         </div>
                         <div className="xl:w-1/2  max-xl:order-first flex items-center justify-center p-5" data-aos="fade-right" data-aos-delay="200 " data-aos-duration="1000" >
                             <Image src={servicioActual.img} alt={servicioActual.nombre} width={500} height={500} className=" rounded-lg xl:mr-[40%] shadow-2xl "/>
@@ -94,7 +96,7 @@ function ServicioPage({ params }) {
                     </div>
                 </section>
                 <Ubicacion/>
-            </main>
+
         </>
     );
 }

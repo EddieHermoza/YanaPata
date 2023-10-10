@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link'
-import {BiMenuAltRight,BiUser} from 'react-icons/bi'
+import {BiUser} from 'react-icons/bi'
+import {CgMenuRight} from "react-icons/cg" 
 import { useEffect,useState } from 'react';
 
 import MobileNavBar from './MobileNavBar';
@@ -32,14 +33,14 @@ export default function Navbar() {
         const sectionRect = section.getBoundingClientRect();
         const navbarRect = navbar.getBoundingClientRect();
 
-        const isInside = navbarRect.top >= sectionRect.top && navbarRect.bottom + 60 <= sectionRect.bottom;
+        const isInside = navbarRect.top >= sectionRect.top && navbarRect.bottom  <= sectionRect.bottom;
         
         setIsInSection(isInside);
         }
     };
 
-    const NavbarBG ='bg-transparent text-white'
-    const defaultNavbarBG = 'bg-white text-black shadow shadow-md';
+    const NavbarBG ='bg-[rgb(22,22,22)] bg-opacity-90 text-white'
+    const defaultNavbarBG = 'bg-white text-black shadow shadow-lg';
     const navbarBG = isInSection ? NavbarBG : defaultNavbarBG;
 
 
@@ -50,25 +51,25 @@ export default function Navbar() {
                 <h1 className='text-4xl filter saturate-200 text-verde-rgb'>YanaPata</h1>
                 <ul className="hidden space-x-7 items-center md:flex text-xl ">
                     <li className="border-x px-2">
-                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/">
+                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/" onClick={handleScroll}>
                             Inicio
                             <span className="animation-underline bg-verde-rgb"></span>
                         </Link>
                     </li>
                     <li className="border-x px-2">
-                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/Nosotros">
+                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/Nosotros" onClick={handleScroll}>
                             Nosotros
                             <span className="animation-underline bg-verde-rgb"></span>
                         </Link>
                     </li>
                     <li className='border-x px-2'>
-                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/Servicios" >
+                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/Servicios" onClick={handleScroll} >
                             Servicios
                             <span className="animation-underline bg-verde-rgb"></span>
                         </Link>
                     </li>
                     <li className='border-x px-2'>
-                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/Solicitud" >
+                        <Link className="relative filter saturate-200 hover:text-verde-rgb transform duration-200 group" href="/Solicitud"  onClick={handleScroll}>
                             Solicitar cita
                             <span className="animation-underline bg-verde-rgb"></span>
                         </Link>
@@ -83,7 +84,7 @@ export default function Navbar() {
             </button>
 
             <button className="md:hidden flex" onClick={ToogleMobileNav}>
-                <BiMenuAltRight size={32} />
+                <CgMenuRight size={32} />
             </button>
         </nav>
         {mobileNav && <MobileNavBar onclick={ToogleMobileNav}/>} 

@@ -1,18 +1,14 @@
 
-import Navbar from "@/Components/Navbar"
 import Image from "next/image"
-import PortadaDinamica from "@/Components/PortadaDinamica"
 import {Acordition,Colapsable} from "@/Components/TWelements/Acordition"
 import { MdPets } from 'react-icons/md'
-import Footer from "@/Components/Footer"
+import PortadaDinamica from "@/Components/PortadaDinamica"
 
 
 function page() {
   return (
     <>
-        <Navbar/>
-        <main>
-            <PortadaDinamica Titulo={"Nosotros"} Descripcion={"Nos dedicamos a la atención y cuidado de tus mascotas con pasión y profesionalismo."} imgURL={"/images/VeterinariaYanaPata.png"}/>
+        <PortadaDinamica titulo={"Nosotros"} desc={"Nos dedicamos a la atención y cuidado de tus mascotas con pasión y profesionalismo"} img={"/images/VeterinariaYanaPata.png"}/>
             <section className="">
                 <div className="flex max-lg:flex-col gap-10">
                     <div className="max-lg:m-auto lg:ml-auto flex flex-col gap-5 items-center justify-center">
@@ -81,7 +77,6 @@ function page() {
                     </div>
                 </div>
             </section>
-        </main>
     </>
   )
 }

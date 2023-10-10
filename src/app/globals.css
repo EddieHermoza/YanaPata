@@ -14,9 +14,6 @@
       @apply bg-transparent
     }
     
-    nav{
-      @apply bg-transparent
-    }
 
     section{
       @apply z-10 bg-white

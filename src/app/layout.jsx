@@ -1,5 +1,6 @@
 import Modal from '@/Components/Modal'
 import Footer from '@/Components/Footer'
+import Navbar from '@/Components/Navbar'
 import './globals.css'
 import { Comfortaa } from 'next/font/google'
 import AOSInitializer from '@/Components/AOSinit'
@@ -18,7 +19,10 @@ export default function RootLayout({ children }) {
  return (
     <html lang="en" className=' scrollbar-thin scrollbar-track-white scrollbar-thumb-teal-400'>
       <body className={comfo.className}>
-        {children}
+        <Navbar/>
+          <main>
+            {children}
+          </main>
       <Modal/>
       <AOSInitializer/>
       <Footer/>
