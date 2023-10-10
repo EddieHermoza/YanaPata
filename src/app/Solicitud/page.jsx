@@ -3,12 +3,15 @@ import FormCita from "@/Components/Forms/FormCita";
 import Image from "next/image";
 import {PiVolleyballBold} from "react-icons/pi"
 import PortadaDinamica from "@/Components/PortadaDinamica";
+import { Miltonian } from "next/font/google";
+import Footer from "@/Components/Footer";
 
 export default function SolicitudPage() {
   return (
     <>
+      <main>
       <PortadaDinamica titulo="Solicita una Cita" desc="La salud de tu mascota es nuestra prioridad. Programa una cita y juntos cuidaremos de su bienestar" img="/images/Solicitud-Mascotas.png"/>
-      <section className="pt-[60px] pb-[100px]">
+        <section className="pt-[60px] pb-[100px]">
           <h2 className="text-4xl filter saturate-200 text-center flex items-center justify-center text-black py-5">Completa todos los campos</h2>
             
           <div className="grid max-lg:grid-cols-none lg:grid-cols-3 py-5">
@@ -20,7 +23,8 @@ export default function SolicitudPage() {
                 <FormCita/>
               </div>
           </div>
-      </section>
+        </section>
+      </main>
     </>
     
   )

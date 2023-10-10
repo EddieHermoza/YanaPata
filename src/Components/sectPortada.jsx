@@ -16,7 +16,7 @@ function Portada() {
     initTE({ Carousel });
   }
   return (
-      <section  id="SectPortada" className="relative bg-stone-950">
+      <section  id="SectPortada" className="relative">
           <div id="CarouselPortada" className="relative" data-te-carousel-init data-te-ride="carousel" data-te-interval="4000">      
             <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
               

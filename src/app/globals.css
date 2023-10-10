@@ -5,7 +5,7 @@
 
 @layer base{
     body{
-      @apply xl:mb-[500px] 
+      @apply xl:mb-[500px] relative
     }
     main{
       @apply relative overflow-hidden

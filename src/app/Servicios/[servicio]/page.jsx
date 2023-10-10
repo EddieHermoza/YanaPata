@@ -27,6 +27,7 @@ function ServicioPage({ params }) {
 
     return (
         <>
+        <main>
             <PortadaDinamica
                     titulo={servicioActual.nombre}
                     desc={servicioActual.presentacion}
@@ -96,7 +97,7 @@ function ServicioPage({ params }) {
                     </div>
                 </section>
                 <Ubicacion/>
-
+            </main>
         </>
     );
 }

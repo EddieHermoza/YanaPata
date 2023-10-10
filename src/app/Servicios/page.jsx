@@ -3,12 +3,14 @@ import Image from "next/image"
 import {MdPets} from "react-icons/md"
 import SectServicios from "@/Components/SectServicios"
 import PortadaDinamica from "@/Components/PortadaDinamica"
+import Footer from "@/Components/Footer"
 
 
 function page() {
   return (
     <>
-        <PortadaDinamica  titulo="Servicios" desc="Dedicados a la salud y bienestar de tus mascotas, ofreciendo servicios de excelencia y cariño para que vivan una vida plena y saludable a tu lado" img="/images/Servicio.jpg"/>
+        <main>
+          <PortadaDinamica  titulo="Servicios" desc="Dedicados a la salud y bienestar de tus mascotas, ofreciendo servicios de excelencia y cariño para que vivan una vida plena y saludable a tu lado" img="/images/Servicio.jpg"/>
             <section className="">
                 <div className="flex max-lg:flex-col gap-10">
                   <div className="max-lg:m-auto lg:ml-auto flex flex-col gap-5 ">
@@ -41,6 +43,7 @@ function page() {
               <Image src="/images/Gato-Mirando.jpg" width={600} height={300} alt="gatito mirando" className="mx-auto"/>
               <SectServicios/>
         </section>
+      </main>
     </>
   )
 }

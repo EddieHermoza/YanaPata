@@ -20,12 +20,10 @@ export default function RootLayout({ children }) {
     <html lang="en" className=' scrollbar-thin scrollbar-track-white scrollbar-thumb-teal-400'>
       <body className={comfo.className}>
         <Navbar/>
-          <main>
-            {children}
-          </main>
-      <Modal/>
-      <AOSInitializer/>
-      <Footer/>
+        {children}
+        <Modal/>
+        <AOSInitializer/>
+        <Footer/>
       </body>
     </html>
   )
