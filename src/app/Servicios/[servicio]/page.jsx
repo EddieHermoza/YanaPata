@@ -27,7 +27,7 @@ function ServicioPage({ params }) {
 
     return (
         <>
-        <main>
+        <main className=" animate-fade animate-duration-[2000ms]">
             <PortadaDinamica
                     titulo={servicioActual.nombre}
                     desc={servicioActual.presentacion}

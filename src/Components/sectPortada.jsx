@@ -21,7 +21,7 @@ function Portada() {
             <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
               
                 <div className="relative float-left -mr-[100%] bg-stone-950 w-full transition-transform duration-[1000ms] min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden' }}  data-te-carousel-item data-te-carousel-active>
-                  <Image src="/images/Perro.jpg" height={1920} width={1445} className=" animar-zoom object-cover object-center h-screen w-full filter brightness-50" alt="Perro"/>
+                  <Image src="/images/Perro.jpg" height={1920} width={1445} className=" animar-zoom object-cover object-center h-screen w-full filter brightness-50" alt="Perro" unoptimized priority/>
                   <div className=" absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center">
                       <span className="max-md:text-5xl max-lg:text-6xl max-2xl:text-7xl 2xl:text-8xl max-md:w-[90%]  md:w-[calc(70%-2rem)] lg:w-[calc(70%-5rem)] text-white animate-fade-left animate-duration-[3000ms] bg-verde-rgb bg-opacity-30 filter saturate-200  flex items-center justify-center text-center p-5">Veterinaria</span>
@@ -32,7 +32,7 @@ function Portada() {
                 </div>
 
                 <div className="relative float-left -mr-[100%] bg-stone-950 hidden w-full transition-transform duration-[1000ms] min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden' }}   data-te-carousel-item>
-                  <Image src="/images/Gato.jpg" height={1920} width={1445} className="animar-zoom  object-cover object-center h-screen w-full filter brightness-50" alt="Gato"/>
+                  <Image src="/images/Gato.jpg" height={1920} width={1445} className="animar-zoom  object-cover object-center h-screen w-full filter brightness-50" alt="Gato" unoptimized priority/>
                   <div className="absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center">
                       <span className="max-md:text-4xl max-lg:text-5xl lg:text-7xl  max-md:w-[90%] text-shadow-lg shadow-black  md:w-[calc(100%-2rem)] lg:w-[calc(100%-5rem)] text-white animate-fade-down animate-duration-[3000ms] flex items-center justify-center text-center p-5">¿Tienes Preguntas?</span>
@@ -43,7 +43,7 @@ function Portada() {
                 </div>
 
                 <div className="relative float-left -mr-[100%] bg-stone-950 hidden w-full transition-transform duration-[1000ms] min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden' }}   data-te-carousel-item>
-                  <Image src="/images/PerroGato.jpg" height={1920} width={1445} className="animar-zoom  object-cover object-top h-screen w-full filter brightness-50" alt="Gato y Perro"/>
+                  <Image src="/images/PerroGato.jpg" height={1920} width={1445} className="animar-zoom  object-cover object-top h-screen w-full filter brightness-50" alt="Gato y Perro" unoptimized priority/>
                   <div className="absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center">
                       <span className="max-sm:text-2xl max-md:text-3xl max-lg:text-5xl lg:text-7xl text-white text-center px-5 text-shadow-lg shadow-black animate-fade-up animate-duration-[3000ms]">La mejor atención veterinaria para tus mascotas</span>

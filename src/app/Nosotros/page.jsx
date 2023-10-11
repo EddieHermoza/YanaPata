@@ -8,7 +8,7 @@ import PortadaDinamica from "@/Components/PortadaDinamica"
 function page() {
   return (
     <>
-    <main>
+    <main className=" animate-fade animate-duration-[2000ms]">
         <PortadaDinamica titulo={"Nosotros"} desc={"Nos dedicamos a la atención y cuidado de tus mascotas con pasión y profesionalismo"} img={"/images/VeterinariaYanaPata.png"}/>
             <section className="">
                 <div className="flex max-lg:flex-col gap-10">

@@ -9,7 +9,7 @@ import Footer from "@/Components/Footer"
 function page() {
   return (
     <>
-        <main>
+        <main className=" animate-fade animate-duration-[2000ms]">
           <PortadaDinamica  titulo="Servicios" desc="Dedicados a la salud y bienestar de tus mascotas, ofreciendo servicios de excelencia y cariño para que vivan una vida plena y saludable a tu lado" img="/images/Servicio.jpg"/>
             <section className="">
                 <div className="flex max-lg:flex-col gap-10">
