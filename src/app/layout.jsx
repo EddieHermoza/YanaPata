@@ -23,7 +23,6 @@ export default function RootLayout({ children }) {
         {children}
         <Modal/>
         <AOSInitializer/>
-        <Footer/>
       </body>
     </html>
   )

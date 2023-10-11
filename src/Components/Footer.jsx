@@ -1,6 +1,7 @@
-
+"use client"
+import { useEffect,useState } from 'react';
 import Link from 'next/link';
-import {BiLogoWhatsapp,BiLogoFacebookCircle,BiLogoInstagram} from 'react-icons/bi';
+import {BiLogoWhatsapp} from 'react-icons/bi';
 import {BsInstagram} from "react-icons/bs"
 import {FaFacebookF} from "react-icons/fa"
 import {FaMapLocationDot} from "react-icons/fa6"
@@ -8,10 +9,23 @@ import {MdEmail} from "react-icons/md"
 import {BsFillTelephonePlusFill} from "react-icons/bs"
 
 export default function Footer() {
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setShouldRender(true);
+    }, 2000); 
+
+    return () => clearTimeout(delay);
+  }, []);
+
+  if (!shouldRender) {
+    return null;
+  }
 
   return (
   
-    <footer id='footer' className=" -z-20  max-xl:relative xl:fixed bg-cover bg-center bottom-0 max-xl:h-auto xl:h-[500px] w-full" style={{backgroundImage :'url("/images/footer.jpg")'}}>
+    <footer id='footer' className="-z-20  max-xl:relative xl:fixed bg-cover bg-center bottom-0 max-xl:h-auto xl:h-[500px] w-full" style={{backgroundImage :'url("/images/footer.jpg")'}}>
         <div className='absolute h-full w-full bg-[rgb(22,22,22)] bg-opacity-90 filter saturate-200'>
 
         </div>

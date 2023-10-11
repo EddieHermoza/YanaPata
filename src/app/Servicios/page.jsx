@@ -44,6 +44,7 @@ function page() {
               <SectServicios/>
         </section>
       </main>
+      <Footer/>
     </>
   )
 }

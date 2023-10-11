@@ -3,6 +3,7 @@ import FormCita from "@/Components/Forms/FormCita";
 import Image from "next/image";
 import {PiVolleyballBold} from "react-icons/pi"
 import PortadaDinamica from "@/Components/PortadaDinamica";
+import Footer from "@/Components/Footer";
 
 export default function SolicitudPage() {
   return (
@@ -23,6 +24,7 @@ export default function SolicitudPage() {
           </div>
         </section>
       </main>
+      <Footer/>
     </>
     
   )

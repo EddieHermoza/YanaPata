@@ -8,6 +8,7 @@ import {AiOutlineLeft,AiOutlineRight} from "react-icons/ai"
 import {BsWhatsapp} from "react-icons/bs"
 import {MdPets} from "react-icons/md"
 import PortadaDinamica from "@/Components/PortadaDinamica";
+import Footer from "@/Components/Footer";
 
 function ServicioPage({ params }) {
     
@@ -98,6 +99,7 @@ function ServicioPage({ params }) {
                 </section>
                 <Ubicacion/>
             </main>
+            <Footer/>
         </>
     );
 }

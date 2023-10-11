@@ -3,6 +3,7 @@ import Image from "next/image"
 import {Acordition,Colapsable} from "@/Components/TWelements/Acordition"
 import { MdPets } from 'react-icons/md'
 import PortadaDinamica from "@/Components/PortadaDinamica"
+import Footer from "@/Components/Footer"
 
 
 function page() {
@@ -79,6 +80,7 @@ function page() {
                 </div>
             </section>
         </main>
+        <Footer/>
     </>
   )
 }
