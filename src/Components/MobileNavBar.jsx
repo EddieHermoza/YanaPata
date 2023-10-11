@@ -9,7 +9,7 @@ export default function MobileNavBar({onclick}) {
   return (
         <div className="min-h-screen md:hidden w-screen top-0 fixed flex flex-col items-center z-50 bg-black bg-opacity-90  " onClick={onclick}>
             <div className='w-full flex items-center justify-end  p-10 text-white'>
-                <button onclick={onclick} className=''>
+                <button onClick={onclick} className=''>
                     <AiOutlineClose size={40} className='hover:text-verde-rgb filter saturate-200 transform duration-200'/>
                 </button>
             </div> 

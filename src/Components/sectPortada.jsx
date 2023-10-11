@@ -36,7 +36,7 @@ function Portada() {
                   <div className="absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center">
                       <span className="max-md:text-4xl max-lg:text-5xl lg:text-7xl  max-md:w-[90%] text-shadow-lg shadow-black  md:w-[calc(100%-2rem)] lg:w-[calc(100%-5rem)] text-white animate-fade-down animate-duration-[3000ms] flex items-center justify-center text-center p-5">¿Tienes Preguntas?</span>
-                      <ScrollLink href="/" smooth={true} duration={300} to='Contacto' className="z-50 bg-verde-rgb rounded-full bg-opacity-75 text-white p-4 filter hover:saturate-200 hover:bg-opacity-100 transform duration-200 text-2xl animate-fade-up animate-duration-[3000ms]">Contáctanos</ScrollLink>   
+                      <ScrollLink href="/" smooth={true} duration={500} to='Contacto' className="z-50 bg-verde-rgb rounded-full bg-opacity-75 text-white p-4 filter hover:saturate-200 hover:bg-opacity-100 transform duration-200 text-2xl animate-fade-up animate-duration-[3000ms]">Contáctanos</ScrollLink>   
                       
                     </div>
                   </div>

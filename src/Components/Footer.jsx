@@ -1,7 +1,8 @@
 
 import Link from 'next/link';
 import {BiLogoWhatsapp,BiLogoFacebookCircle,BiLogoInstagram} from 'react-icons/bi';
-import {FaFacebookSquare,FaInstagramSquare} from "react-icons/fa"
+import {BsInstagram} from "react-icons/bs"
+import {FaFacebookF} from "react-icons/fa"
 import {FaMapLocationDot} from "react-icons/fa6"
 import {MdEmail} from "react-icons/md"
 import {BsFillTelephonePlusFill} from "react-icons/bs"
@@ -48,12 +49,12 @@ export default function Footer() {
             <div className='flex w-full xl:w-[50%] flex-col p-3 max-sm:gap-2 gap-5'>
               <h3 className='text-white max-sm:text-3xl text-4xl'>Siguenos:</h3>
               <span className='bg-white h-1 w-[30%]'></span>
-              <ul className='flex text-5xl text-white gap-2'>
+              <ul className='flex text-white gap-2'>
                 <li>
-                  <Link href="https://www.facebook.com/yanapataveterinaria" target='_blank' className='flex  items-center justify-center hover:scale-125 hover:text-verde-rgb filter saturate-[3] transform duration-200'><FaFacebookSquare /></Link>
+                  <Link href="https://www.facebook.com/yanapataveterinaria" target='_blank' className='rounded-full hover:scale-110 bg-stone-950 bg-opacity-50 border p-3 flex  items-center justify-center  hover:text-verde-rgb filter saturate-[3] transform duration-200'> <FaFacebookF size={20} /> </Link>
                 </li>
                 <li>
-                  <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className='flex items-center justify-center hover:scale-125 hover:text-verde-rgb filter saturate-[3] transform duration-200'><FaInstagramSquare /></Link>
+                  <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className=' rounded-full hover:scale-110 bg-stone-950 bg-opacity-50 border p-3 flex items-center justify-center  hover:text-verde-rgb filter saturate-[3] transform duration-200'><BsInstagram size={20}/></Link>
                 </li>
               </ul>
             </div>

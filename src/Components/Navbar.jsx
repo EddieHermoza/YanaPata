@@ -33,13 +33,13 @@ export default function Navbar() {
         const sectionRect = section.getBoundingClientRect();
         const navbarRect = navbar.getBoundingClientRect();
 
-        const isInside = navbarRect.top >= sectionRect.top && navbarRect.bottom  <= sectionRect.bottom;
+        const isInside = navbarRect.top >= sectionRect.top && navbarRect.bottom +60  <= sectionRect.bottom;
         
         setIsInSection(isInside);
         }
     };
 
-    const NavbarBG ='bg-[rgb(22,22,22)] bg-opacity-90 text-white'
+    const NavbarBG ='bg-transparent text-white'
     const defaultNavbarBG = 'bg-white text-black shadow shadow-lg';
     const navbarBG = isInSection ? NavbarBG : defaultNavbarBG;
 

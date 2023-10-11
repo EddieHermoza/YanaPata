@@ -36,18 +36,18 @@ function ServicioPage({ params }) {
                 <section>
                     <div className="flex  max-xl:flex-col gap-10 md:p-10">
                         <div className="xl:w-1/2 flex flex-col  gap-10 p-5" >
-                            <div data-aos="fade-left" data-aos-delay="200" data-aos-duration="1200" className="relative flex flex-col w-auto filter saturate-200">
+                            <div data-aos="fade-left"  data-aos-duration="1200" className="relative flex flex-col w-auto filter saturate-200">
                                 <h2 className="max-sm:text-3xl text-5xl">{servicioActual.nombre}</h2>
                                 <span className="w-[25%] h-[6px] bg-verde-rgb filter saturate-200 mt-3"></span>
                             </div>
-                            <p data-aos="fade-left" data-aos-delay="300" data-aos-duration="1400" className="max-sm:text-base text-xl">{servicioActual.descripcion}</p>
-                            <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="1600">
-                                <Link  className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-300  bg-[rgb(36,210,101)] rounded-full text-xl gap-2 max-w-[340px] "  target="_blank" href="https://wa.me/+51952488753">
+                            <p data-aos="fade-left"  data-aos-duration="1400" className="max-sm:text-base text-xl">{servicioActual.descripcion}</p>
+                            <div data-aos="fade-left"  data-aos-duration="1600">
+                                <Link  className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-300  bg-[rgb(36,210,101)] rounded-full text-xl gap-2 max-w-[340px] "  target="_blank" href="https://wa.me/+51995468795">
                                 <BsWhatsapp size={40}/>
                                     Envíanos un mensaje
                                 </Link>
                             </div>
-                            <div data-aos="fade-left" data-aos-delay="500" data-aos-duration="1800">
+                            <div data-aos="fade-left" data-aos-duration="1800">
                                 <Link  className="p-2 text-white flex items-center justify-center filter saturate-200 hover:saturate-[3] hover:shadow-lg transform duration-300 bg-verde-rgb rounded-full text-xl gap-2 max-w-[340px] h-[60px]" href="../Solicitud">
                                     <MdPets size={40}/>
                                     Solicita una cita
@@ -65,7 +65,7 @@ function ServicioPage({ params }) {
                         <Carousel id={"CarouselComentarios"} className={"w-full py-5 overflow-hidden flex flex-col bg-fixed bg-bottom items-center justify-center bg-[url(/images/Test.jpg)]"}>
                             <div className="bg-black bg-opacity-75 absolute top-0 left-0 w-full h-full"></div>
                             <CarouselBody>
-                                <h2 className="max-sm:text-4xl text-5xl w-full text-center text-white text-shadow-sm shadow-verde-rgb filter saturate-200 py-5">Testimonios</h2>
+                                <h2 className="max-sm:text-4xl text-5xl w-full text-center text-white  filter saturate-200 py-5">Testimonios</h2>
                                 <ItemActiveCarousel className={"overflow-hidden"}>
                                 {servicioActual.comentarios.length > 0 && (
                                     <div className="w-full h-[20vh] flex flex-col max-sm:gap-3 gap-5 items-center justify-center text-xl text-white">
