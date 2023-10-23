@@ -43,7 +43,7 @@ function ServicioPage({ params }) {
                             </div>
                             <p data-aos="fade-left"  data-aos-duration="1400" className="max-sm:text-base text-xl">{servicioActual.descripcion}</p>
                             <div data-aos="fade-left"  data-aos-duration="1600">
-                                <Link  className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-300  bg-[rgb(36,210,101)] rounded-full text-xl gap-2 max-w-[340px] "  target="_blank" href="https://wa.me/+51995468795">
+                                <Link  className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-300  bg-[rgb(36,210,101)] rounded-full text-xl gap-2 max-w-[340px] "  target="_blank"  href={`https://wa.me/+51995468795?text=Hola,%20Estoy%20interesado%20en%20el%20servicio%20de%20${servicioActual.nombre}`}>
                                 <BsWhatsapp size={40}/>
                                     Envíanos un mensaje
                                 </Link>

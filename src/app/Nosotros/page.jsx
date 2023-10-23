@@ -31,7 +31,8 @@ function page() {
                                 <div className='flex max-md:flex-col items-center justify-center'>
                                     <div className='animate-fade-right animate-duration-[3000ms] md:w-1/2 flex flex-col item-center justify-center gap-5  md:pl-14'>
                                         <h2 className='text-5xl underline underline-offset-8 text-verde-rgb'>Visión</h2>
-                                        <p className='text-base'>En <span className='text-verde-rgb'>Yanapata</span>, nuestra visión es convertirnos en un referente de excelencia en atención veterinaria en nuestra comunidad y más allá. Buscamos ser reconocidos por nuestro compromiso inquebrantable con el bienestar animal. Nos esforzamos por establecer relaciones de confianza a largo plazo con nuestros clientes y sus mascotas, y ser líderes en la promoción de la adopción responsable y la educación sobre el cuidado de los animales.</p>
+                                        <p className='text-base'>En <span className='text-verde-rgb'>Yanapata</span>, nuestra visión es convertirnos en un referente de excelencia en atención veterinaria en nuestra comunidad y más allá. Buscamos ser reconocidos por nuestro compromiso inquebrantable con el bienestar animal.</p>
+                                        <p className="text-base"> Nos esforzamos por establecer relaciones de confianza a largo plazo con nuestros clientes y sus mascotas, y ser líderes en la promoción de la adopción responsable y la educación sobre el cuidado de los animales.</p>
                                     </div>
                                     <div className='animate-fade-left animate-duration-[3000ms] md:w-1/2 flex items-center justify-center max-md:p-5 md:pr-14'>
                                         <Image src="/images/about-img.webp" height={390} width={290}/>
@@ -42,35 +43,36 @@ function page() {
                             <Colapsable IDAcordition="AcordeonFilosofia" IDCollapse="Mi" Title="Nuestra Misión" label="Misionlbl">
                                 <div className='flex max-md:flex-col-reverse items-center justify-center'>
                                     <div className='animate-fade-right animate-duration-[3000ms] md:w-1/2 flex items-center justify-center max-md:p-5 md:pl-14'>
-                                        <Image src="/images/gato-vision.webp" height={390} width={290} className='filter saturate-50 max-w-[290] max-h-[390px]'/>
+                                        <Image src="/images/gato-vision1.webp" height={390} width={290} className='filter saturate-50 h-[390px] w-auto'/>
                                     </div>
 
                                     <div className='animate-fade-left animate-duration-[3000ms] md:w-1/2 flex flex-col item-center justify-center gap-5  md:pr-14'>
                                         <h2 className='text-5xl underline underline-offset-8 text-verde-rgb'>Misión</h2>
-                                        <p className='text-base'>En <span className='text-verde-rgb'>Yanapata</span>, nuestra misión es promover y proteger la salud y el bienestar de los animales en compañía de sus dueños. Nos esforzamos por ofrecer atención médica de calidad, enfocándonos en un ambiente acogedor que les brinde seguridad. Trabajamos incansablemente para mejorar la calidad de vida de los animales a través de un enfoque en la prevención, diagnóstico preciso y un tratamiento compasivo. De manera que, la mejora se haga notable en el cuidado de ellos.</p>
+                                        <p className='text-base'>En <span className='text-verde-rgb'>Yanapata</span>, nuestra misión es promover y proteger la salud y el bienestar de los animales en compañía de sus dueños. Nos esforzamos por ofrecer atención médica de calidad, enfocándonos en un ambiente acogedor que les brinde seguridad.</p>
+                                        <p className="text-base">Trabajamos incansablemente para mejorar la calidad de vida de los animales a través de un enfoque en la prevención, diagnóstico preciso y un tratamiento compasivo. De manera que, la mejora se haga notable en el cuidado de ellos.</p>
                                     </div>
                                 </div>
                             </Colapsable>
                             <Colapsable IDAcordition="AcordeonFilosofia" IDCollapse="Va" Title="Nuestros Valores" label="Valoreslbl">
                                 <ul className="animate-fade-up animate-duration-[3000ms] max-sm:text-xl sm:text-2xl mt-5 text-black flex flex-col gap-5">
                                     <li className="flex flex-col items-center gap-x-2">
-                                        <MdPets size={30}  className="text-verde-rgb filter saturate-200"/> Compasión
+                                        <MdPets size={30}  className="text-[rgb(255,100,0)]"/> Compasión
                                         <span className='text-base text-center'>Mostramos empatía y cuidado hacia los animales en todo momento.</span>
                                     </li> 
                                     <li className="flex flex-col items-center gap-x-2">
-                                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Ética
+                                        <MdPets size={30} className="text-[rgb(255,100,0)]"/> Ética
                                         <span className='text-base text-center'>Actuamos con integridad, honestidad y profesionalismo en todas las interacciones.</span>
                                     </li>
                                     <li className="flex flex-col items-center gap-x-2">
-                                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Compromiso
+                                        <MdPets size={30} className="text-[rgb(255,100,0)]"/> Compromiso
                                         <span className='text-base text-center'> Comprometidos con el bienestar de los animales, trabajando incansablemente para lograrlo.</span>
                                     </li>
                                     <li className="flex flex-col items-center gap-x-2">
-                                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Responsabilidad
+                                        <MdPets size={30} className="text-[rgb(255,100,0)]"/> Responsabilidad
                                         <span className='text-base text-center'>Promovemos la adopción y la tenencia de mascotas responsable.</span>
                                     </li>
                                     <li className="flex flex-col items-center gap-x-2">
-                                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Excelencia
+                                        <MdPets size={30} className="text-[rgb(255,100,0)]"/> Excelencia
                                         <span className='text-base text-center'>Buscamos constantemente la mejora en la atención y el servicio al cliente.</span>
                                     </li>
                                 </ul>

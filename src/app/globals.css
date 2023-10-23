@@ -59,7 +59,6 @@
   opacity: 0; 
 }
 
-
 .animar-zoom {
   animation: zoomFondo 25s linear infinite, revertirZoom 25s linear infinite; /* Duración, tipo de animación y repetición */
 }

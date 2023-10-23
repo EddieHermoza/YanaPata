@@ -43,7 +43,7 @@ function PortadaDinamica({titulo,desc,img}) {
             <div className="bg-black bg-opacity-50 absolute w-full h-full"></div>
             <div className="absolute w-full h-full items-center justify-center inset-0 flex flex-col gap-3">
                 <h2 className={`text-white max-sm:text-4xl text-5xl lg:text-6xl xl:text-7xl text-center  ${effectTittle}`}>{titulo}</h2>
-                <p id="present" className={`text-white max-sm:text-base px-2 max-md:text-xl md:text-2xl xl:text-4xl text-center ${effectPresent}`}>« {desc} »</p>
+                <p id="present" className={`text-white w-[90%] max-sm:text-base px-2 max-md:text-xl md:text-2xl xl:text-4xl text-center ${effectPresent}`}>« {desc} »</p>
             </div>
             <div className="absolute bottom-0 left-0 w-full flex items-center justify-center h-[60px]">
                 <NavRouter/>

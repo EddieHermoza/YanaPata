@@ -18,15 +18,16 @@ export async function POST(request) {
             to: 'eddie.ehc04@gmail.com',
             subject: 'Contacto',
             html: `
-                <div>
-                <h2>Tengo una consulta</h2>
+            <div style="font-family: 'Comfortaa', sans-serif; color: #000; margin: 0; padding: 20px;">
+            <h2 style="background-color: #00CED1; color: #fff; padding: 10px; text-align: center;">Tengo una Consulta</h2>
                 <ul>
-                    <li>Usuario: ${subject}</li>
-                    <li>Telefono: ${number}</li>
-                    <li>Correo Electronico: ${email}</li>
-                    <li>Mensaje: ${message}</li>
+                <h3 style="background-color: #00CED1; color: #fff; padding: 5px; width: 200px;">Información del Solicitante</h3>
+                    <li style="color: #000; margin: 10px 0;">Usuario: ${subject}</li>
+                    <li style="color: #000; margin: 10px 0;">Telefono: ${number}</li>
+                    <li style="color: #000; margin: 10px 0;">Correo Electrónico: ${email}</li>
+                    <li style="color: #000; margin: 10px 0;">Mensaje: ${message}</li>
                 </ul>
-                <div/>
+            </div>
                 
             `
         };

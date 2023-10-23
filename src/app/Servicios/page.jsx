@@ -15,21 +15,21 @@ function page() {
                 <div className="flex max-lg:flex-col gap-10">
                   <div className="max-lg:m-auto lg:ml-auto flex flex-col gap-5 ">
                     <p className="max-md:text-base md:text-xl text-black text-justify lg:w-[600px] max-sm:px-6 sm:px-10">En <span className="text-xl text-verde-rgb filter saturate-200">YanaPata</span>, no solo proporcionamos servicios veterinarios para tus queridas mascotas, sino que también nos esforzamos por aplicar tratamientos con un enfoque ético, asegurando que cada procedimiento se realice con cuidado y compasión cuando tus animales lo necesitan.</p>
-                    <ul className="max-md:text-base md:text-xl text-black text-justify lg:w-[600px] max-sm:px-6 sm:px-10 flex flex-col gap-5 mt-4">
+                    <ul className="max-md:text-base md:text-xl text-black text-justify lg:w-[600px] max-sm:px-6 sm:px-10 flex flex-col gap-6 mt-4">
                       <li className="flex items-center gap-x-2">
-                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Ambiente Cálido y Amigable
+                        <MdPets size={30} className="text-[rgb(255,140,0)]"/> Ambiente Cálido y Amigable
                       </li> 
                       <li className="flex items-center gap-x-2">
-                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Consultas Personalizadas
+                        <MdPets size={30} className="text-[rgb(255,140,0)]"/> Consultas Personalizadas
                       </li>
                       <li className="flex items-center gap-x-2">
-                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Pecios Transparentes
+                        <MdPets size={30} className="text-[rgb(255,140,0)]"/> Pecios Transparentes
                       </li>
                       <li className="flex items-center gap-x-2">
-                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Personal Profesional
+                        <MdPets size={30} className="text-[rgb(255,140,0)]"/> Personal Profesional
                       </li>
                       <li className="flex items-center gap-x-2">
-                        <MdPets size={30} className="text-verde-rgb filter saturate-200"/> Compromiso con los animales
+                        <MdPets size={30} className="text-[rgb(255,140,0)]"/> Compromiso con los animales
                       </li>
                     </ul>
                   </div>

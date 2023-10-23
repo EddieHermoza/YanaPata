@@ -17,31 +17,29 @@ export async function POST(request) {
             from:'"VeterinariaYanaPata" <eddie.ehc04@gmail.com>',
             to: 'eddie.ehc04@gmail.com',
             subject: 'Solicitud de Cita',
-            html: `
-                <div>
-                <h2>Solicitud de Cita </h2>
-                <ul>
-                    <h3>Información del dueño</h3>
-                    <li>Nombres del dueño: ${nombres}</li>
-                    <li>Apellidos del dueño: ${apellidos}</li>
-                    <li>Número del dueño: ${numero}</li>
-                    <li>Correo del dueño: ${correo}</li>
-                    <br>
-                    <h3>Información de la Mascota</h3>
-                    <li>Nombre de la mascota: ${nombreMasc}</li>
-                    <li>Sexo de la mascota: ${sexoMasc}</li>
-                    <li>Tipo de mascota: ${tipo}</li>
-                    <li>Raza de mascota: ${raza}</li>
-                    <br>
-                    <h3>Información de la cita</h3>
-                    <li>Dia: ${dia}</li>
-                    <li>Hora: ${hora}</li>
-                    <li>Servicio escogido: ${servicio}</li>
-                    <li>Detalles: ${motivo}</li>
-                </ul>
-                <div/>
-                
+            html: 
             `
+            <div style="font-family: 'Comfortaa', sans-serif; color: #000; margin: 0; padding: 20px;">
+                <h2 style="background-color: #00CED1; color: #fff; padding: 10px; text-align: center;">Solicitud de Cita</h2>
+                <ul>
+                    <h3 style="background-color: #00CED1; color: #fff; padding: 5px; width: 200px;">Información del dueño</h3>
+                    <li style="color: #000; margin: 10px 0;">Nombres del dueño: ${nombres}</li>
+                    <li style="color: #000; margin: 10px 0;">Apellidos del dueño: ${apellidos}</li>
+                    <li style="color: #000; margin: 10px 0;">Número del dueño: ${numero}</li>
+                    <li style="color: #000; margin: 10px 0;">Correo del dueño: ${correo}</li>
+                    <h3 style="background-color: #00CED1; color: #fff; padding: 5px; width: 200px;">Información de la Mascota</h3>
+                    <li style="color: #000; margin: 10px 0;">Nombre de la mascota: ${nombreMasc}</li>
+                    <li style="color: #000; margin: 10px 0;">Sexo de la mascota: ${sexoMasc}</li>
+                    <li style="color: #000; margin: 10px 0;">Tipo de mascota: ${tipo}</li>
+                    <li style="color: #000; margin: 10px 0;">Raza de mascota: ${raza}</li>
+                    <h3 style="background-color: #00CED1; color: #fff; padding: 5px; width: 200px;">Información de la cita</h3>
+                    <li style="color: #000; margin: 10px 0;">Día: ${dia}</li>
+                    <li style="color: #000; margin: 10px 0;">Hora: ${hora}</li>
+                    <li style="color: #000; margin: 10px 0;">Servicio escogido: ${servicio}</li>
+                    <li style="color: #000; margin: 10px 0;">Detalles: ${motivo}</li>
+                </ul>
+            </div>
+    `
         };
 
         await transporter.sendMail(mailOptions)

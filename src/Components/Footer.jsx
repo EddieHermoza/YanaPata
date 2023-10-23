@@ -25,8 +25,8 @@ export default function Footer() {
 
   return (
   
-    <footer id='footer' className="-z-20  max-xl:relative xl:fixed bg-cover bg-center bottom-0 max-xl:h-auto xl:h-[500px] w-full" style={{backgroundImage :'url("/images/footer.jpg")'}}>
-        <div className='absolute h-full w-full bg-[rgb(22,22,22)] bg-opacity-90 filter saturate-200'>
+    <footer id='footer' className="-z-20 max-sm:bg-right max-xl:relative xl:fixed bg-cover bg-center bottom-0 max-xl:h-auto xl:h-[500px] w-full" style={{backgroundImage :'url("/images/footer.jpg")'}}>
+        <div className='absolute h-full w-full bg-[rgb(22,22,22)] bg-opacity-90 filter saturate-200 max-sm:bg-opacity-100 transform duration-300'>
 
         </div>
         <div className="relative pt-16 max-md:gap-5 grid max-md:grid-rows-2 md:grid-cols-2  xl:mx-[8%]">
@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className=' xl:fixed bottom-0 relative flex items-center justify-center bg-[rgb(22,22,22)] w-full h-[60px]'>
+        <div className=' xl:fixed bottom-0 relative flex items-center justify-center bg-black w-full h-[60px]'>
           <span className='text-white max-sm:text-xs text-base text-center'>© 2023 © Veterinaria YanaPata.  Todos los derechos reservados.</span>
         </div>
     </footer>

@@ -2,6 +2,7 @@
 import Portada from '../Components/sectPortada'
 import Ubicacion from '../Components/sectUbicacion'
 import Contacto from '../Components/sectContacto'
+import Iframe from 'react-iframe';
 import Footer from '@/Components/Footer'
 import Nosotros from '../Components/sectionNosotros'
 
