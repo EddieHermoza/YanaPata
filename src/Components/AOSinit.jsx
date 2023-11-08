@@ -8,7 +8,7 @@ const AOSInitializer = () => {
     AOS.init({
       duration: 300,
       offset:10,
-      mirror: true,
+      mirror: false,
     });
   }, []);
 

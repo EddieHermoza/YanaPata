@@ -1,0 +1,87 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_CLOUD_URL")
+}
+
+model Servicio{
+  id Int @id @default(autoincrement())
+  creacion DateTime @default(now())
+  nombre String
+  descrip String
+  foto String
+  precio_min Decimal @db.Decimal(10,2)
+  citas Cita[]
+  comentarios Comentario[]
+}
+
+model Usuario{
+  id Int @id @default(autoincrement())
+  nombres String
+  apellidos String
+  email String @unique
+  password String
+  rol String
+  cliente Cliente?
+}
+
+model Cliente{
+  id Int @id @default(autoincrement())
+  usuario Usuario @relation(fields: [usuario_id], references: [id])
+  usuario_id Int @unique 
+  telefono String
+  mascotas Mascota[]
+  citas Cita[]
+  comentarios Comentario[]
+}
+
+model Mascota{
+  id Int @id @default(autoincrement())
+  creacion DateTime @default(now())
+  cliente Cliente @relation(fields: [cliente_id], references: [id])
+  cliente_id Int
+  nombre String
+  tipo String
+  raza String
+  sexo String
+  altura String
+  peso Decimal? @db.Decimal(10,2)
+  ultima_cita DateTime
+  foto String
+  citas Cita[]
+}
+
+
+model Cita {
+  id Int @id @default(autoincrement())
+  creacion DateTime @default(now())
+  fechaSolicitud String
+  horaSolicitud String
+  ClienteInfo Json?
+  MascotaInfo Json?
+  cliente Cliente? @relation(fields: [cliente_id],references: [id])
+  cliente_id Int?
+  mascota Mascota? @relation(fields: [mascota_id], references: [id])
+  mascota_id Int? 
+  servicio Servicio @relation(fields: [servicio_id],references: [id])
+  servicio_id Int 
+  asunto String
+  estado String
+}
+
+model Comentario{
+  id Int @id @default(autoincrement())
+  creacion DateTime @default(now())
+  confirmacion DateTime
+  calificacion Int
+  mensaje String
+  servicio Servicio @relation(fields: [servicio_id],references: [id])
+  servicio_id Int
+  cliente Cliente @relation(fields: [cliente_id],references: [id])
+  cliente_id Int
+}
+

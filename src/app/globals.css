@@ -16,7 +16,7 @@
     
 
     section{
-      @apply z-10 bg-white
+      @apply bg-white
     }
 
 
@@ -48,15 +48,6 @@
     .ani-underline{
       @apply filter saturate-200 absolute bottom-0 left-0 w-full h-[3px] bg-white origin-left transform scale-x-100 transition-transform duration-300
     }
-}
-
-.mi-div-aos {
-  opacity: 1; 
-  transition: opacity 0.3s ease-in-out; 
-}
-
-.mi-div-aos.aos-animate {
-  opacity: 0; 
 }
 
 .animar-zoom {

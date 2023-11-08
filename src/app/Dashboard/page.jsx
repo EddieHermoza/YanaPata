@@ -1,12 +1,20 @@
-
+import GraficaPrueba from "@/app/Dashboard/Components/Graficas/graficaPrueba"
+import GraficaCircular from "./Components/Graficas/graficaCircular"
 
 function DashboardPage() {
   return (
-    <main>
-      <section className="min-h-screen flex items-center justify-center">
-        <div>Dashboar en progreso</div>
+    <>
+      <section className="w-full min-h-screen flex flex-col items-center gap-10 p-10">
+          <div className="text-5xl text-black flex justify-center">
+            <h1>Dashboard</h1>
+          </div>
+        <div className="flex gap-2 justify-center items-center w-full h-full">
+          <GraficaPrueba/>
+          <GraficaCircular/>
+        </div>
       </section>
-    </main>
+    </>
+  
 
   )
 }
