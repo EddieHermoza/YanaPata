@@ -12,14 +12,14 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-  } from "@/components/ui/sheet"
+  } from "@/Components/ui/sheet"
   
   import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "@/components/ui/accordion"
+  } from "@/Components/ui/accordion"
 
   import {
     Menubar,
@@ -27,7 +27,7 @@ import {
     MenubarItem,
     MenubarMenu,
     MenubarTrigger,
-  } from "@/components/ui/menubar"
+  } from "@/Components/ui/menubar"
  
 
 export default function Navbar() {

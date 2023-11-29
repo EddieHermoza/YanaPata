@@ -6,12 +6,12 @@ import { useState } from "react";
 import { useForm,Controller} from "react-hook-form"
 import { Calendar as CalendarIcon } from "lucide-react"
  
-import { Calendar } from "@/components/ui/calendar"
+import { Calendar } from "@/Components/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/Components/ui/popover"
 
 function FormCita() {
     const {register,control,reset,handleSubmit,formState:{errors}} = useForm()
