@@ -11,7 +11,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
+  } from "@/Components/ui/dialog"
 import SkeletonTable from "@/Components/Skeletons/SkeletonTable"
 
 function page({searchParams}) {

@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/Components/ui/dialog"
 
 import FormCliente from "./Components/Forms/FormClientes"
 import TablaClientes from "./Components/DataTable/tablaClientes"

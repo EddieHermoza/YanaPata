@@ -1,4 +1,4 @@
-import Navbar from "@/Components/Navbar"
+
 import Image from "next/image"
 import {MdPets} from "react-icons/md"
 import SectServicios from "@/Components/SectServicios"

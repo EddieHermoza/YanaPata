@@ -17,14 +17,14 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
+  } from "@/Components/ui/dialog"
 
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+  } from "@/Components/ui/dropdown-menu"
  
 function OptionsServicio({id,estado,servicio}) {
     const router=useRouter();

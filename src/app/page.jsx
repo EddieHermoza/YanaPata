@@ -1,4 +1,4 @@
-import Navbar from '@/Components/Navbar';
+
 import Portada from '../Components/sectPortada'
 import Ubicacion from '../Components/sectUbicacion'
 import Contacto from '../Components/sectContacto'

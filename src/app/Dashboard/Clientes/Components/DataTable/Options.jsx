@@ -1,8 +1,8 @@
 "use client"
 import {AiOutlineInfoCircle} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useRouter } from "next/navigation"
+import { Checkbox } from "@/Components/ui/checkbox"
+
 import {HiEllipsisHorizontal} from "react-icons/hi2"
 import Link from "next/link"
 import { EstadoCambiado,ClienteEliminado } from "../../actions"
@@ -13,7 +13,7 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+  } from "@/Components/ui/dropdown-menu"
  
 function OptionsCliente({cliente}) {
 

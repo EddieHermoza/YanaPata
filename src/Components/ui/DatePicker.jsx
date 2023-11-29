@@ -3,12 +3,12 @@ import { useState } from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
  
-import { Calendar } from "@/components/ui/calendar"
+import { Calendar } from "@/Components/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/Components/ui/popover"
  
 export function DatePicker() {
   const [date, setDate] = useState()

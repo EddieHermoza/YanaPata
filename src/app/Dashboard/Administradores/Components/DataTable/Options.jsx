@@ -2,7 +2,7 @@
 import {AiOutlineInfoCircle} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import { FiEdit } from "react-icons/fi";
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/Components/ui/checkbox"
 import {HiEllipsisHorizontal} from "react-icons/hi2"
 import Link from "next/link"
 import ModificarAdmin from "../Forms/FormModificarAdmin";
@@ -15,14 +15,14 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
+  } from "@/Components/ui/dialog"
 
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+  } from "@/Components/ui/dropdown-menu"
  
 function OptionsAdmin({id,admin}) {
 
