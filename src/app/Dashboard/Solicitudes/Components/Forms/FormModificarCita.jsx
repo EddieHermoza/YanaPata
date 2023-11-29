@@ -24,6 +24,7 @@ export default function ModificarCita({cita}) {
             const data = await ListarServicios();
             setServicios(data);
           }
+          fetchServicios()
         if (cita) {
             setValue('CitaID',cita.id || '');
             setValue('ClieNombre', cita.ClienteInfo.nombre || '');
