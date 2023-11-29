@@ -2,6 +2,31 @@
 import db from "@/lib/db"
 import { revalidatePath } from "next/cache";
 
+export async function ListarServicios () {
+    try { 
+        const servicios = await db.servicio.findMany({
+            where: {
+                estado:'Habilitado'
+              },
+              select: {
+                id: true,
+                nombre: true,
+                precio_min: true,
+              }
+        });
+
+        const serviciosFormateados = servicios.map((servicio) => ({
+            ...servicio,
+            precio_min: parseFloat(servicio.precio_min),  
+        }));
+
+        return serviciosFormateados;
+
+      } catch (error) {
+        console.error('Error en la consulta:', error);
+        return []
+      }
+}
 
 export async function getCitasPages(status,cliente,mascota) {
     try {

@@ -2,32 +2,12 @@
 import { useState,useEffect } from "react";
 import { useForm} from "react-hook-form"
 import { CitaModificada } from "@/app/Dashboard/Solicitudes/actions";
-
+import { ListarServicios } from "@/app/Dashboard/Solicitudes/actions";
 export default function ModificarCita({cita}) {
     const {setValue,register,handleSubmit, formState:{errors}} = useForm();
     const [enviando, setEnviando] = useState(false);
     const [servicios,setServicios]=useState([]);
 
-    async function fetchServicios() {
-        const data={
-            message:"Listar"
-        }
-        const rspt = await fetch('/api/ctrlServicios',{
-            method:'POST',
-            body:JSON.stringify(data),
-            headers: {
-                'Content-Type':'application/json'
-            }
-        });
-
-        if (rspt.ok) { 
-            const serviciosData = await rspt.json();
-            setServicios(serviciosData);
-        } else {
-            console.error('Error al obtener datos de los Servicios');
-        }
-        
-    }
 
     const onSubmit =handleSubmit( async (data) => {
         data.id = cita.id;
@@ -40,7 +20,10 @@ export default function ModificarCita({cita}) {
     });
 
     useEffect(() => {
-        fetchServicios()
+        async function fetchServicios() {
+            const data = await ListarServicios();
+            setServicios(data);
+          }
         if (cita) {
             setValue('CitaID',cita.id || '');
             setValue('ClieNombre', cita.ClienteInfo.nombre || '');
