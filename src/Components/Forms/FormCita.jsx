@@ -47,7 +47,7 @@ function FormCita() {
         }
 
         const cita={
-            fechaSolicitud:data.dia,
+            fechaSolicitud:data.fechaSolicitud,
             horaSolicitud:data.hora,
             ClienteInfo:ClienteInfo,
             MascotaInfo:MascotaInfo,
@@ -225,7 +225,7 @@ function FormCita() {
 
             <div className="relative md:w-[600px] gap-2 flex max-md:flex-col ">
             <Controller
-                name="dia"
+                name="fechaSolicitud"
                 control={control}
                 defaultValue={null}
                 render={({ field: { onChange, value } }) => (

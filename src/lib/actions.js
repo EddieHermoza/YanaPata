@@ -44,7 +44,7 @@ export const CitaEnviada = async (data) =>{
         data: {
             nombreCliente: data.ClienteInfo.nombre +" "+ data.ClienteInfo.apellidos,
             nombreMascota:data.MascotaInfo.nombre,
-            fechaSolicitud: data.fechaSolicitud,
+            fechaSolicitud:data.fechaSolicitud.toISOString(),
             horaSolicitud: data.horaSolicitud,
             ClienteInfo: data.ClienteInfo,
             MascotaInfo: data.MascotaInfo,
