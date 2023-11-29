@@ -11,9 +11,11 @@ datasource db {
 model Servicio{
   id Int @id @default(autoincrement())
   creacion DateTime @default(now())
+  modificacion DateTime @updatedAt
   nombre String
   descrip String
-  foto String
+  foto String @default("Pendiente")
+  estado String @default("Habilitado")
   precio_min Decimal @db.Decimal(10,2)
   citas Cita[]
   comentarios Comentario[]
@@ -21,17 +23,22 @@ model Servicio{
 
 model Usuario{
   id Int @id @default(autoincrement())
+  creacion DateTime @default(now())
+  modificacion DateTime @updatedAt
   nombres String
   apellidos String
   email String @unique
   password String
   rol String
-  cliente Cliente?
+  estado String @default("Habilitado")
+  cliente Cliente? 
 }
 
 model Cliente{
   id Int @id @default(autoincrement())
-  usuario Usuario @relation(fields: [usuario_id], references: [id])
+  creacion DateTime @default(now())
+  modificacion DateTime @updatedAt
+  usuario Usuario @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   usuario_id Int @unique 
   telefono String
   mascotas Mascota[]
@@ -42,7 +49,8 @@ model Cliente{
 model Mascota{
   id Int @id @default(autoincrement())
   creacion DateTime @default(now())
-  cliente Cliente @relation(fields: [cliente_id], references: [id])
+  modificacion DateTime @updatedAt
+  cliente Cliente @relation(fields: [cliente_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   cliente_id Int
   nombre String
   tipo String
@@ -51,7 +59,7 @@ model Mascota{
   altura String
   peso Decimal? @db.Decimal(10,2)
   ultima_cita DateTime
-  foto String
+  foto String @default("Pendiente")
   citas Cita[]
 }
 
@@ -59,29 +67,34 @@ model Mascota{
 model Cita {
   id Int @id @default(autoincrement())
   creacion DateTime @default(now())
+  modificacion DateTime @updatedAt
   fechaSolicitud String
   horaSolicitud String
+  nombreMascota String
+  nombreCliente String
   ClienteInfo Json?
   MascotaInfo Json?
-  cliente Cliente? @relation(fields: [cliente_id],references: [id])
+  cliente Cliente? @relation(fields: [cliente_id],references: [id], onDelete: Cascade, onUpdate: Cascade)
   cliente_id Int?
-  mascota Mascota? @relation(fields: [mascota_id], references: [id])
+  mascota Mascota? @relation(fields: [mascota_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   mascota_id Int? 
-  servicio Servicio @relation(fields: [servicio_id],references: [id])
+  servicio Servicio @relation(fields: [servicio_id],references: [id], onDelete: Cascade, onUpdate: Cascade)
   servicio_id Int 
   asunto String
-  estado String
+  estado String @default("PENDIENTE")
 }
 
 model Comentario{
   id Int @id @default(autoincrement())
   creacion DateTime @default(now())
+  modificacion DateTime @updatedAt
   confirmacion DateTime
   calificacion Int
   mensaje String
-  servicio Servicio @relation(fields: [servicio_id],references: [id])
+  estado String @default("Habilitado")
+  servicio Servicio @relation(fields: [servicio_id],references: [id], onDelete: Cascade, onUpdate: Cascade)
   servicio_id Int
-  cliente Cliente @relation(fields: [cliente_id],references: [id])
+  cliente Cliente @relation(fields: [cliente_id],references: [id], onDelete: Cascade, onUpdate: Cascade)
   cliente_id Int
 }
 

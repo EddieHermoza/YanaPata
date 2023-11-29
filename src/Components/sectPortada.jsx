@@ -18,10 +18,10 @@ function Portada() {
   }
   return (
       <section  id="SectPortada" className="relative">
-          <div id="CarouselPortada" className="relative" data-te-carousel-init data-te-ride="carousel" data-te-interval="4000">      
+          <div id="CarouselPortada" className="relative" data-te-carousel-init data-te-ride="carousel">      
             <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
               
-                <div className="relative float-left -mr-[100%] bg-stone-950 w-full transition-transform duration-[1000ms] min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden' }}  data-te-carousel-item data-te-carousel-active>
+                <div className="relative float-left -mr-[100%] bg-stone-950 w-full transition-transform  min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden', transitionDuration: '1000ms' }}  data-te-carousel-item data-te-carousel-active>
                   <Image src="/images/Perro.jpg" height={1920} width={1445} className=" animar-zoom object-cover object-center h-screen w-full filter brightness-50" alt="Perro" unoptimized priority/>
                   <div className="absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center">
@@ -32,7 +32,7 @@ function Portada() {
                   </div>
                 </div>
 
-                <div className="relative float-left -mr-[100%] bg-stone-950 hidden w-full transition-transform duration-[1000ms] min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden' }}   data-te-carousel-item>
+                <div className="relative float-left -mr-[100%] bg-stone-950 hidden w-full transition-transform min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden',transitionDuration: '1000ms' }}   data-te-carousel-item>
                   <Image src="/images/Gato.jpg" height={1920} width={1445} className="animar-zoom  object-cover object-center h-screen w-full filter brightness-50" alt="Gato" unoptimized priority/>
                   <div className="absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center">
@@ -43,7 +43,7 @@ function Portada() {
                   </div>
                 </div>
 
-                <div className="relative float-left -mr-[100%] bg-stone-950 hidden w-full transition-transform duration-[1000ms] min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden' }}   data-te-carousel-item>
+                <div className="relative float-left -mr-[100%] bg-stone-950 hidden w-full transition-transform  min-h-screen overflow-hidden ease-in-out motion-reduce:transition-none" style={{ backfaceVisibility: 'hidden',transitionDuration: '1000ms' }}   data-te-carousel-item>
                   <Image src="/images/PerroGato.jpg" height={1920} width={1445} className="animar-zoom  object-cover object-top h-screen w-full filter brightness-50" alt="Gato y Perro" unoptimized priority/>
                   <div className="absolute top-[50%] -translate-y-1/2 inset-x-[10%] flex flex-col">
                     <div className="relative flex flex-col items-center justify-center gap-2">

@@ -2,17 +2,18 @@
 import { useForm} from "react-hook-form"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 
 function Register() {
     const {register,handleSubmit,formState:{errors}} = useForm()
-
+    const [error,setError]=useState(null)
     const router =useRouter();
 
     const onSubmit =handleSubmit( async (data) => {
 
         if (data.password !== data.passwordConfirm) {
-           return alert("Contraseñas no coinciden")
+           setError("Las contraseñas no coinciden")
         }
 
         const rspt = await fetch('/api/auth/Register',{
@@ -25,6 +26,9 @@ function Register() {
         
         if (rspt.ok) {
             router.push('/auth/Login')
+        } else{
+            const errorData = await rspt.json();
+            setError(errorData.message)
         }
         
       });
@@ -138,6 +142,9 @@ function Register() {
           <Link href="/auth/Login"  className=" text-verde-rgb filter saturate-200 hover:scale-110 transform duration-200">Inicia Sesión</Link>
         </div>
         <button className="bg-verde-rgb text-white saturate-200 p-2 rounded-bl-lg rounded-tr-lg hover:saturate-[3] hover:shadow-lg filter w-2/3 text-xl hover:text-black trasnform duration-300">Registrate</button>
+        {error && (
+          <span className="text-red-500 text-xs">{error}</span>
+        )}
     </form>
   )
 }

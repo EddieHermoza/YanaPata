@@ -1,4 +1,4 @@
-import Navbar from "@/Components/Navbar"
+
 import Image from "next/image"
 import {Acordition,Colapsable} from "@/Components/TWelements/Acordition"
 import { MdPets } from 'react-icons/md'
@@ -9,7 +9,6 @@ import Footer from "@/Components/Footer"
 function page() {
   return (
     <>
-    <Navbar/>
     <main className=" animate-fade animate-duration-[2000ms]">
         <PortadaDinamica titulo={"Nosotros"} desc={"Nos dedicamos a la atención y cuidado de tus mascotas con pasión y profesionalismo"} img={"/images/VeterinariaYanaPata.png"}/>
             <section className="">
@@ -27,12 +26,24 @@ function page() {
                 <h2 className="text-4xl text-center text-black mb-5">Nuestra Filosofia</h2>
                 <div className="flex justify-center">
                     <div className='max-md:w-full md:w-[800px] lg:w-[1100px] xl:w-[1300px] py-5'>
-                        <Acordition id="AcordeonFilosofia">
-                            <Colapsable IDAcordition="AcordeonFilosofia" IDCollapse="Vi" Title="Nuestra Visión" label="Visionlbl">
-                                <div className='flex max-md:flex-col items-center justify-center'>
+                        <Acordition id="AcordeonFilosofia" className={'w-full flex flex-col gap-5'}>
+                            <Colapsable 
+                                IDAcordition="AcordeonFilosofia" 
+                                IDCollapse="Vi" 
+                                Title="Visión" 
+                                label="Visionlbl" 
+                                customClasses={{
+                                    container: 'filter saturate-200 w-full border-black shadow-lg',
+                                    button: 'bg-slate-200 flex items-center gap-5 w-full text-2xl relative justify-center p-3',
+                                    icon: '',
+                                    underline: 'ani-underliner bg-verde-rgb duration-500',
+                                    collapse: '',
+                                  }}
+                            >
+                                <div className='flex max-md:flex-col items-center justify-center p-8'>
                                     <div className='animate-fade-right animate-duration-[3000ms] md:w-1/2 flex flex-col item-center justify-center gap-5  md:pl-14'>
-                                        <h2 className='text-5xl underline underline-offset-8 text-verde-rgb'>Visión</h2>
-                                        <p className='text-base'>En <span className='text-verde-rgb'>Yanapata</span>, nuestra visión es convertirnos en un referente de excelencia en atención veterinaria en nuestra comunidad y más allá. Buscamos ser reconocidos por nuestro compromiso inquebrantable con el bienestar animal.</p>
+                                        <h2 className='text-5xl underline underline-offset-8 text-verde'>Visión</h2>
+                                        <p className='text-base'>En <span className='text-verde'>Yanapata</span>, nuestra visión es convertirnos en un referente de excelencia en atención veterinaria en nuestra comunidad y más allá. Buscamos ser reconocidos por nuestro compromiso inquebrantable con el bienestar animal.</p>
                                         <p className="text-base"> Nos esforzamos por establecer relaciones de confianza a largo plazo con nuestros clientes y sus mascotas, y ser líderes en la promoción de la adopción responsable y la educación sobre el cuidado de los animales.</p>
                                     </div>
                                     <div className='animate-fade-left animate-duration-[3000ms] md:w-1/2 flex items-center justify-center max-md:p-5 md:pr-14'>
@@ -41,21 +52,45 @@ function page() {
                                 </div>
                                 
                             </Colapsable>
-                            <Colapsable IDAcordition="AcordeonFilosofia" IDCollapse="Mi" Title="Nuestra Misión" label="Misionlbl">
-                                <div className='flex max-md:flex-col-reverse items-center justify-center'>
+                            <Colapsable 
+                                IDAcordition="AcordeonFilosofia" 
+                                IDCollapse="Mi" 
+                                Title="Misión" 
+                                label="Misionlbl"
+                                customClasses={{
+                                    container: 'filter saturate-200 w-full border-black shadow-lg',
+                                    button: 'bg-slate-200 flex items-center gap-5 w-full text-2xl relative justify-center p-3',
+                                    icon: '',
+                                    underline: 'ani-underliner bg-verde-rgb duration-500',
+                                    collapse: '',
+                                  }}
+                            >
+                                <div className='flex max-md:flex-col-reverse items-center justify-center p-8'>
                                     <div className='animate-fade-right animate-duration-[3000ms] md:w-1/2 flex items-center justify-center max-md:p-5 md:pl-14'>
                                         <Image src="/images/gato-vision1.webp" height={390} width={290} className='filter saturate-50 h-[390px] w-auto'/>
                                     </div>
 
                                     <div className='animate-fade-left animate-duration-[3000ms] md:w-1/2 flex flex-col item-center justify-center gap-5  md:pr-14'>
-                                        <h2 className='text-5xl underline underline-offset-8 text-verde-rgb'>Misión</h2>
-                                        <p className='text-base'>En <span className='text-verde-rgb'>Yanapata</span>, nuestra misión es promover y proteger la salud y el bienestar de los animales en compañía de sus dueños. Nos esforzamos por ofrecer atención médica de calidad, enfocándonos en un ambiente acogedor que les brinde seguridad.</p>
+                                        <h2 className='text-5xl underline underline-offset-8 text-verde'>Misión</h2>
+                                        <p className='text-base'>En <span className='text-verde'>Yanapata</span>, nuestra misión es promover y proteger la salud y el bienestar de los animales en compañía de sus dueños. Nos esforzamos por ofrecer atención médica de calidad, enfocándonos en un ambiente acogedor que les brinde seguridad.</p>
                                         <p className="text-base">Trabajamos incansablemente para mejorar la calidad de vida de los animales a través de un enfoque en la prevención, diagnóstico preciso y un tratamiento compasivo. De manera que, la mejora se haga notable en el cuidado de ellos.</p>
                                     </div>
                                 </div>
                             </Colapsable>
-                            <Colapsable IDAcordition="AcordeonFilosofia" IDCollapse="Va" Title="Nuestros Valores" label="Valoreslbl">
-                                <ul className="animate-fade-up animate-duration-[3000ms] max-sm:text-xl sm:text-2xl mt-5 text-black flex flex-col gap-5">
+                            <Colapsable 
+                                IDAcordition="AcordeonFilosofia" 
+                                IDCollapse="Va" 
+                                Title="Nuestros Valores" 
+                                label="Valoreslbl"
+                                customClasses={{
+                                    container: 'filter saturate-200 w-full border-black shadow-lg',
+                                    button: 'bg-slate-200 flex items-center gap-5 w-full text-2xl relative justify-center p-3',
+                                    icon: '',
+                                    underline: 'ani-underliner bg-verde-rgb duration-500',
+                                    collapse: '',
+                                  }}
+                            >
+                                <ul className="animate-fade-up animate-duration-[3000ms] max-sm:text-xl sm:text-2xl mt-5 text-black flex flex-col gap-5 p-8">
                                     <li className="flex flex-col items-center gap-x-2">
                                         <MdPets size={30}  className="text-[rgb(255,100,0)]"/> Compasión
                                         <span className='text-base text-center'>Mostramos empatía y cuidado hacia los animales en todo momento.</span>
@@ -84,22 +119,6 @@ function page() {
             </section>
         </main>
         <Footer/>
-        <iframe
-          src="https://www.stack-ai.com/embed/c64af075-8eee-4b70-a932-06a632c8f084/718b97ab-4282-42fa-92a3-6aeb705516b7/6535facc5607359530e08113"
-          width="400px"
-          height="620px"
-          style={{
-              display: 'block',
-              position: 'fixed',
-              border: 'none',
-              overflow: 'hidden',
-              zIndex: 9999999999,
-              backgroundColor: 'transparent',
-              borderRadius: '10px',
-              bottom: 0,
-              right: 0
-          }}
-        ></iframe>
     </>
   )
 }

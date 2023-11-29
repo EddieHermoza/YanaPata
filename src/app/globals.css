@@ -5,10 +5,10 @@
 
 @layer base{
     body{
-      @apply xl:mb-[500px] bg-stone-950
+      @apply  bg-stone-950 mb-[500px]
     }
     main{
-      @apply relative overflow-hidden
+      @apply relative overflow-x-hidden
     }
     Header{
       @apply bg-transparent
@@ -48,10 +48,26 @@
     .ani-underline{
       @apply filter saturate-200 absolute bottom-0 left-0 w-full h-[3px] bg-white origin-left transform scale-x-100 transition-transform duration-300
     }
+    .fc .fc-toolbar-chunk{
+      @apply flex p-2
+    }
+
+    .fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+      @apply active:bg-verde active:border-verde active:shadow-none active:text-black active:outline-none
+    }
+    .fc .fc-button-primary{
+      @apply bg-white border-slate-300 hover:border-verde rounded  hover:bg-verde px-4 py-2 transition-colors duration-300  outline-none hover:shadow-lg text-black focus:shadow-none focus:ring-0 focus:bg-none disabled:bg-slate-400 disabled:hover:bg-slate-500 disabled:border-none
+    }
+    .fc .fc-button-group{
+      @apply flex gap-2 
+    }
+    .fc .fc-today-button{
+      @apply  bg-white border-slate-300 hover:border-verde rounded transform duration-300 hover:bg-verde px-4 py-2  outline-none hover:shadow-lg text-black disabled:bg-slate-400 disabled:hover:bg-slate-500 disabled:border-none
+    }
 }
 
 .animar-zoom {
-  animation: zoomFondo 25s linear infinite, revertirZoom 25s linear infinite; /* Duración, tipo de animación y repetición */
+  animation: zoomFondo 25s linear infinite, revertirZoom 25s linear infinite; 
 }
 
 @keyframes zoomFondo {

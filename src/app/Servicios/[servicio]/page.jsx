@@ -29,7 +29,6 @@ function ServicioPage({ params }) {
 
     return (
         <>
-        <Navbar/>
         <main className=" animate-fade animate-duration-[2000ms]">
             <PortadaDinamica
                     titulo={servicioActual.nombre}
@@ -41,7 +40,7 @@ function ServicioPage({ params }) {
                         <div className="xl:w-1/2 flex flex-col  gap-10 p-5" >
                             <div data-aos="fade-left"  data-aos-duration="1200" className="relative flex flex-col w-auto filter saturate-200">
                                 <h2 className="max-sm:text-3xl text-5xl">{servicioActual.nombre}</h2>
-                                <span className="w-[25%] h-[6px] bg-verde-rgb filter saturate-200 mt-3"></span>
+                                <span className="w-[25%] h-[6px] bg-verde mt-3"></span>
                             </div>
                             <p data-aos="fade-left"  data-aos-duration="1400" className="max-sm:text-base text-xl">{servicioActual.descripcion}</p>
                             <div data-aos="fade-left"  data-aos-duration="1600">
@@ -51,7 +50,7 @@ function ServicioPage({ params }) {
                                 </Link>
                             </div>
                             <div data-aos="fade-left" data-aos-duration="1800">
-                                <Link  className="p-2 text-white flex items-center justify-center filter saturate-200 hover:saturate-[3] hover:shadow-lg transform duration-300 bg-verde-rgb rounded-full text-xl gap-2 max-w-[340px] h-[60px]" href="../Solicitud">
+                                <Link  className="p-2 text-white flex items-center justify-center filter hover:saturate-150 hover:shadow-lg transform duration-300 bg-verde-rgb rounded-full text-xl gap-2 max-w-[340px] h-[60px]" href="../Solicitud">
                                     <MdPets size={40}/>
                                     Solicita una cita
                                 </Link>
@@ -102,22 +101,6 @@ function ServicioPage({ params }) {
                 <Ubicacion/>
             </main>
             <Footer/>
-            <iframe
-          src="https://www.stack-ai.com/embed/c64af075-8eee-4b70-a932-06a632c8f084/718b97ab-4282-42fa-92a3-6aeb705516b7/6535facc5607359530e08113"
-          width="400px"
-          height="620px"
-          style={{
-              display: 'block',
-              position: 'fixed',
-              border: 'none',
-              overflow: 'hidden',
-              zIndex: 9999999999,
-              backgroundColor: 'transparent',
-              borderRadius: '10px',
-              bottom: 0,
-              right: 0
-          }}
-        ></iframe>
         </>
     );
 }

@@ -1,35 +1,41 @@
-import Link from "next/link"
-import LogOut from "../../../Components/Forms/LogOut"
+"use client"
+import LogOut from "../../../Components/Forms/LogOut";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import LinkIcon from "./LinkIcon";
+
+
 export default function NavDashboard() {
+    const pathname=usePathname()
+    const [activeLink, setActiveLink] = useState(pathname);
+
+    const handleSetActiveLink = (link) => {
+        setActiveLink(link);
+    };
+
+    const dashboardLinks = [
+        { label: 'Dashboard', href: '/Dashboard' },
+        { label: 'Servicios', href: '/Dashboard/Servicios' },
+        { label: 'Solicitudes', href: '/Dashboard/Solicitudes' },
+        { label: 'Administradores', href: '/Dashboard/Administradores' },
+        { label: 'Clientes', href: '/Dashboard/Clientes' },
+        { label: 'Mascotas', href: '/Dashboard/Mascotas' },
+        { label: 'Comentarios', href: '/Dashboard/Comentarios' },
+    ];
+
     return (
-        <section  className="relative w-[260px] bg-neutral-800/50 hidden lg:flex" >
-            <div className="w-[260px] h-[800px] flex flex-col gap-5 justify-center items-center px-2">
-                <ul className="w-full text-xl text-white flex flex-col items-center border border-white transform duration-200">
-                    <li className="w-full h-[80px]">
-                        <Link className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard">DashBoard</Link>
-                    </li>
-                    <li className=" w-full h-[80px]">
-                        <Link className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard/Servicios">Servicios</Link>
-                    </li>
-                    <li className=" w-full h-[80px]">
-                        <Link className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard/Solicitudes">Solicitudes</Link>
-                    </li>
-                    <li className=" w-full h-[80px]">
-                        <Link className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard/Administradores">Administradores</Link>
-                    </li>
-                    <li className=" w-full h-[80px]">
-                        <Link className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard/Clientes">Clientes</Link>
-                    </li>
-                    <li className="w-full h-[80px]">
-                        <Link  className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard/Mascotas">Mascotas</Link>
-                    </li>
-                    <li className=" w-full h-[80px]">
-                        <Link className="w-full h-full flex items-center justify-center text-center hover:bg-verde-rgb filter saturate-200 transform duration-150 tracking-wide p-2 gap-2"  href="/Dashboard/Comentarios">Comentarios</Link>
-                    </li>
+        <section className="max-xl:hidden xl:flex w-[300px] h-screen flex-col justify-start gap-10 items-center bg-black px-3 py-10">
+            <h1 className="text-verde-rgb filter saturate-[3] text-4xl border-b text-center pb-5 w-full">YanaPata</h1>
+            <div className="relative w-full flex flex-col items-center  gap-10">
+                <ul className="w-full text-xl text-white flex flex-col gap-3 items-center">
+                    {dashboardLinks.map((link, index,) => (
+                        <li key={index} className="w-full h-[60px] relative">
+                            <LinkIcon href={link.href} onClick={() => handleSetActiveLink(link.href)} text={link.label} icon={link.label}  className={`rounded-md w-full h-full flex items-center justify-center text-center filter saturate-150 transform duration-300 tracking-wide p-2 gap-2 ${activeLink === link.href ? 'bg-slate-100 text-black shadow-lg shadow-neutral-50/50' : 'active:bg-pressed hover:bg-hover'}`}/>
+                        </li>
+                    ))}
                 </ul>
-            <LogOut/>
-            </div>
-            
+                    <LogOut />
+                </div>
         </section>
-    )
+    );
 }

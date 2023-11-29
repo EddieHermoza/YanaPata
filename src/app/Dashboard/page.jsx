@@ -4,7 +4,7 @@ import GraficaCircular from "./Components/Graficas/graficaCircular"
 function DashboardPage() {
   return (
     <>
-      <section className="w-full min-h-screen flex flex-col items-center gap-10 p-10">
+      <section className="w-full min-h-screen flex flex-col items-center gap-10 p-10 bg-semiblanco">
           <div className="text-5xl text-black flex justify-center">
             <h1>Dashboard</h1>
           </div>

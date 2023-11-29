@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="relative pt-16 max-md:gap-5 grid max-md:grid-rows-2 md:grid-cols-2  xl:mx-[8%]">
           <div className='relative flex  gap-y-5 max-xl:flex-col px-5'>
             <div className='flex w-full xl:w-[50%] flex-col max-sm:gap-2 gap-5 filter saturate-200 p-3'>
-                <h2 className='max-sm:text-3xl text-5xl text-verde-rgb filter saturate-200'>YanaPata</h2>
+                <h2 className='max-sm:text-3xl text-5xl text-verde'>YanaPata</h2>
                 <span className='bg-verde-rgb filter saturate-200 h-1 w-[40%]'></span>
                 <p className=' text-base text-white pr-5'>&quot;Nos dedicamos a brindar el mejor cuidado y atención para tus amigos peludos. Nuestra veterinaria es el hogar de un equipo apasionado que se preocupa por la salud y el bienestar de tus mascotas&quot;</p>
             </div>
@@ -65,10 +65,10 @@ export default function Footer() {
               <span className='bg-white h-1 w-[30%]'></span>
               <ul className='flex text-white gap-2'>
                 <li>
-                  <Link href="https://www.facebook.com/yanapataveterinaria" target='_blank' className='rounded-full hover:scale-110 bg-stone-950 bg-opacity-50 border p-3 flex  items-center justify-center  hover:text-verde-rgb filter saturate-[3] transform duration-200'> <FaFacebookF size={20} /> </Link>
+                  <Link href="https://www.facebook.com/yanapataveterinaria" target='_blank' className='rounded-full hover:scale-110 bg-stone-950 bg-opacity-50 border p-3 flex  items-center justify-center  hover:text-verde transform duration-200'> <FaFacebookF size={20} /> </Link>
                 </li>
                 <li>
-                  <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className=' rounded-full hover:scale-110 bg-stone-950 bg-opacity-50 border p-3 flex items-center justify-center  hover:text-verde-rgb filter saturate-[3] transform duration-200'><BsInstagram size={20}/></Link>
+                  <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className=' rounded-full hover:scale-110 bg-stone-950 bg-opacity-50 border p-3 flex items-center justify-center  hover:text-verde transform duration-200'><BsInstagram size={20}/></Link>
                 </li>
               </ul>
             </div>

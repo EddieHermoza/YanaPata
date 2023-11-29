@@ -14,36 +14,46 @@ async function initTE() {
   }
 
 
- function Acordition({ id, children }) {
+ function Acordition({ id, children,className }) {
     useEffect(() => {
         initTE() 
     }, []);
 
     return (
-        <div id={id} className=" w-full flex flex-col gap-5">
+        <div id={id} className={className}>
             {children}
         </div>
     )
 }
 
 
-function Colapsable({children, IDCollapse,IDAcordition,Title,label}) {
+function Colapsable({ children, IDCollapse, IDAcordition, Title, label, customClasses }) {
+    const containerClasses = `${customClasses.container || ''}`;
+    const buttonClasses = `group ${customClasses.button || ''}`;
+    const iconClasses = `group-[[data-te-collapse-collapsed]]:rotate-0 [&:not([data-te-collapse-collapsed])]:rotate-180 transform duration-300 ${customClasses.icon || ''}`;
+    const underlineClasses = `group-[[data-te-collapse-collapsed]]:scale-x-0 ${customClasses.underline || ''}`;
+    const collapseClasses = `!visible hidden ${customClasses.collapse || ''}`;
+  
     return (
-        <div className="filter saturate-200 w-full border-black ">
-            <h2 className="text-2xl text-center text-black w-full bg-gray-100  hover:bg-gray-200 hover:saturate-200  transform duration-200 filter" id={label}>
-                <button className="group relative flex w-full items-center justify-center p-3" type="button" data-te-collapse-init data-te-target={`#${IDCollapse}`}  aria-expanded="false" aria-controls={IDCollapse}>
-                    {Title}
-                    <BsChevronUp className="rotate-180 mx-3 transform duration-200 group-[[data-te-collapse-collapsed]]:rotate-0"/>
-                    <span className="ani-underline bg-verde-rgb duration-500 group-[[data-te-collapse-collapsed]]:scale-x-0"></span>
-                </button>
-            </h2>
-            <div id={IDCollapse} className="!visible hidden " data-te-collapse-item data-te-collapse-collapsed aria-labelledby={label} data-te-parent={`#${IDAcordition}`}>
-                <div className="p-8 shadow-lg ">
-                    {children}
-                </div>
+        <div className={containerClasses}>
+            <button
+                className={buttonClasses}
+                type="button"
+                data-te-collapse-init
+                data-te-collapse-collapsed
+                data-te-target={`#${IDCollapse}`}
+                aria-expanded="false"
+                aria-controls={IDCollapse}
+            >
+                {Title}
+                <BsChevronUp className={iconClasses} />
+                <span className={underlineClasses}></span>
+            </button>
+            <div id={IDCollapse} className={collapseClasses} data-te-collapse-item data-te-collapse-collapsed aria-labelledby={label} data-te-parent={`#${IDAcordition}`}>
+                {children}
             </div>
         </div>
-    )
-}
+    );
+  }
 
 export { Acordition, Colapsable };

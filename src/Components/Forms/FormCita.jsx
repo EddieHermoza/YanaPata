@@ -1,314 +1,312 @@
 'use client'
-import { useEffect,useState } from "react";
-import dataServicios from "@/app/utils/data.json"
+import { CitaEnviada, ListarServicios } from "@/lib/actions";
+import { format } from "date-fns"
+import { useEffect } from "react";
+import { useState } from "react";
+import { useForm,Controller} from "react-hook-form"
+import { Calendar as CalendarIcon } from "lucide-react"
+ 
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 function FormCita() {
-
-    const [nombres,setNombres] = useState('');
-    const [apellidos,setApellidos] = useState('');
-    const [correo,setCorreo] = useState('');
-    const [numero,setNumero] = useState('');
-
-    const [nombreMasc,setNombreMasc] = useState('');
-    const [sexoMasc,setSexoMasc] = useState('');
-    const [tipo,setTipo] = useState('');
-    const [raza,setRaza] = useState('');
-    
-    const [dia,setDia] = useState('');
-    const [hora,setHora] = useState('');
-    const [servicio,setServicio] = useState('');
-    const [motivo,setMotivo] = useState('');
-
+    const {register,control,reset,handleSubmit,formState:{errors}} = useForm()
+    const [servicios,setServicios]= useState([])
     const [sending,setSending] =useState('');
-    const [servicios, setServicios] = useState([]);
+    const [error,setError] = useState('')
+    const [date, setDate] = useState()
 
-    async function fetchServicios() {
-        const data={
-            message:"Listar"
+
+      useEffect(() => {
+        async function fetchServicios() {
+          const data = await ListarServicios();
+          setServicios(data);
         }
-        const rspt = await fetch('/api/ctrlServicios',{
-            method:'POST',
-            body:JSON.stringify(data),
-            headers: {
-                'Content-Type':'application/json'
-            }
-        });
-
-        if (rspt.ok) { 
-            const serviciosData = await rspt.json();
-            setServicios(serviciosData);
-        } else {
-            console.error('Error al obtener datos de los Servicios');
-        }
-        
-    }
-
-    useEffect(() => {
-
-        EstablecerFechaMin()
-        fetchServicios()
+      
+        fetchServicios();
       }, []);
 
-      async function EstablecerFechaMin(){
-        const fechaActual = new Date();
-    
-        fechaActual.setDate(fechaActual.getDate() + 1);
-    
-        const fechaMin = fechaActual.toISOString().split('T')[0];
-
-        const fechaInput = document.getElementById('fechaInput');
-
-        fechaInput.min = fechaMin;
-      }
-
-      const send = async (e) =>{
-        e.preventDefault();
-        
-        if(sending){
-            return
-        }
+      const onSubmit = handleSubmit(async (data) => {
         setSending(true)
-
-        const clieInfo={
-            nombre:nombres,
-            apellidos:apellidos,
-            telefono:numero,
-            correo:correo
+        const ClienteInfo={
+            nombre:data.nombres,
+            apellidos:data.apellidos,
+            telefono:data.numero,
+            correo:data.correo
         }
 
-        const mascoInfo = {
-            nombre:nombreMasc,
-            sexo:sexoMasc,
-            tipo:tipo,
-            raza:raza
+        const MascotaInfo = {
+            nombre:data.nombreMasc,
+            sexo:data.sexoMasc,
+            tipo:data.tipo,
+            raza:data.raza
         }
 
-        const data={
-            message:'Crear',
-            fechaSolicitud:dia,
-            horaSolicitud:hora,
-            ClienteInfo: clieInfo,
-            MascotaInfo:mascoInfo,
-            servicio:servicio,
-            asunto:motivo,
+        const cita={
+            fechaSolicitud:data.dia,
+            horaSolicitud:data.hora,
+            ClienteInfo:ClienteInfo,
+            MascotaInfo:MascotaInfo,
+            servicio:parseInt(data.servicio),
+            asunto:data.motivo,
         }
+        const res = await CitaEnviada(cita)
 
-        const rsptBD= await fetch('/api/ctrlSolicitudes',{
-            method:'POST',
-            body:JSON.stringify(data),
-            headers: {
-                'Content-Type':'application/json'
-            }
-        })
-
-        const rspt= await fetch('/CitaEmail',{
-            method: 'POST',
-            body: JSON.stringify({
-                nombres,
-                apellidos,
-                numero,
-                correo,
-                nombreMasc,
-                sexoMasc,
-                tipo,
-                raza,
-                dia,
-                hora,
-                servicio,
-                motivo,
-            })
-        })
-
-        if (rspt.ok && rsptBD.ok) {
-            setNombres('')
-            setApellidos('')
-            setNumero('')
-            setCorreo('')
-            setNombreMasc('')
-            setSexoMasc('')
-            setTipo('')
-            setRaza('')
-            setDia('')
-            setHora('')
-            setServicio('')
-            setMotivo   ('')
+        if (res.ok) {
+            reset()
             setSending(false)
+            setError('')
+        } else {
+            setSending(false)
+            setError(res.message)
         }
-        
-    }
-      
+
+      })
 
   return (
-    <form className="w-full flex flex-col gap-10 " onSubmit={send}>
-        <input type="hidden" value={"cita"} />
+    <form className="w-full flex flex-col gap-10 " onSubmit={onSubmit}>
         <div className="flex flex-col gap-5">
-            <span className="text-2xl text-verde-rgb filter saturate-[3]">Información del Dueño :</span>
-            <label htmlFor="" className="flex md:w-[600px] flex-col-reverse">
+            <span className="text-2xl text-verde">Información del Dueño :</span>
+
+            <label className="flex md:w-[600px] flex-col-reverse">
                 <input 
-                    type="text" 
-                    name="" 
-                    id="" 
-                    required 
-                    value={nombres} 
-                    onChange={ (e)=>{ setNombres(e.target.value)} }
-                     className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                    type="text"
+                    {...register('nombres', {
+                         required:{
+                            value:true,
+                            message:'Este campo es requerido'
+                        } 
+                    })}
+                    className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                 />
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200"> Nombres : </span>
+                {errors.nombres && (
+                    <span className="text-red-500 text-xs">{errors.nombres.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Nombres :</span>
             </label>
-            <label htmlFor="" className="flex md:w-[600px] flex-col-reverse">
+
+            <label className="flex md:w-[600px] flex-col-reverse">
                 <input 
-                    type="text" 
-                    name="" 
-                    id="" 
-                    required 
-                    value={apellidos} 
-                    onChange={ (e)=>{ setApellidos(e.target.value)} }
-                     className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                    type="text"
+                    {...register('apellidos', { 
+                        required:{
+                            value:true,
+                            message:'Este campo es requerido'
+                        }
+                    })}
+                    className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                 />
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Apellidos :</span>
-            </label>   
-            <label htmlFor="" className="flex md:w-[600px] flex-col-reverse">
+                {errors.apellidos && (
+                    <span className="text-red-500 text-xs">{errors.apellidos.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Apellidos :</span>
+            </label>
+
+            <label className="flex md:w-[600px] flex-col-reverse">
                 <input 
-                    type="email" 
-                    name="" 
-                    id="" 
-                    required 
-                    value={correo} 
-                    onChange={ (e)=>{ setCorreo(e.target.value)} } 
-                    className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                    type="email"
+                    {...register('correo', { 
+                        required:{
+                            value:true,
+                            message:'Este campo es requerido'
+                        } 
+                    })}
+                    className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                 />
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Correo Electronico :</span>
-            </label>  
-            <label htmlFor="" className="flex md:w-[600px] flex-col-reverse">
+                {errors.correo && (
+                    <span className="text-red-500 text-xs">{errors.correo.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Correo Electrónico :</span>
+            </label>
+
+            <label className="flex md:w-[600px] flex-col-reverse">
                 <input 
-                    type="text" 
-                    name="" 
-                    id="" 
-                    required 
-                    value={numero} 
-                    onChange={ (e)=>{ setNumero(e.target.value)} } 
-                    className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                    type="text"
+                    {...register('numero', { 
+                        required:{
+                            value:true,
+                            message:'Este campo es requerido'
+                        } 
+                    })}
+                    className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                 />
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Teléfono de contacto : </span>
+                {errors.numero && (
+                    <span className="text-red-500 text-xs">{errors.numero.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Teléfono de contacto :</span>
             </label>
         </div>
         
         <div className="flex flex-col gap-5">
-            <span className="text-2xl text-verde-rgb filter saturate-[3] ">Información de la mascota :</span>
-            <label htmlFor="" className="flex md:w-[600px] flex-col-reverse">
+            <span className="text-2xl text-verde">Información de la mascota :</span>
+
+            <label className="flex md:w-[600px] flex-col-reverse">
                 <input 
-                    type="text" 
-                    name="" 
-                    id="" 
-                    required 
-                    value={nombreMasc} 
-                    onChange={ (e)=>{ setNombreMasc(e.target.value)} } 
-                     className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                    type="text"
+                    {...register('nombreMasc', { 
+                        required:{
+                            value:true,
+                            message:'Este campo es requerido'
+                        }
+                     })}
+                    className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                 />
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nombre de la Mascota : </span>
+                {errors.nombreMasc && (
+                    <span className="text-red-500 text-xs">{errors.nombreMasc.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Nombre de la Mascota : </span>
             </label>
+
             <div className="relative md:w-[600px] gap-2 flex ">
                 <label htmlFor="" className="flex w-1/2 flex-col-reverse">
                     <select 
-                        name=""  
-                        value={sexoMasc} 
-                        onChange={ (e)=>{ setSexoMasc(e.target.value)} } 
-                        required  className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2"  
-                        id="" >
-                        <option value="" disabled >Seleccionar</option>
+                        {...register('sexoMasc', { 
+                            required:{
+                                value:true,
+                                message:'Este campo es requerido'
+                            }
+                         })}
+                        className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
+                    >
+                        <option value="" disabled className="">Seleccionar</option>
                         <option value="Macho">Macho</option>
                         <option value="Hembra">Hembra</option>
                     </select>
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Sexo : </span>
+                    {errors.sexoMasc && (
+                        <span className="text-red-500 text-xs">{errors.sexoMasc.message}</span>
+                    )}
+                    <span className="peer-focus:text-verde transform duration-200">Sexo : </span>
                 </label>
+
                 <label htmlFor="" className="flex w-1/2 flex-col-reverse">
                     <select 
-                        name=""  
-                        value={tipo} 
-                        onChange={ (e)=>{ setTipo(e.target.value)} } 
-                        required 
-                         className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
-                         id="" >
-                        <option value="" disabled >Seleccionar</option>
+                        {...register('tipo', { 
+                            required:{
+                                value:true,
+                                message:'Este campo es requerido'
+                            }
+                         })}
+                        className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
+                    >
+                        <option value="" disabled className="">Seleccionar</option>
                         <option value="Felino">Felino</option>
                         <option value="Canino">Canino</option>
                     </select>
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Tipo de Mascota :</span>
+                    {errors.tipo && (
+                        <span className="text-red-500 text-xs">{errors.tipo.message}</span>
+                    )}
+                    <span className="peer-focus:text-verde transform duration-200">Tipo de Mascota :</span>
                 </label> 
             </div>
-            <label htmlFor="" className="flex md:w-[600px] flex-col-reverse">
+
+            <label className="flex md:w-[600px] flex-col-reverse">
                 <input 
-                    type="text" 
-                    name="" 
-                    required 
-                    id="" 
-                    value={raza} 
-                    onChange={ (e)=>{ setRaza(e.target.value)} }
-                     className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                    type="text"
+                    {...register('raza', { 
+                        required:{
+                            value:true,
+                            message:'Este campo es requerido'
+                        }
+                     })}
+                    className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                 />
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Raza de la Mascota :</span>
+                {errors.raza && (
+                    <span className="text-red-500 text-xs">{errors.raza.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Raza de la Mascota :</span>
             </label>
         </div>
         <div className="flex flex-col gap-5">
-            <span className="text-2xl text-verde-rgb filter saturate-[3]">Información de la cita :</span>
+            <span className="text-2xl text-verde">Información de la cita :</span>
+
             <div className="relative md:w-[600px] gap-2 flex max-md:flex-col ">
-                <label htmlFor="" className="flex md:w-1/2 flex-col-reverse">
+            <Controller
+                name="dia"
+                control={control}
+                defaultValue={null}
+                render={({ field: { onChange, value } }) => (
+                    <label className="flex w-1/2 flex-col-reverse">
+                        <Popover>
+                            <PopoverTrigger className="max-sm:w-[250px]">
+                            <span className="flex gap-2 items-center w-auto p-2 border-b-2 border-black hover:border-verde transform duration-300">
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {value ? format(value, "PPP") : <span className="text-slate-400 text-sm ">Seleccione una fecha </span>}
+                            </span>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0">
+                            <Calendar
+                                mode="single"
+                                selected={value}
+                                onSelect={(selectedDate) => onChange(selectedDate)}
+                                disabled={(date) => {
+                                    const tomorrow = new Date();
+                                    tomorrow.setDate(tomorrow.getDate() + 1); 
+                                    tomorrow.setHours(0, 0, 0, 0); 
+                                    return date < tomorrow;
+                                }}
+                            />
+                            </PopoverContent>
+                        </Popover>
+                        <span className="peer-focus:text-verde transform duration-200">Fecha Preferencial:</span>
+                    </label>
+                )}
+                />
+                {errors.fechaSolicitud && (
+                <span className="text-red-500 text-xs">{errors.fechaSolicitud.message}</span>
+                )}
+                <label htmlFor="" className="flex w-1/2 flex-col-reverse">
                     <input 
-                        type="date"  
-                        value={dia} 
-                        onChange={ (e)=>{ setDia(e.target.value)} } 
-                        required 
-                        name="" 
-                        id="fechaInput"
-                         className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
+                        type="time"
+                        {...register('hora', { required: 'Este campo es requerido' })}
+                        className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
                     />
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Fecha :</span>
-                </label>
-                <label htmlFor="" className="flex md:w-1/2 flex-col-reverse">
-                    <input 
-                        type="time" 
-                        required 
-                        name="" 
-                        id="" 
-                        value={hora} 
-                        onChange={ (e)=>{ setHora(e.target.value)} } 
-                        className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" 
-                    />
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Hora Preferencial :</span>
+                    {errors.hora && (
+                        <span className="text-red-500 text-xs">{errors.hora.message}</span>
+                    )}
+                    <span className="peer-focus:text-verde transform duration-200">Hora Preferencial :</span>
                 </label>
             </div>
-            <label htmlFor="" className="flex flex-col-reverse md:w-[600px]">
+
+            <label className="flex flex-col-reverse md:w-[600px]">
                 <select 
-                    name="" 
-                    id="" 
-                    required  
-                    value={servicio} 
-                    onChange={ (e)=>{ setServicio(e.target.value)} }
-                     className="peer text-base border-b h-[40px] text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" >
+                    {...register('servicio', { required: 'Este campo es requerido' })}
+                    className="peer border-b-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2"
+                >
                     <option value="" disabled className="">Seleccionar</option>
                     {servicios.map((servicio, index) => (
-                        <option key={index} value={servicio.id} > {servicio.nombre}</option>
+                        <option key={index} value={servicio.id}> {servicio.nombre}</option>
                     ))}
                 </select>
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Servicio :</span>
-            </label>   
-            <label htmlFor="" className="flex flex-col-reverse">
+                {errors.servicio && (
+                    <span className="text-red-500 text-xs">{errors.servicio.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Servicio :</span>
+            </label>
+
+            <label className="flex flex-col-reverse">
                 <textarea 
-                    id="" 
-                    value={motivo} 
-                    onChange={ (e)=>{ setMotivo(e.target.value)} } 
                     cols="30" 
                     rows="6" 
-                    required
-                     className="peer text-base border text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" >
-                </textarea>
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Agregue Detalles :</span>
+                    {...register('motivo', { required: 'Este campo es requerido' })}
+                    className="peer border-2 text-black outline-none border-black focus:border-verde trasnform duration-300 p-2 rounded"
+                ></textarea>
+                {errors.motivo && (
+                    <span className="text-red-500 text-xs">{errors.motivo.message}</span>
+                )}
+                <span className="peer-focus:text-verde transform duration-200">Agregue Detalles :</span>
             </label>
         </div>
-        <button className={`bg-verde-rgb p-2 text-xl w-full filter rounded-tl-xl rounded-br-xl saturate-200 ${sending ? 'saturate-[3] shadow-lg text-black':''} hover:saturate-[3] hover:shadow-lg hover:text-black text-white transform duration-300`}
+        <button className={`bg-verde p-2 text-xl w-full rounded-tl-xl rounded-br-xl ${sending ? ' shadow-lg text-black':''} hover:shadow-lg hover:text-black text-white transform duration-300`}
             disabled={sending}> 
             {sending ? "Enviando..." : "Solicitar una Cita"}
         </button>
+        {error && (
+          <span className="text-red-500 text-xs">{error}</span>
+        )}
     </form>
   )
 }
