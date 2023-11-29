@@ -77,11 +77,11 @@ export default function ModificarCita({cita}) {
                     message:'Este campo es requerido'
                 }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-rgb p-2 " />
                 {errors.ClieNombre && (
                     <span className="text-red-500 text-xs">{errors.ClieNombre.message} </span>
                 )} 
-                <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nombre:</span>
+                <span className=" peer-focus:text-verde transform duration-200">Nombre:</span>
             </label>
             <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                 <input 
@@ -94,11 +94,11 @@ export default function ModificarCita({cita}) {
                     message:'Este campo es requerido'
                 }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 " />
                 {errors.ClieApellidos && (
                     <span className="text-red-500 text-xs">{errors.ClieApellidos.message} </span>
                 )} 
-                <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Apellidos:</span>
+                <span className=" peer-focus:text-verde transform duration-200">Apellidos:</span>
             </label>   
             <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                 <input 
@@ -111,11 +111,11 @@ export default function ModificarCita({cita}) {
                     message:'Este campo es requerido'
                 }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2  " />
                 {errors.ClieCorreo && (
                     <span className="text-red-500 text-xs">{errors.ClieCorreo.message} </span>
                 )} 
-                <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Email:</span>
+                <span className=" peer-focus:text-verde transform duration-200">Email:</span>
             </label>  
             <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                 <input 
@@ -128,11 +128,11 @@ export default function ModificarCita({cita}) {
                     message:'Este campo es requerido'
                 }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 " />
                 {errors.ClieTelefono && (
                     <span className="text-red-500 text-xs">{errors.ClieTelefono.message} </span>
                 )} 
-                <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Teléfono de Contacto:</span>
+                <span className=" peer-focus:text-verde transform duration-200">Teléfono de Contacto:</span>
             </label>
         </div>
         
@@ -149,11 +149,11 @@ export default function ModificarCita({cita}) {
                     message:'Este campo es requerido'
                 }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2  " />
                 {errors.mascota && (
                     <span className="text-red-500 text-xs">{errors.mascota.message} </span>
                 )} 
-                <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nombre de la Mascota:</span>
+                <span className=" peer-focus:text-verde transform duration-200">Nombre de la Mascota:</span>
             </label>
             <div className="relative w-full gap-2 flex max-sm:flex-col">
                 <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
@@ -165,7 +165,7 @@ export default function ModificarCita({cita}) {
                                 message:'Este campo es requerido'
                             }
                         })}
-                         className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] transform duration-200 p-2 bg-white"  
+                         className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde transform duration-200 p-2 bg-white"  
                         >
                         <option value="" disabled >Seleccionar</option>
                         <option value="Macho" selected={cita.MascotaInfo.sexo === "Macho"}>Macho</option>
@@ -174,7 +174,7 @@ export default function ModificarCita({cita}) {
                     {errors.sexo && (
                         <span className="text-red-500 text-xs">{errors.sexo.message} </span>
                     )} 
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Sexo : </span>
+                    <span className="peer-focus:text-verde transform duration-200">Sexo : </span>
                 </label>
                 <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                     <select 
@@ -185,7 +185,7 @@ export default function ModificarCita({cita}) {
                                 message:'Este campo es requerido'
                             }
                         })}
-                         className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] transform duration-200 p-2 bg-white" 
+                         className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde transform duration-200 p-2 bg-white" 
                         >
                         <option value="" disabled >Seleccionar</option>
                         <option value="Felino" selected={cita.MascotaInfo.tipo === "Felino"}>Felino</option>
@@ -194,7 +194,7 @@ export default function ModificarCita({cita}) {
                     {errors.tipo && (
                         <span className="text-red-500 text-xs">{errors.tipo.message} </span>
                     )} 
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Tipo de Mascota :</span>
+                    <span className="peer-focus:text-verde transform duration-200">Tipo de Mascota :</span>
                 </label> 
             </div>
             <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
@@ -208,7 +208,7 @@ export default function ModificarCita({cita}) {
                     message:'Este campo es requerido'
                 }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 " />
                 {errors.razaMascota && (
                     <span className="text-red-500 text-xs">{errors.razaMascota.message} </span>
                 )} 
@@ -228,11 +228,11 @@ export default function ModificarCita({cita}) {
                                 message:'Este campo es requerido'
                             }
                             })}
-                     className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                     className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2" />
                     {errors.fecha && (
                         <span className="text-red-500 text-xs">{errors.fecha.message} </span>
                     )} 
-                    <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Fecha:</span>
+                    <span className=" peer-focus:text-verde transform duration-200">Fecha:</span>
                 </label>
                 <label htmlFor="" className="flex flex-col-reverse gap-1 max-sm:w-full sm:w-1/2 text-black">
                     <input 
@@ -246,11 +246,11 @@ export default function ModificarCita({cita}) {
                                 message:'Este campo es requerido'
                             }
                             })}
-                     className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+                     className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2  " />
                     {errors.hora && (
                         <span className="text-red-500 text-xs">{errors.hora.message} </span>
                     )} 
-                    <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Hora:</span>
+                    <span className=" peer-focus:text-verde transform duration-200">Hora:</span>
                 </label>
             </div>
             <label htmlFor="" className="flex flex-col-reverse gap-1  w-full text-black">
@@ -262,7 +262,7 @@ export default function ModificarCita({cita}) {
                             message: 'Este campo es requerido'
                         }
                     })}
-                    className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] transform duration-200 p-2 bg-white"
+                    className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde transform duration-200 p-2 bg-white"
                 >
                     <option value="" disabled>Seleccionar</option>
                     {servicios.map((servicio, index) => (
@@ -274,7 +274,7 @@ export default function ModificarCita({cita}) {
                 {errors.servicio_id && (
                     <span className="text-red-500 text-xs">{errors.servicio_id.message}</span>
                 )} 
-                <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Servicio :</span>
+                <span className="peer-focus:text-verde transform duration-200">Servicio :</span>
             </label>
             <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                     <select 
@@ -285,7 +285,7 @@ export default function ModificarCita({cita}) {
                                 message:'Este campo es requerido'
                             }
                         })}
-                         className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] transform duration-200 p-2 bg-white" 
+                         className="peer text-base border-b-2 text-black outline-none border-black focus:border-verde transform duration-200 p-2 bg-white" 
                         >
                         <option value="" disabled >Seleccionar</option>
                         <option value="PENDIENTE" selected={cita.estado == "PENDIENTE"}>PENDIENTE</option>
@@ -297,7 +297,7 @@ export default function ModificarCita({cita}) {
                     {errors.estado && (
                         <span className="text-red-500 text-xs">{errors.estado.message} </span>
                     )} 
-                    <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Estado de la Cita :</span>
+                    <span className="peer-focus:text-verde transform duration-200">Estado de la Cita :</span>
                 </label>               
             <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                 <textarea 
@@ -308,7 +308,7 @@ export default function ModificarCita({cita}) {
                         message:'Este campo es requerido'
                         }
                     })}
-                    className="rounded-lg peer w-full h-[140px] text-base border text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 px-2" >
+                    className="rounded-lg peer w-full h-[140px] text-base border text-black outline-none border-black focus:border-verde trasnform duration-200 px-2" >
                 </textarea>
                 {errors.detalles && (
                     <span className="text-red-500 text-xs">{errors.detalles.message} </span>
@@ -316,7 +316,7 @@ export default function ModificarCita({cita}) {
                 <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Detalles :</span>
             </label>
         </div>
-        <button className={`bg-verde-rgb p-2 text-xl w-full filter rounded-tl-xl rounded-br-xl saturate-200 ${enviando ? 'saturate-[3] shadow-lg text-black':''} hover:saturate-[3] hover:shadow-lg hover:text-black text-white transform duration-300`}
+        <button className={`bg-verde p-2 text-xl w-full rounded-tl-xl rounded-br-xl ${enviando ? 'saturate-[3] shadow-lg text-black':''}  hover:shadow-lg hover:text-black text-white transform duration-300`}
             disabled={enviando}> 
             {enviando ? "Modificando..." : "Modificar Cita"}
         </button>

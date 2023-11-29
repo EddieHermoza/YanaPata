@@ -45,11 +45,11 @@ function ModificarAdmin({admin}) {
                 message:'Este campo es requerido'
               }
             })}
-            className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+            className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde p-2 " />
             {errors.nombres && (
                 <span className="text-red-500 text-xs">{errors.nombres.message} </span>
             )} 
-          <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nombres:</span>
+          <span className=" peer-focus:text-verde transform duration-200">Nombres:</span>
         </label>
 
         <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
@@ -63,11 +63,11 @@ function ModificarAdmin({admin}) {
                   message:'Este campo es requerido'
                 }
               })}
-              className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3]" />
+              className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde p-2" />
             {errors.apellidos && (
                 <span className="text-red-500 text-xs">{errors.apellidos.message} </span>
             )} 
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Apellidos:</span>
+            <span className=" peer-focus:text-verde transform duration-200">Apellidos:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse  gap-1 w-full text-black">
             <input 
@@ -80,11 +80,11 @@ function ModificarAdmin({admin}) {
                   message:'Este campo es requerido'
                 }
               })}
-              className="peer border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] " />
+              className="peer border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde p-2 " />
             {errors.email && (
                 <span className="text-red-500 text-xs">{errors.email.message} </span>
             )} 
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Correo Electrónico:</span>
+            <span className=" peer-focus:text-verde transform duration-200">Correo Electrónico:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse  gap-1 w-full text-black">
             <input 
@@ -92,10 +92,10 @@ function ModificarAdmin({admin}) {
               name="" 
               id=""
               {... register("password")}
-              className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3]" />
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nueva Contraseña:</span>
+              className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde p-2" />
+            <span className=" peer-focus:text-verde transform duration-200">Nueva Contraseña:</span>
         </label>
-        <button className="bg-verde-rgb text-white saturate-200 p-2 rounded-bl-lg rounded-tr-lg hover:saturate-[3] hover:shadow-lg filter w-full hover:text-black transform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Administrador'}</button>
+        <button className="bg-verde text-white p-2 rounded-bl-lg rounded-tr-lg hover:shadow-lg w-full hover:text-black transform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Administrador'}</button>
         {error && (
           <span className="text-red-500 text-xs">{error}</span>
         )}

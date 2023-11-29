@@ -41,11 +41,11 @@ function ModificarServicios({servicio}) {
                 message:'Este campo es requerido'
               }
             })}
-            className="peer border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3]" />
+            className="peer border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde p-2" />
             {errors.nombre && (
                 <span className="text-red-500 text-xs">{errors.nombre.message} </span>
             )} 
-          <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nombre:</span>
+          <span className=" peer-focus:text-verde transform duration-200">Nombre:</span>
         </label>
 
         <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
@@ -60,11 +60,11 @@ function ModificarServicios({servicio}) {
                   message:'Este campo es requerido'
                 }
               })}
-              className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3]" />
+              className="peer  border-b focus:border-b-2 w-full outline-none border-black focus:border-b-verde p-2" />
             {errors.precio_min && (
                 <span className="text-red-500 text-xs">{errors.precio_min.message} </span>
             )} 
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Precio:</span>
+            <span className=" peer-focus:text-verde transform duration-200">Precio:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
             <textarea 
@@ -83,7 +83,7 @@ function ModificarServicios({servicio}) {
             <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Descripción :</span>
         </label>
        
-        <button className="bg-verde-rgb text-white saturate-200 p-2 rounded-bl-lg rounded-tr-lg hover:saturate-[3] hover:shadow-lg filter w-full text-base hover:text-black trasnform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Servicio'}</button>
+        <button className="bg-verde text-white p-2 rounded-bl-lg rounded-tr-lg  hover:shadow-lg  w-full text-base hover:text-black transform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Servicio'}</button>
         {error && (
           <span className="text-red-500 text-xs">{error}</span>
         )}

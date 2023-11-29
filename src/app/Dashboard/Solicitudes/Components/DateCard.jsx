@@ -95,17 +95,17 @@ async function DateCard({data}) {
                             <span className="text-xl text-black">Servicio Solicitado: <span className="text-verde-rgb filter saturate-200">{data.servicio.nombre}</span></span>
                             <div className="flex flex-col gap-2 text-sm text-slate-600">
                                 <span className="text-xl text-black">Información del Cliente:</span>
-                                <span>Nombres: <span className="text-verde-rgb filter saturate-200">{data.ClienteInfo.nombre}</span></span>
-                                <span>Apellidos: <span className="text-verde-rgb filter saturate-200">{data.ClienteInfo.apellidos}</span></span>
-                                <span>Correo: <span className="text-verde-rgb filter saturate-200">{data.ClienteInfo.correo}</span></span>
-                                <span>Número Telefonico: <span className="text-verde-rgb filter saturate-200">{data.ClienteInfo.telefono}</span></span>
+                                <span>Nombres: <span className="text-verde">{data.ClienteInfo.nombre}</span></span>
+                                <span>Apellidos: <span className="text-verde">{data.ClienteInfo.apellidos}</span></span>
+                                <span>Correo: <span className="text-verde">{data.ClienteInfo.correo}</span></span>
+                                <span>Número Telefonico: <span className="text-verde">{data.ClienteInfo.telefono}</span></span>
                             </div>
                             <div className="flex flex-col gap-2 text-sm text-slate-600">
                                 <span className="text-xl text-black">Información de la Mascota:</span>
-                                <span>Nombre: <span className="text-verde-rgb filter saturate-200" >{data.MascotaInfo.nombre}</span></span>
-                                <span>Tipo: <span className="text-verde-rgb filter saturate-200">{data.MascotaInfo.tipo}</span></span>
-                                <span>Raza: <span className="text-verde-rgb filter saturate-200">{data.MascotaInfo.raza}</span></span>
-                                <span>Sexo: <span className="text-verde-rgb filter saturate-200">{data.MascotaInfo.sexo}</span></span>
+                                <span>Nombre: <span className="text-verde" >{data.MascotaInfo.nombre}</span></span>
+                                <span>Tipo: <span className="text-verde">{data.MascotaInfo.tipo}</span></span>
+                                <span>Raza: <span className="text-verde">{data.MascotaInfo.raza}</span></span>
+                                <span>Sexo: <span className="text-verde">{data.MascotaInfo.sexo}</span></span>
                             </div>
                             <div>
                                 <textarea name="" id="" cols="30" rows="6" readOnly className="text-black outline-none border rounded-md w-full p-2">
