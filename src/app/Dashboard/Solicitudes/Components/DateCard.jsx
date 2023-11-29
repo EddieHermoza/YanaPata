@@ -13,14 +13,14 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
+  } from "@/Components/ui/dialog"
 
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "@/components/ui/accordion"
+  } from "@/Components/ui/accordion"
 import ModificarCita from "./Forms/FormModificarCita";
 
 

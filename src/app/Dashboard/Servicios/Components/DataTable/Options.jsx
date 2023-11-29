@@ -2,7 +2,7 @@
 import {AiOutlineInfoCircle} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import { FiEdit } from "react-icons/fi";
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/Components/ui/checkbox"
 import { useRouter } from "next/navigation"
 import {HiEllipsisHorizontal} from "react-icons/hi2"
 import Link from "next/link"
@@ -27,27 +27,6 @@ import {
   } from "@/Components/ui/dropdown-menu"
  
 function OptionsServicio({id,estado,servicio}) {
-    const router=useRouter();
-
-    async function Eliminar(id){
-        const data={
-            message:"Eliminar",
-            id:id
-        }
-        const rspt = await fetch('/api/ctrlClientes',{
-            method:'POST',
-            body:JSON.stringify(data),
-            headers: {
-                'Content-Type':'application/json'
-            }
-        });
-    
-        if (rspt.ok) { 
-            router.refresh()
-        } else {
-            console.error('Error al Eliminar');
-        }
-    }
 
 
     return (
