@@ -7,7 +7,9 @@ import {HiEllipsisHorizontal} from "react-icons/hi2"
 import Link from "next/link"
 import ModificarAdmin from "../Forms/FormModificarAdmin";
 import { AdminEliminado,EstadoCambiado } from "../../actions";
-
+import { useState } from "react";
+import { ToastAction } from "@/Components/ui/toast"
+import { useToast } from "@/Components/ui/use-toast"
 import {
     Dialog,
     DialogContent,
@@ -25,9 +27,13 @@ import {
   } from "@/Components/ui/dropdown-menu"
  
 function OptionsAdmin({id,admin}) {
+    const [open,setOpen] = useState(false)
 
+    const handleOpenChange = (newState) => {
+        setOpen(newState);
+    };
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DropdownMenu>
                 <DropdownMenuTrigger className="w-full border-none outline-none flex items-center justify-center">
                     <HiEllipsisHorizontal size={30} className="hover:text-verde-rgb font-extralight filter saturate-200 trasnform duration-200"/>
@@ -64,27 +70,58 @@ function OptionsAdmin({id,admin}) {
                     <DialogDescription>
                         Todos los campos son requeridos
                     </DialogDescription>
-                    <ModificarAdmin id={id} admin={admin}/>
+                    <ModificarAdmin dialog={handleOpenChange} admin={admin}/>
                 </DialogHeader>
             </DialogContent>
         </Dialog>
     )
 }
 
-function ToogleEstado({label, admin}){
+function ToogleEstado({ label, admin }) {
+    const { toast } = useToast();
 
-    return(
+    const handleChange = async (admin) => {
+        try {
+            const status = await EstadoCambiado(admin);
+            console.log(status);
+
+            if (status.ok) {
+                toast({
+                    title: status.message,
+                    action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+                });
+            } else {
+                toast({
+                    title: status.message,
+                    action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+                });
+            }
+
+            return status;
+        } catch (error) {
+            console.error('Error:', error);
+            toast({
+                title: 'Hubo un error al cambiar el estado',
+                action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+            });
+        }
+    };
+
+    return (
         <div className="flex items-center justify-center gap-2">
-            <Checkbox id="estado" checked={admin.estado === 'Habilitado'} onCheckedChange={() => EstadoCambiado(admin) ? 'Deshabilitado' : 'Habilitado'}/>
-                <label
-                    htmlFor="estado"
-                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
+            <Checkbox
+                id="estado"
+                checked={admin.estado === 'Habilitado'}
+                onCheckedChange={() => handleChange(admin)}
+            />
+            <label
+                htmlFor="estado"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
                 {label}
             </label>
-      </div>
-    )
-
+        </div>
+    );
 }
 
 export {OptionsAdmin,ToogleEstado}

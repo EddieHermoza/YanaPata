@@ -29,7 +29,7 @@ function NavMobileDash() {
         { label: 'Administradores', href: '/Dashboard/Administradores' },
         { label: 'Clientes', href: '/Dashboard/Clientes' },
         { label: 'Mascotas', href: '/Dashboard/Mascotas' },
-        { label: 'Comentarios', href: '/Dashboard/Comentarios' },
+        { label: 'Pagos', href: '/Dashboard/Pagos' },
     ];
   
   return (
@@ -39,7 +39,7 @@ function NavMobileDash() {
             </SheetTrigger>
             <SheetContent side={"left"}  className="text-white bg-black border-none flex flex-col gap-10 items-center">
                 <SheetHeader>
-                    <SheetTitle className="text-3xl text-verde-rgb filter saturate-[3] w-full text-left border-b">YanaPata</SheetTitle>
+                    <SheetTitle className="text-3xl text-verde w-full text-left border-b">YanaPata</SheetTitle>
                 </SheetHeader>
                 <div className="relative w-full flex flex-col items-center  max-sm:gap-5 sm:gap-10">
                     <ul className="w-full max-sm:text-base sm:text-xl text-white flex flex-col gap-3 items-center">

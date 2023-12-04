@@ -13,8 +13,8 @@ export default function Pagination({ totalPages }) {
   const [allPages, setAllPages] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const pages = await generatePagination(currentPage, totalPages.value); 
+    const fetchData = () => {
+      const pages =  generatePagination(currentPage, totalPages); 
       setAllPages(pages);
     };
 
@@ -60,7 +60,7 @@ export default function Pagination({ totalPages }) {
       <PaginationArrow
         direction="right"
         href={createPageURL(currentPage + 1)}
-        isDisabled={currentPage >= totalPages.value}
+        isDisabled={currentPage >= totalPages}
       >
         <AiOutlineDoubleRight />
       </PaginationArrow>

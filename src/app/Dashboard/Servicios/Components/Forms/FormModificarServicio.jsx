@@ -1,13 +1,15 @@
 "use client"
 import { useForm} from "react-hook-form"
 import { useState,useEffect } from "react"
+import { ToastAction } from "@/Components/ui/toast"
+import { useToast } from "@/Components/ui/use-toast"
 import { ServicioModificado } from "../../actions";
 
-function ModificarServicios({servicio}) {
-    const {register,setValue,handleSubmit,reset, formState:{errors}} = useForm();
+function ModificarServicios({servicio,dialog}) {
+    const {register,setValue,handleSubmit, formState:{errors}} = useForm();
     const [enviando, setEnviando] = useState(false);
     const [error,setError] = useState(null);
-
+    const {toast} = useToast()
 
     const onSubmit =handleSubmit( async (data) => {
         data.id = parseInt(servicio.id);
@@ -16,6 +18,12 @@ function ModificarServicios({servicio}) {
         if (res.ok) {
           setError('')
           setEnviando(false)
+          dialog(false)
+          toast({
+            title: res.message,
+            action: (
+              <ToastAction altText="Entendido">Entendido</ToastAction>
+          )})
         }else{
           setEnviando(false)
           setError(res.message)
@@ -75,15 +83,15 @@ function ModificarServicios({servicio}) {
                       message:'Este campo es requerido'
                     }
                 })}
-                 className="rounded-md peer w-full h-[140px] text-base border text-black outline-none border-black focus:border-verde-rgb filter saturate-[3] trasnform duration-200 p-2" >
+                 className="rounded-md peer w-full h-[140px] text-base border text-black outline-none border-black focus:border-verde transform duration-300 p-2" >
             </textarea>
             {errors.descrip && (
                 <span className="text-red-500 text-xs">{errors.descrip.message} </span>
             )} 
-            <span className="peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Descripción :</span>
+            <span className="peer-focus:text-verde transform duration-300">Descripción :</span>
         </label>
        
-        <button className="bg-verde text-white p-2 rounded-bl-lg rounded-tr-lg  hover:shadow-lg  w-full text-base hover:text-black transform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Servicio'}</button>
+        <button className="bg-verde text-black p-2 rounded-bl-lg rounded-tr-lg w-full text-base hover:text-white shadow-lg hover:shadow-verde/50 trasnform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Servicio'}</button>
         {error && (
           <span className="text-red-500 text-xs">{error}</span>
         )}

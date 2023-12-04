@@ -4,8 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_CLOUD_URL")
+  provider = "postgresql"
+  url      = env("SUPABASE_DB")
 }
 
 model Servicio{
@@ -19,12 +19,14 @@ model Servicio{
   precio_min Decimal @db.Decimal(10,2)
   citas Cita[]
   comentarios Comentario[]
+  pagos Pago[]
 }
 
 model Usuario{
   id Int @id @default(autoincrement())
   creacion DateTime @default(now())
   modificacion DateTime @updatedAt
+  supabaseId String? @default(uuid())
   nombres String
   apellidos String
   email String @unique
@@ -58,7 +60,7 @@ model Mascota{
   sexo String
   altura String
   peso Decimal? @db.Decimal(10,2)
-  ultima_cita DateTime
+  ultima_cita DateTime?
   foto String @default("Pendiente")
   citas Cita[]
 }
@@ -98,3 +100,14 @@ model Comentario{
   cliente_id Int
 }
 
+model Pago {
+  id               Int       @id @default(autoincrement())
+  creacion         DateTime  @default(now())
+  nombreCliente    String
+  monto_servicio  Decimal?  @db.Decimal(10,2)
+  monto_adicional  Decimal?  @db.Decimal(10,2)
+  monto_total  Decimal?  @db.Decimal(10,2)
+  igv              Decimal?  @db.Decimal(10,2)
+  servicio         Servicio  @relation(fields: [servicio_id], references: [id])
+  servicio_id      Int
+}

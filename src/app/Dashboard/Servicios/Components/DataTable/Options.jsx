@@ -3,13 +3,13 @@ import {AiOutlineInfoCircle} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import { FiEdit } from "react-icons/fi";
 import { Checkbox } from "@/Components/ui/checkbox"
-import { useRouter } from "next/navigation"
 import {HiEllipsisHorizontal} from "react-icons/hi2"
 import Link from "next/link"
-import { useEffect,useState } from "react"
 import ModificarServicios from "../Forms/FormModificarServicio"
 import { EstadoCambiado, ServicioEliminado } from "../../actions";
-
+import { useState } from "react";
+import { ToastAction } from "@/Components/ui/toast"
+import { useToast } from "@/Components/ui/use-toast"
 import {
     Dialog,
     DialogContent,
@@ -25,12 +25,17 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
   } from "@/Components/ui/dropdown-menu"
- 
-function OptionsServicio({id,estado,servicio}) {
 
+ 
+function OptionsServicio({servicio}) {
+    const [open,setOpen] = useState(false)
+
+    const handleOpenChange = (newState) => {
+        setOpen(newState);
+    };
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DropdownMenu>
                 <DropdownMenuTrigger className="w-full border-none outline-none flex items-center justify-center">
                     <HiEllipsisHorizontal size={30} className="hover:text-verde-rgb font-extralight filter saturate-200 trasnform duration-200"/>
@@ -65,7 +70,7 @@ function OptionsServicio({id,estado,servicio}) {
                     <DialogDescription>
                         Todos los campos son requeridos
                     </DialogDescription>
-                    <ModificarServicios id={id} servicio={servicio}/>
+                    <ModificarServicios dialog={handleOpenChange} servicio={servicio}/>
                 </DialogHeader>
             </DialogContent>
         </Dialog>
@@ -73,21 +78,51 @@ function OptionsServicio({id,estado,servicio}) {
     )
 }
 
-function ToogleEstado({label, servicio}){
+function ToogleEstado({ label, servicio }) {
+    const { toast } = useToast();
 
-    return(
+    const handleChange = async (servicio) => {
+        try {
+            const status = await EstadoCambiado(servicio);
+            if (status.ok) {
+                toast({
+                    title: status.message,
+                    action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+                });
+            } else {
+                toast({
+                    title: status.message,
+                    action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+                });
+            }
+
+            return status;
+        } catch (error) {
+            console.error('Error:', error);
+            toast({
+                title: 'Hubo un error al cambiar el estado',
+                action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+            });
+        }
+    };
+
+    return (
         <div className="flex items-center justify-center gap-2">
-            <Checkbox id="estado" checked={servicio.estado==='Habilitado'} onCheckedChange={() => EstadoCambiado(servicio) ? 'Deshabilitado' : 'Habilitado'}/>
-                <label
-                    htmlFor="estado"
-                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
+            <Checkbox
+                id="estado"
+                checked={servicio.estado === 'Habilitado'}
+                onCheckedChange={() => handleChange(servicio)}
+            />
+            <label
+                htmlFor="estado"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
                 {label}
             </label>
-      </div>
-    )
-
+        </div>
+    );
 }
+
 
 export {OptionsServicio,ToogleEstado}
 

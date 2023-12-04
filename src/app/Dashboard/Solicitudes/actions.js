@@ -43,8 +43,9 @@ export async function getCitasPages(status,cliente,mascota) {
             }
         },
       });
-  
+      
       const totalPages = Math.ceil(citas.length / 8);
+      revalidatePath('/Dashboard/Solicitudes') 
       return totalPages;
     } catch (error) {
       console.error('Prisma Error:', error);
@@ -67,10 +68,10 @@ export async function getDataCalendar() {
       
           const events = citas.map((cita) => ({
             id: cita.id.toString(),
-            title: `Cita para ${cita.nombreMascota} con ${cita.nombreCliente}`,
+            title: `Cita para ${cita.nombreMascota}`,
             start: `${cita.fechaSolicitud}T${cita.horaSolicitud}`,
           }));
-      
+          revalidatePath('/Dashboard/Solicitudes') 
           return events;
     } catch (error) {
         return null
@@ -106,7 +107,7 @@ export async function getData(status, page,nombreCliente,nombreMascota) {
             skip: skip,
             take: itemsPerPage,
         });
- 
+        revalidatePath('/Dashboard/Solicitudes') 
         return citas;
 
     } catch (error) {
@@ -125,10 +126,20 @@ export async function AprobarCita(id){
             }
         });
         
-        if (updatedSolicitud) revalidatePath('Admin/Dashboard/Solicitudes')   
+        if (updatedSolicitud) {
+            revalidatePath('/Dashboard/Solicitudes') 
+            return{
+                ok:true,
+                message:`Cita de ${updatedSolicitud.nombreMascota} aprobada `
+            }
+        }  
         
     } catch (error) {
         console.error("Error:", error);
+        return{
+            ok:false,
+            message:`Hubo un error al aprobar la cita de ${updatedSolicitud.nombreMascota} `
+        }
     }
 }
 
@@ -144,11 +155,19 @@ export async function RechazarCita(id){
         });
         
         if (updatedSolicitud) {
-            revalidatePath('Admin/Dashboard/Solicitudes')   
+            revalidatePath('/Dashboard/Solicitudes')   
+            return{
+                ok:true,
+                message:`Cita de ${updatedSolicitud.nombreMascota} rechazada `
+            }
         }
 
     } catch (error) {
         console.error("Error:", error);
+        return{
+            ok:false,
+            message:`Hubo un error al rechazar la cita de ${updatedSolicitud.nombreMascota} `
+        }
     }
 }
 
@@ -161,6 +180,8 @@ export const CitaModificada = async (data) => {
             data: {
                 fechaSolicitud: data.fecha,
                 horaSolicitud: data.hora,
+                nombreCliente:data.ClieNombre+" "+data.ClieApellidos,
+                nombreMascota:data.mascota,
                 ClienteInfo:{
                     nombre:data.ClieNombre,
                     apellidos:data.ClieApellidos,
@@ -179,7 +200,7 @@ export const CitaModificada = async (data) => {
                 },
         });
         if (updatedSolicitud) {
-            revalidatePath('Admin/Dashboard/Solicitudes') 
+            revalidatePath('/Dashboard/Solicitudes') 
             return updatedSolicitud;
         } else {          
             return null; 

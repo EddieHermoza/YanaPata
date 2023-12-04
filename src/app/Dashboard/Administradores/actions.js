@@ -94,7 +94,7 @@ export const AdminCreado = async (data) => {
             revalidatePath('/Dashboard/Administradores')
             return {
                 ok: true,
-                message: "El usuario ha sido creado con éxito",
+                message: "Administrador ha sido creado con éxito",
             };
         }
 
@@ -129,7 +129,7 @@ export const AdminModificado = async (data) => {
                 revalidatePath('/Dashboard/Administradores')
                 return {
                     ok:true,
-                    message:"Administrador Actualizado con Exito"
+                    message:"Administrador modificado con éxito"
                 }
             }          
         }
@@ -149,7 +149,7 @@ export const AdminModificado = async (data) => {
             revalidatePath('/Dashboard/Administradores')
             return {
                 ok:true,
-                message:"Administrador Actualizado con Exito"
+                message:"Administrador modificado con éxito"
             }
         } 
 
@@ -164,38 +164,51 @@ export const AdminModificado = async (data) => {
 
 export const EstadoCambiado = async (data) => {
     try {
+        let updatedAdmin;
+
         if (data.estado === 'Habilitado') {
-            const updatedAdmin = await db.usuario.update({
+            updatedAdmin = await db.usuario.update({
                 where: {
                     id: data.id
                 },
                 data:{
-                    estado:'Deshabilitado'
+                    estado: 'Deshabilitado'
                 }
             });
+
             if (updatedAdmin) {
-                revalidatePath('/Dashboard/Administradores')
-                return true
+                revalidatePath('/Dashboard/Administradores');
+                return {
+                    ok: true,
+                    message: `Administrador ${updatedAdmin.nombres} deshabilitado`
+                };
             }
         } else {
-            const updatedAdmin = await db.usuario.update({
+            updatedAdmin = await db.usuario.update({
                 where: {
                     id: data.id
                 },
                 data:{
-                    estado:'Habilitado'
+                    estado: 'Habilitado'
                 }
             });
+
             if (updatedAdmin) {
-                revalidatePath('/Dashboard/Administradores')
-                return false
+                revalidatePath('/Dashboard/Administradores');
+                return {
+                    ok: true,
+                    message: `Administrador ${updatedAdmin.nombres} habilitado`
+                };
             }
         }
-        
     } catch (error) {
         console.error("Error:", error);
+        return {
+            ok: false,
+            message: "Hubo un error"
+        };
     }
-}
+};
 
 export const AdminEliminado = async (data) =>{
     try {

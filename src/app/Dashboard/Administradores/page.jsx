@@ -4,38 +4,18 @@ import TablaAdmins from "./Components/DataTable/tablaAdmins"
 import Search from "./Components/DataTable/Search"
 import Pagination from "@/Components/ui/Pagination"
 import { getAdminPages } from "./actions"
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/Components/ui/dialog"
+
 import SkeletonTable from "@/Components/Skeletons/SkeletonTable"
 
-function page({searchParams}) {
+async function page({searchParams}) {
     
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
-    const pages=getAdminPages(query);
+    const pages=await getAdminPages(query);
     return (
         <section className="relative w-full flex flex-col items-center justify-center gap-5 p-10 ">
             <div className="w-full flex max-md:flex-col gap-3 justify-between">
-                <Dialog>
-                    <DialogTrigger className="rounded-tl-md rounded-br-md text-white bg-verde-rgb filter saturate-200 text-xl px-6 py-2 hover:saturate-[3] trasnform duration-300 hover:shadow-lg hover:text-black">Registrar Administrador</DialogTrigger>
-                        <DialogContent className="">
-                            <DialogHeader>
-                                <DialogTitle>Registrar Administrador</DialogTitle>
-                                    <DialogDescription>
-                                    Todos los campos son necesarios
-                                    </DialogDescription>
-                            </DialogHeader>
-                            <div>
-                                <CrearAdmin/>
-                            </div>
-                    </DialogContent>
-                </Dialog>
+                <CrearAdmin/>
                 <Search/>
             </div>
 

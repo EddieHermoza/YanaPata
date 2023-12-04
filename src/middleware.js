@@ -1,27 +1,50 @@
-import { withAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
+import { createServerClient } from '@supabase/ssr'
+import { NextResponse } from 'next/server'
 
-export default withAuth(
-    async function middleware(req) {
-      const url = req.nextUrl.pathname;
-      const userRole = req?.nextauth?.token?.user?.rol;
-  
-      if (url?.startsWith("/Dashboard") && userRole !== "administrador") {
-        return NextResponse.redirect(new URL("/", req.url));
-      }
-  
+export async function middleware(request) {
+  let response = NextResponse.next({
+    request: {
+      headers: request.headers,
     },
+  })
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
-      callbacks: {
-        authorized: ({ token }) => {
-          if (!token) {
-            return false;
-          }
+      cookies: {
+        get(name) {
+          return request.cookies.get(name)?.value
+        },
+        set(name, value, options) {
+          request.cookies.set({
+            name,
+            value,
+            ...options,
+          })
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
+        },
+        remove(name, options) {
+          request.cookies.set({
+            name,
+            value: '',
+            ...options,
+          })
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
         },
       },
     }
-  );
-  
-  export const config = {
-    matcher: ["/Dashboard/:path*"],
-  };
+  )
+
+  await supabase.auth.getSession()
+
+  return response
+}

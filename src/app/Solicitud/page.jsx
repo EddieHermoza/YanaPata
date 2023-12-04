@@ -16,7 +16,7 @@ export default function SolicitudPage() {
           <div className="grid max-lg:grid-cols-none lg:grid-cols-3 py-5">
               <div className="relative hidden items-center lg:flex" >
                 <Image src="/images/kitty.png" width={340} height={640} alt="Gatito" className="" />
-                <PiVolleyballBold size={120} className="text-verde-rgb filter saturate-200 absolute top-20 right-[20%]  animate-spin"/>
+                <PiVolleyballBold size={120} className="text-verde absolute top-20 right-[20%]  animate-spin"/>
               </div>
               <div className=" flex max-md:px-5 md:mx-auto"> 
                 <FormCita/>

@@ -7,7 +7,7 @@ export function cn(...inputs) {
 
 
 
-export const generatePagination = async (currentPage, totalPages) => {
+export const generatePagination =  (currentPage, totalPages) => {
 
   if (totalPages <= 7) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);

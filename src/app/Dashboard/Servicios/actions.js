@@ -72,7 +72,11 @@ export async function getServiciosPage(query) {
             });
             if (updatedServicio) {
                 revalidatePath('/Dashboard/Servicios')
-                return true
+                return {
+                    ok: true,
+                    message: `Servicio ${updatedServicio.nombre} deshabilitado`
+                };
+            
             }
         } else {
             const updatedServicio = await db.Servicio.update({
@@ -85,12 +89,19 @@ export async function getServiciosPage(query) {
             });
             if (updatedServicio) {
                 revalidatePath('/Dashboard/Servicios')
-                return false
+                return {
+                    ok: true,
+                    message: `Servicio ${updatedServicio.nombre} habilitado`
+                };
             }
         }
         
     } catch (error) {
         console.error("Error:", error);
+        return {
+            ok: false,
+            message: `Hubo un error`
+        };
     }
 }
 
@@ -131,14 +142,14 @@ export const ServicioModificado = async (data) =>{
             revalidatePath('/Dashboard/Servicios')
             return{
                 ok:true,
-                message:"Servicio Modificado con Exito"
+                message:"Servicio modificado con éxito"
             }
         }
         
     } catch (error) {
         return {
             ok:false,
-            message:"Hubo un error al modificar el servicio"
+            message:"Error al modificar el servicio"
         };
     }
 }
@@ -159,7 +170,7 @@ export const ServicioCreado = async (data) =>{
             revalidatePath('/Dashboard/Servicios')
             return {
                 ok:true,
-                message:"Servicio Registrado con Exito"
+                message:"Servicio registrado con éxito"
             }
         }
 

@@ -40,6 +40,16 @@ function CalendarPage() {
       events={events}
       locale={es}
       height="100vh"
+      nowIndicatorClassNames={'bg-red-500'}
+      buttonText={{
+        today: 'Hoy',
+      }}
+      dayMaxEventRows
+      views={{
+        timeGrid: {
+          dayMaxEventRows: 3
+        }
+      }}
       validRange={{
         start: formatISO(startOfMonth(new Date()), { representation: 'date' })
       }}
@@ -58,8 +68,8 @@ function CalendarPage() {
 const renderEventContent = (eventInfo) => {
   return (
     <>
-      <div className='flex bg-white text-black gap-1 items-center relative h-auto overflow-hidden text-xs hover:bg-black group hover:text-white transform duration-300 p-2 rounded'>
-        <span>{eventInfo.timeText}:</span>
+      <div className='flex bg-white text-black gap-1 items-center cursor-pointer relative h-auto overflow-hidden text-xs hover:bg-black group hover:text-white transform duration-300 p-1 w-full'>
+        <span className='cursor-pointer'>{eventInfo.timeText}:</span>
         <p className='text-wrap'>{eventInfo.event.title}</p>
       </div>
     </>

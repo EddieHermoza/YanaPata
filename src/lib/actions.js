@@ -1,6 +1,5 @@
 'use server'
 import db from "@/lib/db"
-import { da } from "date-fns/locale";
 import nodemailer from 'nodemailer'
 
 export async function ListarServicios () {
@@ -72,6 +71,51 @@ export const CitaEnviada = async (data) =>{
             ok:false,
             message:'Hubo un error en el envio de la Solicitud'
         }
+    }
+}
+
+export async function getRol(email){
+    try {
+        const userRole = await db.usuario.findUnique({
+            where: {
+                email: email
+            },
+            select: {
+                rol: true
+            }
+        });
+
+        if(userRole) return {
+            ok:true,
+            rol:userRole.rol
+        } 
+
+    } catch (error) {
+        console.log(error)
+        return{
+            ok:false
+        }
+    }
+}
+
+export async function getInfoCliente(email) {
+    try {
+        const client = await db.usuario.findUnique({
+            where: {
+                email: email
+            },
+            include: {
+                cliente: {
+                    select: {
+                        telefono: true 
+                    }
+                }
+            }
+        });
+        if (client) return client
+    } catch (error) {
+        console.log(error)
+        return null
     }
 }
 

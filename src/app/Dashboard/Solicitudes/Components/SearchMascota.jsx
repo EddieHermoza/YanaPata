@@ -21,7 +21,7 @@ export default function SearchMascota() {
       }
       const debouncedHandleSearch = useDebouncedCallback(handleSearch, 500);
     return (
-        <label htmlFor="buscarMascota" className='flex flex-row-reverse items-center gap-2 w-auto border-b-2 border-black hover:border-verde transform duration-300 hover:shadow-lg px-2'>
+        <label htmlFor="buscarMascota" className='flex flex-row-reverse items-center gap-2 max-sm:w-full sm:w-72 border-b-2 border-black hover:border-verde transform duration-300 hover:shadow-lg px-2'>
             <input 
                 id='buscarMascota'
                 type="text"

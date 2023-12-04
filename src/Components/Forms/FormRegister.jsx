@@ -1,40 +1,41 @@
 "use client"
 import { useForm} from "react-hook-form"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
-
+import { ToastAction } from "@/Components/ui/toast"
+import { useToast } from "@/Components/ui/use-toast"
+import { RegisterAction } from "@/lib/auth_actions"
 
 function Register() {
-    const {register,handleSubmit,formState:{errors}} = useForm()
+    const {register,reset,handleSubmit,formState:{errors}} = useForm()
     const [error,setError]=useState(null)
-    const router =useRouter();
+    const {toast} = useToast()
 
     const onSubmit =handleSubmit( async (data) => {
 
         if (data.password !== data.passwordConfirm) {
            setError("Las contraseñas no coinciden")
+           return
         }
 
-        const rspt = await fetch('/api/auth/Register',{
-            method:'POST',
-            body:JSON.stringify(data),
-            headers: {
-                'Content-Type':'application/json'
-            }
-        })
-        
-        if (rspt.ok) {
-            router.push('/auth/Login')
-        } else{
-            const errorData = await rspt.json();
-            setError(errorData.message)
+        const res = await RegisterAction(data)
+        if (res.ok) {
+            toast({
+                title: "Verificacion de correo",
+                description: "Enviamos una verificacion de correo",
+                action: (
+                  <ToastAction altText="Entendido">Entendido</ToastAction>
+            )})
+            reset()
+            setError('')
+        } else {
+            setError(res.message)
         }
         
       });
   return (
     <form onSubmit={onSubmit}  className="flex flex-col items-center max-sm:gap-3 max-lg:gap-4 lg:gap-5">
-        <h2 className="text-4xl text-verde-rgb filter saturate-200">Regístrate</h2>
+        <h2 className="text-4xl">Regístrate</h2>
         <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
             <input 
                 type="text" 
@@ -46,11 +47,11 @@ function Register() {
                         message: 'Este campo es requerido'
                     }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] transform duration-200" />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 transform duration-300" />
             {errors.nombres && (
                 <span className="text-red-500 text-xs">{errors.nombres.message} </span>
             )}
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Nombres:</span>
+            <span className=" peer-focus:text-verde transform duration-300">Nombres:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
             <input 
@@ -63,11 +64,11 @@ function Register() {
                         message: 'Este campo es requerido'
                     }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] transform duration-200" />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 transform duration-300" />
             {errors.apellidos && (
                 <span className="text-red-500 text-xs">{errors.apellidos.message} </span>
             )}
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Apellidos:</span>
+            <span className=" peer-focus:text-verde transform duration-300">Apellidos:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
             <input 
@@ -80,11 +81,11 @@ function Register() {
                         message: 'Este campo es requerido'
                     }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] transform duration-200" />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 transform duration-300" />
             {errors.email && (
                 <span className="text-red-500 text-xs">{errors.email.message} </span>
             )}
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Correo Electrónico:</span>
+            <span className=" peer-focus:text-verde transform duration-300">Correo Electrónico:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
             <input 
@@ -97,11 +98,11 @@ function Register() {
                         message: 'Este campo es requerido'
                     }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] transform duration-200" />
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 transform duration-300" />
             {errors.telefono && (
                 <span className="text-red-500 text-xs">{errors.telefono.message} </span>
             )}
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Número Telefónico:</span>
+            <span className=" peer-focus:text-verde transform duration-300">Número Telefónico:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
             <input 
@@ -114,11 +115,11 @@ function Register() {
                         message: 'Este campo es requerido'
                     }
                 })}
-                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde-rgb p-2 filter saturate-[3] transform duration-200" /> 
+                className="peer border-b-2 w-full outline-none border-black focus:border-b-verde p-2 transform duration-300" /> 
             {errors.password && (
                 <span className="text-red-500 text-xs">{errors.password.message} </span>
             )}
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Contraseña:</span>
+            <span className=" peer-focus:text-verde transform duration-300">Contraseña:</span>
         </label>
         <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
             <input 
@@ -135,13 +136,13 @@ function Register() {
             {errors.passwordConfirm && (
                 <span className="text-red-500 text-xs">{errors.passwordConfirm.message} </span>
             )} 
-            <span className=" peer-focus:text-verde-rgb filter saturate-200 transform duration-200">Confirmar Contraseña:</span>
+            <span className=" peer-focus:text-verde transform duration-300">Confirmar Contraseña:</span>
         </label>
         <div className="flex gap-2 text-base">
           <span>Tienes una cuenta?</span>
-          <Link href="/auth/Login"  className=" text-verde-rgb filter saturate-200 hover:scale-110 transform duration-200">Inicia Sesión</Link>
+          <Link href="/auth/Login"  className=" text-verde hover:scale-110 transform duration-300">Inicia Sesión</Link>
         </div>
-        <button className="bg-verde-rgb text-white saturate-200 p-2 rounded-bl-lg rounded-tr-lg hover:saturate-[3] hover:shadow-lg filter w-2/3 text-xl hover:text-black trasnform duration-300">Registrate</button>
+        <button className="bg-verde p-2 rounded-bl-lg rounded-tr-lg  shadow-lg hover:shadow-verde/50 w-2/3 text-xl hover:text-white text-black transform duration-300">Registrate</button>
         {error && (
           <span className="text-red-500 text-xs">{error}</span>
         )}

@@ -104,6 +104,7 @@ export async function getClientePages(query) {
 
                 },
         })
+        
         if (newClient) {
             revalidatePath('/Dashboard/Clientes')
             return{
@@ -134,7 +135,10 @@ export async function getClientePages(query) {
             });
             if (updatedCliente) {
                 revalidatePath('/Dashboard/Clientes')
-                return true
+                return {
+                    ok: true,
+                    message: `Cliente ${updatedCliente.nombres} deshabilitado`
+                };
             }
         } else {
             const updatedCliente = await db.usuario.update({
@@ -147,12 +151,19 @@ export async function getClientePages(query) {
             });
             if (updatedCliente) {
                 revalidatePath('/Dashboard/Clientes')
-                return false
+                return {
+                    ok: true,
+                    message: `Cliente ${updatedCliente.nombres} habilitado`
+                };
             }
         }
         
     } catch (error) {
         console.error("Error:", error);
+        return {
+            ok: false,
+            message: "Hubo un error"
+        };
     }
 }
 

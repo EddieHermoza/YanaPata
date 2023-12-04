@@ -5,10 +5,10 @@
 
 @layer base{
     body{
-      @apply  bg-stone-950 mb-[500px]
+      @apply  bg-stone-950  relative
     }
     main{
-      @apply relative overflow-x-hidden
+      @apply relative overflow-x-hidden z-10
     }
     Header{
       @apply bg-transparent

@@ -1,23 +1,22 @@
 import Footer from "@/Components/Footer"
 import Login from "@/Components/Forms/FormLogin"
-import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation'
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getUserSession } from "@/lib/auth_actions";
+import { getRol } from "@/lib/actions";
 
 
 async function LoginPage() {
-    const session = await getServerSession(authOptions)
-    if (session) {
-        if (session.user !== undefined) {
-            const userRole = session.user.rol;
-            if (userRole === 'cliente') {
-                redirect('/')
-            } else if(userRole === 'administrador'){
-                redirect('/Dashboard')
-            }
-        }       
-    }
 
+    const UserSession = await getUserSession()
+    if (UserSession.data.session !==null && UserSession.data.session !== undefined) {
+        const rol = await getRol(UserSession.data.session.user.email)
+        
+        if (rol.rol === 'cliente') {
+            redirect('/')
+        } else if(rol.rol === 'administrador'){
+            redirect('/Dashboard')
+        }    
+    }
     return (
         <>
         <main>

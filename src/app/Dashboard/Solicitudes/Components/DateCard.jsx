@@ -1,10 +1,10 @@
-"use client"
-import { IoMdCheckmark,IoMdInformationCircleOutline  } from "react-icons/io";
-import { FiEdit } from "react-icons/fi";
-import { MdOutlineClose,MdEmail  } from "react-icons/md"
+
+import { IoMdInformationCircleOutline  } from "react-icons/io";
+import {  } from "react-icons/fi";
+import { MdEmail  } from "react-icons/md"
 import { FaPhone } from "react-icons/fa6";
 import { differenceInDays, differenceInHours } from 'date-fns';
-import { AprobarCita, RechazarCita } from "../actions";
+
 
 import {
     Dialog,
@@ -22,14 +22,15 @@ import {
     AccordionTrigger,
   } from "@/Components/ui/accordion"
 import ModificarCita from "./Forms/FormModificarCita";
+import FormAprobarCita from "./Forms/FormAprobarCita";
+import FormRechazarCita from "./Forms/FormRechazarCita";
 
 
 
-async function DateCard({data}) {
+async function DateCard({data,servicios,key}) {
+
     const fechaActual = new Date();
-
     const fechaCreacion = new Date(data.creacion); 
-
     const diasTranscurridos = differenceInDays(fechaActual, fechaCreacion);
     const horasRestantes = differenceInHours(fechaActual, fechaCreacion) % 24;
 
@@ -42,8 +43,11 @@ async function DateCard({data}) {
     } else {
         tiempoTranscurrido += `hace ${horasRestantes} hora${horasRestantes > 1 ? 's' : ''}`;
     }
+
+
+
     return (
-    <div className="border h-72 relative p-4 flex flex-col justify-between gap-2 shadow-lg hover:shadow-2xl rounded-lg bg-white transition-all duration-300">
+    <div  className="border h-72 relative p-4 flex flex-col justify-between gap-2 shadow-lg hover:shadow-2xl rounded-lg bg-white transition-all duration-300">
         <div className="flex justify-between items-center">
             <h3 className="text-xl">{data.servicio.nombre}</h3>
             <span className="text-xs text-gray-400">{tiempoTranscurrido}</span>
@@ -52,7 +56,7 @@ async function DateCard({data}) {
                 <AccordionItem value="item-1" className="text-black  border-b border-black">
                     <AccordionTrigger className="flex py-2"> 
                         Dueño: 
-                        <span className="max-sm:text-xs text-sm max-[420px]:max-w-[120px] truncate">{data.ClienteInfo.nombre +" "+ data.ClienteInfo.apellidos }</span>
+                        <span className="max-sm:text-xs text-sm max-[420px]:max-w-[120px] max-lg:max-w-[200px] truncate">{data.ClienteInfo.nombre +" "+ data.ClienteInfo.apellidos }</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-0">
                         <div className="max-sm:text-xs flex max-sm:flex-col max-sm:gap-1 justify-between px-2 pb-2">
@@ -76,7 +80,7 @@ async function DateCard({data}) {
                 </AccordionItem>
             </Accordion>
             <div className="flex justify-between items-center">
-                <span className="max-[400px]:text-xs text-sm">Para el <strong className="text-verde-rgb filter saturate-200">{data.fechaSolicitud}</strong> a las <strong className="text-verde-rgb filter saturate-200">{data.horaSolicitud}</strong></span>
+                <span className="max-[400px]:text-xs text-sm">Para el <strong className="text-verde">{data.fechaSolicitud}</strong> a las <strong className="text-verde">{data.horaSolicitud}</strong></span>
                 <span className="text-yellow-400">{data.estado}</span>
             </div>
             <div className="flex gap-3 w-full ">
@@ -88,11 +92,11 @@ async function DateCard({data}) {
                         <DialogHeader>
                             <DialogTitle>Información de la cita {data.id}</DialogTitle>
                             <DialogDescription>
-                                <span className="max-[400px]:text-xs text-sm">Solicitada para el <strong className="text-verde-rgb filter saturate-200">{data.fechaSolicitud}</strong> a las <strong className="text-verde-rgb filter saturate-200">{data.horaSolicitud}</strong></span>
+                                <span className="max-[400px]:text-xs text-sm">Solicitada para el <strong className="text-verde">{data.fechaSolicitud}</strong> a las <strong className="text-verde">{data.horaSolicitud}</strong></span>
                             </DialogDescription>
                         </DialogHeader>
                         <div className="flex flex-col gap-3">
-                            <span className="text-xl text-black">Servicio Solicitado: <span className="text-verde-rgb filter saturate-200">{data.servicio.nombre}</span></span>
+                            <span className="text-xl text-black">Servicio Solicitado: <span className="text-verde">{data.servicio.nombre}</span></span>
                             <div className="flex flex-col gap-2 text-sm text-slate-600">
                                 <span className="text-xl text-black">Información del Cliente:</span>
                                 <span>Nombres: <span className="text-verde">{data.ClienteInfo.nombre}</span></span>
@@ -115,28 +119,9 @@ async function DateCard({data}) {
                         </div>
                     </DialogContent>
                 </Dialog>
-                <button className="transition-all bg-green-400 px-3 py-2 rounded-md hover:shadow-green-400/50 hover:shadow-lg" aria-label="Confirmar" title="Confirmar" onClick={()=>AprobarCita(data.id)}> 
-                    <IoMdCheckmark size={18}/>
-                </button>
-                <button className="transition-all px-3 py-2 bg-red-500 text-white rounded-md hover:shadow-red-500/50 shadow-lg" aria-label="Rechazar" title="Rechazar" onClick={()=>RechazarCita(data.id)}>
-                    <MdOutlineClose size={18}/>
-                </button>
-                <Dialog>
-                    <DialogTrigger className="transition-all px-3 py-2 bg-yellow-300 rounded-md hover:shadow-yellow-300/50 shadow-lg" aria-label="Editar" title="Editar">
-                        <FiEdit size={18}/>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>Modificando la Cita {data.id}</DialogTitle>
-                            <DialogDescription>
-                                Todos Los campos son necesarios
-                            </DialogDescription>
-                        </DialogHeader>
-                        <div className="px-2 h-[600px] relative overflow-y-auto scrollbar-thin scrollbar-track-white scrollbar-thumb-cyan-400">
-                        <ModificarCita cita={data}/>
-                        </div>
-                    </DialogContent>
-                </Dialog>
+                <FormAprobarCita id={data.id} />
+                <FormRechazarCita id={data.id}/>
+                <ModificarCita cita={data} servicios={servicios}/>
             </div>
         </div>
     )

@@ -16,28 +16,15 @@ import Pagination from "@/Components/ui/Pagination"
 import SkeletonTable from "@/Components/Skeletons/SkeletonTable"
 import { getClientePages } from "./actions"
 
-function page({ searchParams}) {
+async function page({ searchParams}) {
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
-    const pages=getClientePages(query);
+    const pages=await getClientePages(query);
     return (
       <section className="relative w-full flex flex-col items-center justify-center gap-5 p-10 ">
           <div className="w-full flex max-md:flex-col gap-3 justify-between">
-            <Dialog>
-                  <DialogTrigger className="rounded-tl-md rounded-br-md text-white bg-verde-rgb filter saturate-200 text-xl px-6 py-2 hover:saturate-[3] trasnform duration-300 hover:shadow-lg hover:text-black">Registrar Cliente</DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Registrar Cliente</DialogTitle>
-                        <DialogDescription>
-                          Todos los campos son necesarios
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div>
-                        <FormCliente/>
-                      </div>
-                </DialogContent>
-              </Dialog>
+              <FormCliente/>
               <Search/>
           </div>
 

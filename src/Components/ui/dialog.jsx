@@ -38,7 +38,7 @@ const DialogContent = React.forwardRef(({ className, children, ...props }, ref) 
       {children}
       <DialogPrimitive.Close
         className="absolute right-4 top-4 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
-        <AiOutlineClose className="hover:rotate-90 trasnform duration-200 hover:text-verde-rgb filter saturate-200" size={32} />
+        <AiOutlineClose className="hover:rotate-90 trasnform duration-200 hover:text-verde" size={32} />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

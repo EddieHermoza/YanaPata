@@ -6,6 +6,8 @@ import { Checkbox } from "@/Components/ui/checkbox"
 import {HiEllipsisHorizontal} from "react-icons/hi2"
 import Link from "next/link"
 import { EstadoCambiado,ClienteEliminado } from "../../actions"
+import { ToastAction } from "@/Components/ui/toast"
+import { useToast } from "@/Components/ui/use-toast"
 
 
 import {
@@ -45,20 +47,53 @@ function OptionsCliente({cliente}) {
     )
 }
 
-function ToogleEstado({cliente,label}){
-    return(
+function ToogleEstado({ label, cliente }) {
+    const { toast } = useToast();
+
+    const handleChange = async (cliente) => {
+        try {
+            const status = await EstadoCambiado(cliente);
+            console.log(status);
+
+            if (status.ok) {
+                toast({
+                    title: status.message,
+                    action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+                });
+            } else {
+                toast({
+                    title: status.message,
+                    action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+                });
+            }
+
+            return status;
+        } catch (error) {
+            console.error('Error:', error);
+            toast({
+                title: 'Hubo un error al cambiar el estado',
+                action: <ToastAction altText="Entendido">Entendido</ToastAction>,
+            });
+        }
+    };
+
+    return (
         <div className="flex items-center justify-center gap-2">
-            <Checkbox id="estado" checked={cliente.estado === 'Habilitado'} onCheckedChange={() => EstadoCambiado(cliente) ? 'Deshabilitado' : 'Habilitado'}/>
-                <label
-                    htmlFor="estado"
-                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
+            <Checkbox
+                id="estado"
+                checked={cliente.estado === 'Habilitado'}
+                onCheckedChange={() => handleChange(cliente)}
+            />
+            <label
+                htmlFor="estado"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
                 {label}
             </label>
-      </div>
-    )
-
+        </div>
+    );
 }
+
 
 export {OptionsCliente,ToogleEstado}
 

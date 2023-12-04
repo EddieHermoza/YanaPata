@@ -1,7 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
+let prism;
+
 const PrismaClientSingleton = () =>{
-    return new PrismaClient()
+    if (!prism) {
+        prism = new PrismaClient();
+    }
+    return prism;
 }
 
 const GlobalForPrisma = globalThis;

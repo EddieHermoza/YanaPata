@@ -9,13 +9,13 @@ export async function POST(request) {
             service: 'Gmail',
             auth:{
                 user: 'eddie.ehc04@gmail.com',
-                pass:'atruslumwofdcrxl'
+                pass:'uesb owlq zyqf prur'
             }
     })
     
         const mailOptions = {
-            from:'"VeterinariaYanaPata" <eddie.ehc04@gmail.com>',
-            to: 'eddie.ehc04@gmail.com',
+            from:'VeterinariaYanaPata <eddie.ehc04@gmail.com>',
+            to: correo,
             subject: 'Solicitud de Cita',
             html: 
             `
@@ -41,6 +41,7 @@ export async function POST(request) {
             </div>
     `
         };
+        console.log(mailOptions)
 
         await transporter.sendMail(mailOptions)
         return NextResponse.json({message:'mensaje enviado correctamente'},{status: 200})

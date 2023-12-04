@@ -21,7 +21,7 @@ export default function SearchCliente() {
       }
       const debouncedHandleSearch = useDebouncedCallback(handleSearch, 500);
     return (
-        <label htmlFor="buscarCliente" className='flex flex-row-reverse items-center gap-2 w-auto border-b-2 border-black hover:border-verde transform duration-300 hover:shadow-lg px-2 '>
+        <label htmlFor="buscarCliente" className='flex flex-row-reverse items-center gap-2 max-sm:w-full sm:w-72 border-b-2 border-black hover:border-verde transform duration-300 hover:shadow-lg px-2 '>
             <input 
                 id='buscarCliente'
                 type="text"

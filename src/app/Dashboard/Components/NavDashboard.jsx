@@ -20,7 +20,7 @@ export default function NavDashboard() {
         { label: 'Administradores', href: '/Dashboard/Administradores' },
         { label: 'Clientes', href: '/Dashboard/Clientes' },
         { label: 'Mascotas', href: '/Dashboard/Mascotas' },
-        { label: 'Comentarios', href: '/Dashboard/Comentarios' },
+        { label: 'Pagos', href: '/Dashboard/Pagos' },
     ];
 
     return (

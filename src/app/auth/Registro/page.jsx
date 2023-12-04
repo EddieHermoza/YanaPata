@@ -1,20 +1,21 @@
 import Footer from "@/Components/Footer"
 import Register from "@/Components/Forms/FormRegister"
-import Navbar from "@/Components/Navbar"
-import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation'
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getUserSession } from "@/lib/auth_actions";
+import { getRol } from "@/lib/actions";
 
 
 async function RegisterPage() {
-    const session = await getServerSession(authOptions)
-    if (session) {
-        const userRole = session.user.rol;
-        if (userRole === 'cliente') {
+
+    const UserSession = await getUserSession()
+    if (UserSession.data.session !==null && UserSession.data.session !== undefined) {
+        const rol = await getRol(UserSession.data.session.user.email)
+        
+        if (rol.rol === 'cliente') {
             redirect('/')
-        } else if(userRole === 'administrador'){
+        } else if(rol.rol === 'administrador'){
             redirect('/Dashboard')
-        }
+        }    
     }
     return (
         <>

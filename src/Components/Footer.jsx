@@ -25,7 +25,7 @@ export default function Footer() {
 
   return (
   
-    <footer id='footer' className="-z-20 max-sm:bg-right max-xl:relative xl:fixed bg-cover bg-center bottom-0 max-xl:h-auto xl:h-[500px] w-full" style={{backgroundImage :'url("/images/footer.jpg")'}}>
+    <footer id='footer' className="max-sm:bg-right max-xl:relative xl:sticky bg-cover bg-center bottom-0 max-xl:h-auto xl:h-[500px] w-full" style={{backgroundImage :'url("/images/footer.jpg")'}}>
         <div className='absolute h-full w-full bg-[rgb(22,22,22)] bg-opacity-90 filter saturate-200 max-sm:bg-opacity-100 transform duration-300'>
 
         </div>

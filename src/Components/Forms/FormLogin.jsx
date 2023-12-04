@@ -1,42 +1,38 @@
 "use client"
 import { useForm } from "react-hook-form"
 import Link from "next/link"
-import { signIn,getSession  } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { LoginAction } from "@/lib/auth_actions"
 
 function Login() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register,reset, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null);
   const router = useRouter();
 
   const onSubmit = handleSubmit(async (data) => {
 
       setIsLoggingIn(true); 
-
-     const sesion = await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        redirect: false
-      });
-      if (sesion.ok) {
-        const updatedSession = await getSession(); 
-        if (updatedSession) {
-          const userRole = updatedSession?.user?.rol;
-          if (userRole === 'cliente') {
-            setIsLoggingIn(false);
-            router.push('/');
-          } else if (userRole === 'administrador') {
-            setIsLoggingIn(false);
-            router.push('/Dashboard');
-          }
+      const res = await LoginAction(data)
+      if (res.ok) {
+        if (res.rol === "administrador") {
+            router.push("/Dashboard")
+            router.refresh()
+            reset()
+            setIsLoggingIn(false)
+            setError('')
+        } else {
+          router.push("/")
+          router.refresh()
+          reset()
+          setIsLoggingIn(false)
+          setError('')
         }
-      } else {
-        setError(sesion.error)
-        setIsLoggingIn(false); 
+      } else{
+        setError(res.message)
+        setIsLoggingIn(false)
       }
-
   });
   return (
     <form onSubmit={onSubmit} className="w-full flex flex-col items-center gap-10">
@@ -56,7 +52,7 @@ function Login() {
         {errors.email && (
           <span className="text-red-500 text-xs">{errors.email.message} </span>
         )}
-        <span className=" peer-focus:text-verde transform duration-200">Correo Electrónico:</span>
+        <span className=" peer-focus:text-verde transform duration-300">Correo Electrónico:</span>
       </label>
 
       <label htmlFor="" className="flex flex-col-reverse gap-1 text-xl w-full text-black">
@@ -74,14 +70,14 @@ function Login() {
         {errors.password && (
           <span className="text-red-500 text-xs">{errors.password.message} </span>
         )}
-        <span className=" peer-focus:text-verde transform duration-200">Contraseña:</span>
+        <span className=" peer-focus:text-verde transform duration-300">Contraseña:</span>
       </label>
       <div className="flex gap-2 text-base">
         <span>No tienes una cuenta?</span>
-        <Link href="/auth/Registro" className="text-verde hover:scale-110 transform duration-200">Registrate</Link>
+        <Link href="/auth/Registro" className="text-verde hover:scale-110 transform duration-300">Registrate</Link>
       </div>
       <button
-        className="bg-verde text-white p-2 rounded-bl-lg rounded-tr-lg  hover:shadow-lg w-2/3 text-xl hover:text-black trasnform duration-300"
+        className="bg-verde p-2 rounded-bl-lg rounded-tr-lg  shadow-lg hover:shadow-verde/50 w-2/3 text-xl hover:text-white text-black transform duration-300"
         disabled={isLoggingIn} 
       >
         {isLoggingIn ? 'Iniciando sesión...' : 'Iniciar Sesión'}

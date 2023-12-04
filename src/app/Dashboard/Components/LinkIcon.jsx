@@ -5,6 +5,7 @@ import { RiShieldUserLine } from "react-icons/ri";
 import { RiUserFollowLine } from "react-icons/ri";
 import { MdOutlinePets } from "react-icons/md";
 import { FaHandHoldingHeart } from "react-icons/fa";
+import { FaMoneyBill } from "react-icons/fa";
 import Link from "next/link";
 const iconComponents = {
     Dashboard: MdDashboard,
@@ -14,6 +15,7 @@ const iconComponents = {
     Administradores: RiShieldUserLine,
     Clientes:RiUserFollowLine,
     Mascotas:MdOutlinePets,
+    Pagos:FaMoneyBill
 };
 
 

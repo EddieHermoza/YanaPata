@@ -3,6 +3,8 @@ import './globals.css'
 import { Comfortaa } from 'next/font/google'
 import AOSInitializer from '@/Components/AOSinit'
 import Navbar from '@/Components/Navbar'
+import { Toaster } from "@/components/ui/toaster"
+import { getUserSession } from '@/lib/auth_actions'
 
 const comfo=Comfortaa({
   subsets: ["latin"],
@@ -14,13 +16,18 @@ export const metadata = {
   description: 'Veterinaria Peruana',
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+  const UserSession = await getUserSession()
+  const sesion =  UserSession.data.session !==null && UserSession.data.session !== undefined
+
  return (
-    <html lang="en" className=' scrollbar-thin scrollbar-track-white scrollbar-thumb-teal-400'>
+    <html lang="en" className=' scrollbar-thin scrollbar-track-transparent scrollbar-thumb-verde'>
       <body className={comfo.className}>
-        <Navbar/>
-      <AOSInitializer/>
+        <Navbar sesion={sesion}/>
+        <AOSInitializer/>
         {children}
+        <Toaster/>
       </body>
     </html>
   )

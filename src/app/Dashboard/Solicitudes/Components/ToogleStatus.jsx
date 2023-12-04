@@ -32,7 +32,7 @@ export default function ToggleStatus() {
   }
 
   return (
-    <div className="relative justify-start flex gap-2 w-auto">
+    <div className="relative justify-start flex gap-2 w-aut max-sm:w-full">
         <Select onValueChange={handleStatus}  defaultValue={searchParams.get('status') ? searchParams.get('status').toString() : undefined}>
             <SelectTrigger className="w-auto gap-2  outline-none border-b-2 border-black hover:shadow-xl transform duration-300 hover:border-verde">
                 <IoFilterOutline size={20}/>
