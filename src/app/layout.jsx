@@ -3,7 +3,7 @@ import './globals.css'
 import { Comfortaa } from 'next/font/google'
 import AOSInitializer from '@/Components/AOSinit'
 import Navbar from '@/Components/Navbar'
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/Components/ui/toaster"
 import { getUserSession } from '@/lib/auth_actions'
 
 const comfo=Comfortaa({

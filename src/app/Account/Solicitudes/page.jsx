@@ -1,6 +1,6 @@
 import Pagination from "@/Components/ui/Pagination";
 import { Suspense } from "react";
-import TablaSolicitudes from "./Components/TablaSolicitudes";
+import TablaSolicitudes from "./Components/tablaSolicitudes";
 import FormCitaCliente from "../Components/Forms/FormCitaCliente";
 import { getInfoCliente } from "@/lib/actions";
 import { getUserSession } from "@/lib/auth_actions";
