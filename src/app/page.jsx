@@ -4,6 +4,7 @@ import Ubicacion from '../Components/sectUbicacion'
 import Contacto from '../Components/sectContacto'
 import Footer from '@/Components/Footer'
 import Nosotros from '../Components/sectionNosotros'
+import Ai from '@/Components/Ai'
 
 
 
@@ -19,6 +20,7 @@ export default function Home() {
         <Contacto/>
       </main>
       <Footer/>
+      <Ai/>
     </>
   )
 }
