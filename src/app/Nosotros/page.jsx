@@ -32,7 +32,7 @@ function page() {
                 <div className="flex justify-center">
                     <div className='w-full max-w-[1400px] py-5'>
                     <Accordion type="single" collapsible className="flex flex-col gap-10">
-                        <AccordionItem value="item-1" className="text-black shadow-lg border-black" data-aos="fade-left"  data-aos-duration="1200">
+                        <AccordionItem value="item-1" className="text-black shadow-lg border-black" data-aos="fade-left"  data-aos-duration="1000">
                             <AccordionTrigger className="flex bg-slate-100 p-5 text-center text-2xl  hover:bg-slate-50 transform duration-300 hover:text-verde"> 
                                 Visión
                             </AccordionTrigger>
@@ -49,7 +49,7 @@ function page() {
                                     </div>
                             </AccordionContent>
                         </AccordionItem>
-                        <AccordionItem value="item-2" className="text-black shadow-lg border-black" data-aos="fade-right"  data-aos-duration="1400">
+                        <AccordionItem value="item-2" className="text-black shadow-lg border-black" data-aos="fade-right"  data-aos-duration="1000">
                             <AccordionTrigger className="flex bg-slate-100 p-5 text-center text-2xl  hover:bg-slate-50 transform duration-300 hover:text-verde"> 
                                 Misión
                             </AccordionTrigger>
@@ -67,7 +67,7 @@ function page() {
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
-                        <AccordionItem value="item-3" className="text-black shadow-lg border-black" data-aos="fade-left"  data-aos-duration="1600">
+                        <AccordionItem value="item-3" className="text-black shadow-lg border-black" data-aos="fade-left"  data-aos-duration="1000">
                             <AccordionTrigger className="flex bg-slate-100 p-5 text-center text-2xl  hover:bg-slate-50 transform duration-300 hover:text-verde"> 
                                 Valores
                             </AccordionTrigger>

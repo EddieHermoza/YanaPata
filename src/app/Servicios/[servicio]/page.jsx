@@ -37,7 +37,7 @@ function ServicioPage({ params }) {
             />
                 <section className="w-full relative flex justify-center">
                     <div className="flex  max-xl:flex-col gap-10 md:p-10 w-full max-w-[1400px] items-center justify-center">
-                        <div className=" flex flex-col  gap-10 p-5 w-1/2" >
+                        <div className=" flex flex-col  gap-10 p-5 max-md:w-full md:w-1/2" >
                             <div data-aos="fade-left"  data-aos-duration="1200" className="relative flex flex-col w-auto filter saturate-200">
                                 <h2 className="max-sm:text-3xl text-5xl">{servicioActual.nombre}</h2>
                                 <span className="w-[25%] h-[6px] bg-verde mt-3"></span>
@@ -56,7 +56,7 @@ function ServicioPage({ params }) {
                                 </Link>
                             </div>
                         </div>
-                        <div className="w-1/2 max-xl:order-first flex items-center justify-center p-5" data-aos="fade-right" data-aos-delay="200 " data-aos-duration="1000" >
+                        <div className="max-md:w-full md:w-1/2 max-xl:order-first flex items-center justify-center p-5" data-aos="fade-right" data-aos-delay="200 " data-aos-duration="1000" >
                             <Image src={servicioActual.img} alt={servicioActual.nombre} width={500} height={500} className=" rounded-lg shadow-2xl "/>
                         </div>
                     </div>
