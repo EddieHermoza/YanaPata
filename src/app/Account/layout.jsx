@@ -13,7 +13,7 @@ export default  function layout({children}) {
     return(
         <main className="w-full h-screen relative pt-[60px]">
             <section className="relative w-screen flex items-center justify-center h-full bg-slate-100">
-                <div className="relative flex gap-5 w-full max-w-[1400px]  h-full p-5">
+                <div className="relative flex gap-5 w-full h-full px-5">
                     <div className="max-lg:hidden lg:flex flex-col gap-10 items-center py-10 h-full w-[300px] bg-white rounded-lg shadow-lg">
                         <MdPets size={60}/>
                         <ul className="flex flex-col gap-16 items-center justify-center w-full relative text-xl">

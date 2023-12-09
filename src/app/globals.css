@@ -5,13 +5,10 @@
 
 @layer base{
     body{
-      @apply  bg-stone-950  relative
+      @apply  bg-neutral-950  relative
     }
     main{
       @apply relative overflow-x-hidden z-10
-    }
-    Header{
-      @apply bg-transparent
     }
     
 
@@ -19,27 +16,16 @@
       @apply bg-white
     }
 
+}
+
+.header-scroll{
+  animation-name: header-animation;
+  animation: header-animation linear both;
+  animation-timeline: scroll(root);
 
 }
 
 
-@keyframes slide-in-left {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.animate-slide-in-left {
-  animation: slide-in-left 0.5s ease-out;
-}
-
-
-.slick-track{
-    @apply !flex !space-x-3
-}
 
 @layer components{
     .animation-underline{
@@ -48,6 +34,12 @@
     .ani-underline{
       @apply filter saturate-200 absolute bottom-0 left-0 w-full h-[3px] bg-white origin-left transform scale-x-100 transition-transform duration-300
     }
+
+    .slick-track{
+      @apply !flex !space-x-3
+    }
+
+    /* Calendar CSS*/
     .fc .fc-toolbar-chunk{
       @apply flex p-2
     }
@@ -70,6 +62,12 @@
   animation: zoomFondo 25s linear infinite, revertirZoom 25s linear infinite; 
 }
 
+@keyframes header-animation {
+  to{
+    background: black;
+  }
+}
+
 @keyframes zoomFondo {
   0% {
     transform: scale(1); 
@@ -89,4 +87,17 @@
   50% {
     transform: scale(1);
   }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s ease-out;
 }
