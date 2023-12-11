@@ -52,11 +52,11 @@ export default async function page() {
                     <p>{cliente.email}</p>
                 </div>
             </div>
-            <div className="max-sm:items-center flex flex-col gap-5 text-sm">
+{/*            <div className="max-sm:items-center flex flex-col gap-5 text-sm">
                 <button className="transform duration-300 text-white border border-green-300 bg-green-300 hover:bg-green-400 shadow-lg hover:shadow-green-400/50 w-[300px] p-3">Cambiar Correo</button>
                 <button className="transform duration-300 text-white border border-yellow-300 bg-yellow-300 hover:bg-yellow-400 shadow-lg hover:shadow-yellow-400/50 w-[300px] p-3">Cambiar Contraseña</button>
                 <button className="transform duration-300 text-white border border-red-400 bg-red-400 hover:bg-red-500 shadow-lg hover:shadow-red-500/50 w-[300px] p-3">Eliminar Cuenta</button>
-            </div>
+    </div>*/}
 
         </div>
     )

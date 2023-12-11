@@ -60,6 +60,7 @@ function ModificarServicios({servicio,dialog}) {
             <input 
               type="number"
               min="0" 
+              step={0.1}
               name="" 
               id=""
               {... register("precio_min",{
