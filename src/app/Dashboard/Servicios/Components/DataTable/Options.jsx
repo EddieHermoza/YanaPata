@@ -42,12 +42,6 @@ function OptionsServicio({servicio}) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuItem>
-                        <Link href={`/Dashboard/Servicios/${servicio.id}`} className="flex w-full items-center justify-start gap-2">
-                            <AiOutlineInfoCircle size={16}/> 
-                            Información
-                        </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
                         <DialogTrigger className="flex gap-2 items-center justify-start w-full">
                                 <FiEdit size={16}/> 
                                     Editar

@@ -19,7 +19,7 @@ export default async function TablaPagos({query,page}) {
             <tbody className="text-black relative">
             {pagos ? (
                 pagos.map((pago) => (
-                <tr key={pago.id} className="border-b hover:bg-slate-100 transform duration-200 h-[30px]">
+                <tr key={pago.id} className="border-b hover:bg-slate-100 transform duration-200 h-[48px]">
                     <td className="p-2 truncate">{pago.id}</td>
                     <td className="p-2 max-xl:hidden truncate max-w-[200px]">{pago.creacion}</td>
                     <td className="p-2 max-2xl:hidden truncate max-w-[200px]">{pago.nombreCliente}</td>

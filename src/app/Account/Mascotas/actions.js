@@ -83,7 +83,7 @@ export const MascotaCreada = async (data)=>{
             }
         })
         if (mascotanueva) {
-            revalidatePath("/Account/Mascotas")
+            revalidatePath("/Account/Mascotas","layout")
             return{
                 ok:true,
                 message:"Mascota registrada con exito"
@@ -102,6 +102,43 @@ export const MascotaCreada = async (data)=>{
     }
 }
 
+export const MascotaModificada = async (data)=>{
+    try {
+        const mascotaActualizada = await db.Mascota.update({
+            where:{
+                id:data.id
+            },
+            data:{
+                nombre:data.nombre,
+                tipo:data.tipo,
+                raza:data.raza,
+                sexo:data.sexo,
+                altura:data.altura,
+                peso:parseFloat(data.peso),
+                cliente_id:data.cliente_id
+
+            }
+        })
+        if (mascotaActualizada) {
+            revalidatePath("/Account/Mascotas","layout")
+            return{
+                ok:true,
+                message:"Mascota modificada con exito"
+            }
+        }
+        return{
+            ok:false,
+            message:"Hubo un error en la modificacion"
+        }
+    } catch (error) {
+        console.log(error)
+        return{
+            ok:false,
+            message:"Hubo un error en la modificacion"
+        }
+    }
+}
+
 export const MascotaEliminada = async(id) =>{
     try {
         const deletedMascota = await db.Mascota.delete({
@@ -110,7 +147,7 @@ export const MascotaEliminada = async(id) =>{
             }
         })
         if (deletedMascota) {
-            revalidatePath("/Account/Mascotas")
+            revalidatePath("/Account/Mascotas","layout")
             return({
                 ok:true,
                 message:"Mascota Eliminada"

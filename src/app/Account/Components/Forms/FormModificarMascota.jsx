@@ -1,6 +1,7 @@
 "use client"
+import { FiEdit } from "react-icons/fi"
 import { useForm,Controller} from "react-hook-form"
-import { useState } from "react"
+import { useEffect,useState } from "react"
 import { ToastAction } from "@/Components/ui/toast"
 import { useToast } from "@/Components/ui/use-toast"
 import {
@@ -20,12 +21,14 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/Components/ui/select";
-import { MascotaCreada } from "../../Mascotas/actions"
+import { MascotaModificada } from "../../Mascotas/actions"
 
-function FormCrearMascota({id}) {
+function FormModificarMascota({mascota}) {
+    const id_mascota= mascota.id
+    const id=mascota.cliente_id
     const[open,setOpen]=useState(false)
 
-    const {register,handleSubmit,control,reset,formState:{errors}} = useForm()
+    const {register,handleSubmit,setValue,control,reset,formState:{errors}} = useForm()
     
     const [enviando, setEnviando] = useState(false);
 
@@ -37,6 +40,7 @@ function FormCrearMascota({id}) {
         setEnviando(true)
 
         const mascota={
+            id:id_mascota,
             nombre:data.nombre,
             tipo:data.tipo,
             raza:data.raza,
@@ -46,12 +50,11 @@ function FormCrearMascota({id}) {
             cliente_id:id
         }
 
-        const res = await MascotaCreada(mascota)
+        const res = await MascotaModificada(mascota)
         
         if(res.ok){
             setEnviando(false)
             setError('')
-            reset()
             setOpen(false)
             toast({
                 title: res.message,
@@ -64,13 +67,24 @@ function FormCrearMascota({id}) {
         }
         
       });
+
+      useEffect(() => {
+        setValue('nombre',mascota.nombre)
+        setValue('sexo',mascota.sexo)
+        setValue('tipo',mascota.tipo)
+        setValue('raza',mascota.raza)
+        setValue('altura',mascota.altura)
+        setValue('peso',mascota.peso)
+      },[] );
     return (
         <>
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger className="bg-verde px-5 py-3 text-xl shadow-lg hover:shadow-verde/50 hover:text-white transform duration-300">Registrar Mascota</DialogTrigger>
+            <DialogTrigger className="transition-all px-3 py-2 bg-yellow-300 rounded-md hover:shadow-yellow-300/50 shadow-lg" aria-label="Editar" title="Editar">
+                <FiEdit size={18}/>
+            </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Registrar Mascota</DialogTitle>
+                    <DialogTitle>Modificando Mascota {mascota.id}</DialogTitle>
                     <DialogDescription>
                         Todos los campos son necesarios
                     </DialogDescription>
@@ -107,7 +121,7 @@ function FormCrearMascota({id}) {
                             }}
                             defaultValue="Predeterminado"
                             render={({ field: { onChange, value } }) => (
-                                <Select onValueChange={onChange} defaultValue="Predeterminado" >
+                                <Select onValueChange={onChange} defaultValue={value} >
                                     <SelectTrigger className="w-auto gap-2 outline-none border-b border-black transform duration-300 hover:border-verde" >
                                         <SelectValue />
                                     </SelectTrigger>
@@ -138,7 +152,7 @@ function FormCrearMascota({id}) {
                             }}
                             defaultValue={'Predeterminado'}
                             render={({ field: { onChange, value } }) => (
-                                <Select onValueChange={onChange} defaultValue={'Predeterminado'}>
+                                <Select onValueChange={onChange}  defaultValue={value}>
                                     <SelectTrigger className="w-auto gap-2 outline-none border-b border-black transform duration-300 hover:border-verde" >
                                         <SelectValue />
                                     </SelectTrigger>
@@ -186,7 +200,7 @@ function FormCrearMascota({id}) {
                             }}
                             defaultValue={'Predeterminado'}
                             render={({ field: { onChange, value } }) => (
-                                <Select onValueChange={onChange} defaultValue={'Predeterminado'}>
+                                <Select onValueChange={onChange}  defaultValue={value}>
                                     <SelectTrigger className="w-auto gap-2 outline-none border-b border-black transform duration-300 hover:border-verde" >
                                         <SelectValue />
                                     </SelectTrigger>
@@ -208,7 +222,9 @@ function FormCrearMascota({id}) {
                     </label>
                     <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                         <input 
-                            type="number" 
+                            type="number"
+                            min={0}
+                            step={0.1} 
                             name="" 
                             id=""
                             {... register("peso",{
@@ -223,7 +239,7 @@ function FormCrearMascota({id}) {
                         )}
                         <span className=" peer-focus:text-verde transform duration-200 flex items-center">Peso <span className="text-xs text-slate-400"> (En kilogramos)</span></span>
                     </label> 
-                    <button className="bg-verde text-black p-2 rounded-bl-lg rounded-tr-lg w-full text-base hover:text-white shadow-lg hover:shadow-verde/50 transform duration-300"  disabled={enviando}>{enviando ? 'Registrando...' : 'Registrar Mascota'}</button>
+                    <button className="bg-verde text-black p-2 rounded-bl-lg rounded-tr-lg w-full text-base hover:text-white shadow-lg hover:shadow-verde/50 transform duration-300"  disabled={enviando}>{enviando ? 'Modificando...' : 'Modificar Mascota'}</button>
                     {error && (
                     <span className="text-red-500 text-xs">{error}</span>
                     )}                                  
@@ -236,4 +252,4 @@ function FormCrearMascota({id}) {
     )
 }
 
-export default FormCrearMascota
+export default FormModificarMascota

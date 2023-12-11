@@ -59,10 +59,10 @@ const handleLogOut = async () => {
         return(
             <>
             <SheetClose asChild  className='w-full relative flex'>
-                <Link href="/Account"  className='text-white text-lg w-full py-4 flex justify-center items-center border-b hover:bg-verde  transform duration-200 hover:text-black' > Mi Cuenta</Link>
+                <Link href="/Account"  className='text-white text-lg w-full py-3 flex justify-center items-center border-b hover:bg-verde  transform duration-200 hover:text-black' > Mi Cuenta</Link>
             </SheetClose>
             <SheetClose asChild className='w-full relative flex'>
-                <button  className='text-white text-lg w-full py-4 flex justify-center items-center border-b hover:bg-verde  transform duration-200 hover:text-black'  onClick={()=>{handleLogOut()}}>
+                <button  className='text-white text-lg w-full py-3 flex justify-center items-center border-b hover:bg-verde  transform duration-200 hover:text-black'  onClick={()=>{handleLogOut()}}>
                     Cerrar Sesión
                 </button>
             </SheetClose>
@@ -73,10 +73,10 @@ const handleLogOut = async () => {
         return(
             <>
             <SheetClose asChild  className='w-full relative flex'>
-                <Link href="/auth/Login"  className='text-white text-lg w-full py-4 flex justify-center items-center border-b hover:bg-verde  transform duration-200 hover:text-black' >Iniciar Sesión</Link>
+                <Link href="/auth/Login"  className='text-white text-lg w-full py-3 flex justify-center items-center border-b hover:bg-verde  transform duration-200 hover:text-black' >Iniciar Sesión</Link>
             </SheetClose>
             <SheetClose asChild className='w-full relative flex'>
-                <Link href="/auth/Registro"  className='text-white text-lg w-full flex items-center justify-center py-4 border-b hover:bg-verde transform duration-200 hover:text-black'  >Registrarse</Link>
+                <Link href="/auth/Registro"  className='text-white text-lg w-full flex items-center justify-center py-3 border-b hover:bg-verde transform duration-200 hover:text-black'  >Registrarse</Link>
             </SheetClose>
             </>
         )

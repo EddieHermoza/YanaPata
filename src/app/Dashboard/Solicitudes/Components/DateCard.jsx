@@ -1,4 +1,4 @@
-
+import { MdOutlineStar } from "react-icons/md";
 import { IoMdInformationCircleOutline  } from "react-icons/io";
 import {  } from "react-icons/fi";
 import { MdEmail  } from "react-icons/md"
@@ -24,10 +24,11 @@ import {
 import ModificarCita from "./Forms/FormModificarCita";
 import FormAprobarCita from "./Forms/FormAprobarCita";
 import FormRechazarCita from "./Forms/FormRechazarCita";
+import FormEliminarCita from "./Forms/FormEliminarCita";
 
 
 
-async function DateCard({data,servicios,key}) {
+async function DateCard({data,servicios}) {
 
     const fechaActual = new Date();
     const fechaCreacion = new Date(data.creacion); 
@@ -48,6 +49,11 @@ async function DateCard({data,servicios,key}) {
 
     return (
     <div  className="border h-72 relative p-4 flex flex-col justify-between gap-2 shadow-lg hover:shadow-2xl rounded-lg bg-white transition-all duration-300">
+        {data.cliente_id && data.cliente_id > 0 && (
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-300  to-yellow-400 h-12 w-12 flex items-center justify-center rounded shadow-xl text-white">
+                <MdOutlineStar size={20}/>
+            </div>
+        )}
         <div className="flex justify-between items-center">
             <h3 className="text-xl">{data.servicio.nombre}</h3>
             <span className="text-xs text-gray-400">{tiempoTranscurrido}</span>
@@ -119,9 +125,28 @@ async function DateCard({data,servicios,key}) {
                         </div>
                     </DialogContent>
                 </Dialog>
-                <FormAprobarCita id={data.id} />
-                <FormRechazarCita id={data.id}/>
-                <ModificarCita cita={data} servicios={servicios}/>
+                <div className="flex justify-between gap-5 w-full">
+                    <div className="flex gap-2">
+                        {data.estado !== "EN CURSO" && (
+                            <>
+                                <FormAprobarCita id={data.id} />
+                                <FormRechazarCita id={data.id}/>
+                                <ModificarCita cita={data} servicios={servicios}/>                             
+                            </>
+
+                        )}
+                    </div>
+                    {data.estado === "CANCELADA" && (
+                        <FormEliminarCita id={data.id}/>
+                    )}
+                    {data.estado === "RECHAZADA" && (
+                        <FormEliminarCita id={data.id}/>
+                    )}
+                    {data.estado === "TERMINADA" && (
+                        <FormEliminarCita id={data.id}/>
+                    )}
+                </div>
+
             </div>
         </div>
     )

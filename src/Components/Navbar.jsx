@@ -35,7 +35,7 @@ import {
 import { NavButonns, NavMobileButtons } from './NavBar/NavBarButtons';
 
 
-export default function Navbar() {
+export default function Navbar({sesion}) {
     const pathname = usePathname()
     const [ActiveLink, setActiveLink] = useState(pathname);
 
@@ -46,7 +46,8 @@ export default function Navbar() {
     const links = [
         { href: '/', label: 'Inicio' },
         { href: '/Nosotros', label: '¿Quienes Somos?' },
-        { href: '/Servicios', label: 'Nuestros Servicios' },
+        { href: '/Servicios', label: 'Servicios' },
+        { href: '/Solicitud', label: 'Solicitar Cita' },
     ];
 
     if (pathname.startsWith('/Dashboard') ) {
@@ -74,7 +75,7 @@ export default function Navbar() {
                     </ul>
                 </div>
                 <div className='flex gap-2'>
-                   {/* <Menubar className=" p-0 outline-none bg-transparent border-none ">
+                   <Menubar className=" p-0 outline-none bg-transparent border-none ">
                         <MenubarMenu className="outline-none p-0 w-full">
                             <MenubarTrigger className="max-sm:hidden p-0 cursor-pointer hover:text-verde focus:text-white bg-transparent w-full text-white data-[state=open]:text-verde-rgb data-[state=open]:scale-125 filter saturate-200 transform duration-300">
                                 <BiUser size={34}/>
@@ -83,7 +84,7 @@ export default function Navbar() {
                                 <NavButonns sesion={sesion}/>
                             </MenubarContent>
                         </MenubarMenu>
-                    </Menubar>*/}
+                    </Menubar>
                     <Sheet>
                         <SheetTrigger className='hover:text-verde transform duration-300'>
                             <CgMenuRight size={32} />
@@ -103,29 +104,7 @@ export default function Navbar() {
                                 </li>
                             ))}
                             </ul>
-                            <span className='text-xl text-center text-white w-full justify-center flex items-center gap-2'><IoShareSocial />Redes Sociales:</span>
-                            <ul className="w-full flex flex-col gap-5 text-xl items-center text-white mt-10">
-                                <li className="w-full">
-                                    <Link href="https://www.facebook.com/yanapataveterinaria" target='_blank' className="text-white active:bg-pressed hover:bg-hover rounded-md w-full h-full flex items-center justify-center text-center transform duration-300 p-2 gap-2">
-                                        <FaFacebookF/>
-                                        Facebook
-                                    </Link>
-                                </li>
-                                <li className="w-full">
-                                    <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className="text-white active:bg-pressed hover:bg-hover rounded-md w-full h-full flex items-center justify-center text-center transform duration-300 p-2 gap-2">
-                                        <FaInstagram/>
-                                        Instragram
-                                    </Link>
-                                </li>
-                                <li className="w-full">
-                                    <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className="text-white active:bg-pressed hover:bg-hover rounded-md w-full h-full flex items-center justify-center text-center transform duration-300 p-2 gap-2">
-                                        <FaWhatsapp/>
-                                        Whatsapp
-                                    </Link>
-                                </li>
-                            </ul>
-
-                            {/*<Accordion type="single" collapsible className="w-full text-white">
+                            <Accordion type="single" collapsible className="w-full text-white">
                                 <AccordionItem value="item-1" className="px-2 border rounded border-verde-rgb filter saturate-200">
                                     <AccordionTrigger> 
                                         <BiUser size={34} className=''/> 
@@ -135,7 +114,27 @@ export default function Navbar() {
                                         <NavMobileButtons sesion={sesion}/>
                                     </AccordionContent>
                                 </AccordionItem>
-                            </Accordion>*/}
+                            </Accordion>
+                            <div className="flex flex-col gap-5 py-5 items-center w-full">
+                                <span className='text-xl text-center text-white w-full justify-center flex items-center gap-2'><IoShareSocial />Redes Sociales:</span>
+                                <ul className="w-full flex gap-5 text-xl justify-center text-white">
+                                    <li className="">
+                                        <Link href="https://www.facebook.com/yanapataveterinaria" target='_blank' className="text-white active:bg-pressed hover:text-verde hover:bg-hover rounded-full flex items-center justify-center text-center transform duration-300 p-4 gap-2">
+                                            <FaFacebookF size={24}/>
+                                        </Link>
+                                    </li>
+                                    <li className="">
+                                        <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className="text-white active:bg-pressed hover:text-verde hover:bg-hover rounded-full flex items-center justify-center text-center transform duration-300 p-4 gap-2">
+                                            <FaInstagram size={24}/>
+                                        </Link>
+                                    </li>
+                                    <li className="">
+                                        <Link href="https://www.instagram.com/veterinariayanapata/?hl=es-la " target='_blank' className="text-white active:bg-pressed hover:text-verde hover:bg-hover rounded-full flex items-center justify-center text-center transform duration-300 p-4 gap-2">
+                                            <FaWhatsapp size={24}/>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
                         </SheetContent>
                     </Sheet>
                 </div>

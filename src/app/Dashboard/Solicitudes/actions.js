@@ -56,13 +56,20 @@ export async function getCitasPages(status,cliente,mascota) {
 export async function getDataCalendar() {
     try {
         const citas = await db.cita.findMany({
-            where: { estado: 'APROBADO' }, 
+            where: {
+                OR: [
+                  { estado: 'APROBADA' },
+                  { estado: 'EN CURSO' },
+                  { estado: 'CANCELADA' },
+                ],
+            },
             select: {
               id: true,
               fechaSolicitud: true,
               horaSolicitud: true,
               nombreCliente: true,
               nombreMascota: true,
+              estado:true,
             },
           });
       
@@ -70,6 +77,12 @@ export async function getDataCalendar() {
             id: cita.id.toString(),
             title: `Cita para ${cita.nombreMascota}`,
             start: `${cita.fechaSolicitud}T${cita.horaSolicitud}`,
+            extendedProps: {
+                  nombreCliente:cita.nombreCliente,
+                  nombreMascota:cita.nombreMascota,
+                  estado:cita.estado,
+            }
+            
           }));
           revalidatePath('/Dashboard/Solicitudes') 
           return events;
@@ -119,10 +132,10 @@ export async function AprobarCita(id){
     try {
         const updatedSolicitud = await db.cita.update({
             where: {
-                id: id
+                id:parseInt(id)
             },
             data: {
-                estado: 'APROBADO' 
+                estado: 'APROBADA' 
             }
         });
         
@@ -143,14 +156,123 @@ export async function AprobarCita(id){
     }
 }
 
+export async function EliminarCita(id){
+    try {
+        const deletedSolicitud = await db.cita.delete({
+            where: {
+                id:parseInt(id)
+            },
+        });
+        
+        if (deletedSolicitud) {
+            revalidatePath('/Dashboard/Solicitudes') 
+            return{
+                ok:true,
+                message:`Cita de ${deletedSolicitud.nombreMascota} eliminada `
+            }
+        }  
+        
+    } catch (error) {
+        console.error("Error:", error);
+        return{
+            ok:false,
+            message:`Hubo un error al eliminar la cita de ${deletedSolicitud.nombreMascota} `
+        }
+    }
+}
+
+export async function ComenzarCita(id){
+    try {
+        const updatedSolicitud = await db.cita.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                estado: 'EN CURSO' 
+            }
+        });
+        
+        if (updatedSolicitud) {
+            revalidatePath('/Dashboard/Solicitudes/Calendario') 
+            return{
+                ok:true,
+                message:`Cita de ${updatedSolicitud.nombreMascota} Comenzada `
+            }
+        }  
+        
+    } catch (error) {
+        console.error("Error:", error);
+        return{
+            ok:false,
+            message:`Hubo un error al comenzar la cita de ${updatedSolicitud.nombreMascota} `
+        }
+    }
+}
+
+export async function CancelarCita(id){
+    try {
+        const updatedSolicitud = await db.cita.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                estado: 'CANCELADA' 
+            }
+        });
+        
+        if (updatedSolicitud) {
+            revalidatePath('/Dashboard/Solicitudes/Calendario') 
+            return{
+                ok:true,
+                message:`Cita de ${updatedSolicitud.nombreMascota} cancelada `
+            }
+        }  
+        
+    } catch (error) {
+        console.error("Error:", error);
+        return{
+            ok:false,
+            message:`Hubo un error al cancelar la cita de ${updatedSolicitud.nombreMascota} `
+        }
+    }
+}
+
 export async function RechazarCita(id){
     try {
         const updatedSolicitud = await db.cita.update({
             where: {
-                id: id
+                id: parseInt(id)
             },
             data: {
-                estado: 'RECHAZADO' 
+                estado: 'RECHAZADA' 
+            }
+        });
+        
+        if (updatedSolicitud) {
+            revalidatePath('/Dashboard/Solicitudes')   
+            return{
+                ok:true,
+                message:`Cita de ${updatedSolicitud.nombreMascota} rechazada `
+            }
+        }
+
+    } catch (error) {
+        console.error("Error:", error);
+        return{
+            ok:false,
+            message:`Hubo un error al rechazar la cita de ${updatedSolicitud.nombreMascota} `
+        }
+    }
+}
+
+export async function TerminarCita(id){
+    try {
+        const updatedSolicitud = await db.cita.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                estado: 'TERMINADA' 
             }
         });
         

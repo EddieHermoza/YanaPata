@@ -21,7 +21,12 @@ async function  page({searchParams}) {
     const currentPage = Number(searchParams?.page) || 1;
     const pages=await getServiciosPage(query);
     return (
-        <section className="relative w-full flex flex-col items-center justify-center gap-5 p-10 ">
+        <section className="relative w-full flex flex-col items-center justify-center gap-5 p-5 ">
+            <div className="w-full flex flex-col gap-3 justify-between">
+              <h2 className="text-3xl tracking-widest">Servicios</h2>
+              <p className="text-gray-500 max-sm:text-sm text-lg">Los servicios permiten a sus clientes generar sus solicitudes de cita para sus mascotas</p>
+              <p className="text-gray-500 max-sm:text-sm text-lg">Asegurese que cada servicio tenga sus datos correctos</p>
+            </div>
             <div className="w-full flex max-md:flex-col gap-3 justify-between">
                 <CrearServicio/>
                 <Search/>

@@ -36,15 +36,9 @@ function OptionsAdmin({id,admin}) {
         <Dialog open={open} onOpenChange={setOpen}>
             <DropdownMenu>
                 <DropdownMenuTrigger className="w-full border-none outline-none flex items-center justify-center">
-                    <HiEllipsisHorizontal size={30} className="hover:text-verde-rgb font-extralight filter saturate-200 trasnform duration-200"/>
+                    <HiEllipsisHorizontal size={30} className="hover:text-verde-rgb font-extralight filter saturate-200 transform duration-200"/>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                    <DropdownMenuItem>
-                        <Link href={`/Dashboard/Administradores/${admin.id}`} className="flex w-full items-center justify-start gap-2">
-                            <AiOutlineInfoCircle size={16}/> 
-                            Información
-                        </Link>
-                    </DropdownMenuItem>
                     <DropdownMenuItem>
                         <DialogTrigger className="w-full">
                             <button className="flex gap-2 items-center justify-start w-full">

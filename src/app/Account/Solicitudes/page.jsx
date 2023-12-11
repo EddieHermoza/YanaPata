@@ -23,9 +23,9 @@ export default async function page({searchParams}) {
     } else {
         redirect("/")
     }
-
-    const currentPage = Number(searchParams?.page) || 1;
+    
     const cliente = await getInfoCliente(UserSession.data.session.user.email)
+    const currentPage = Number(searchParams?.page) || 1;
     const pages = await getSolicitudesClientePages(cliente.id)
 
     return (

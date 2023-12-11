@@ -43,9 +43,10 @@ export default function ToggleStatus() {
                 <SelectGroup>
                     <SelectItem>TODOS</SelectItem>
                     <SelectItem value="PENDIENTE">PENDIENTES</SelectItem>
-                    <SelectItem value="RECHAZADO">RECHAZADOS</SelectItem>
-                    <SelectItem value="APROBADO">APROBADOS</SelectItem>
+                    <SelectItem value="RECHAZADA">RECHAZADAS</SelectItem>
+                    <SelectItem value="APROBADA">APROBADAS</SelectItem>
                     <SelectItem value="EN CURSO">EN CURSO</SelectItem>
+                    <SelectItem value="APROBADA">TERMINADAS</SelectItem>
                 </SelectGroup>
             </SelectContent>
         </Select>

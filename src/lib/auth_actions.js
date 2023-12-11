@@ -7,11 +7,7 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 export async function CerrarSesionAdmin() {
-    cookies().delete('rol')
-    cookies().delete('nombre')
-    cookies().delete('email')
-    cookies().delete('id')
-    revalidatePath('layout')
+    revalidatePath('/','layout')
     redirect('/')
 }
 
@@ -29,11 +25,7 @@ export async function CerrarSesion() {
 
     const res = await signOut();
     if (res) {
-        cookies().delete('rol')
-        cookies().delete('nombre')
-        cookies().delete('email')
-        cookies().delete('id')
-        revalidatePath('layout')
+        revalidatePath('/','layout')
         redirect('/')
     }
 }
@@ -136,36 +128,6 @@ export async function LoginAction (data) {
 
 
         if (res) {
-
-            cookies().set({
-                name: 'nombre',
-                value:  `${userFound.nombres+" "+userFound.apellidos}`,
-                httpOnly: true,
-                path: '/',
-                secure:true
-            })
-            cookies().set({
-                name: 'email',
-                value:  `${userFound.email}`,
-                httpOnly: true,
-                path: '/',
-                secure:true
-            })
-            cookies().set({
-                name: 'rol',
-                value:  `${userFound.rol}`,
-                httpOnly: true,
-                path: '/',
-                secure:true,
-            })
-            cookies().set({
-                name: 'id',
-                value:  `${userFound.id}`,
-                httpOnly: true,
-                path: '/',
-                secure:true
-            })
-
 
             if (!userFound.supabaseId) {
                 await db.usuario.update({

@@ -3,7 +3,7 @@ import NavMobileDash from "./Components/NavMobileDash"
 import Stack from 'react-stackai';
 export default function layout({children}) {
   return (
-    <main className="w-full min-h-screen flex">
+    <main className="w-full min-h-screen flex relative">
         <NavDashboard/>
         <NavMobileDash/>
         {children}

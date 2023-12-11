@@ -9,13 +9,15 @@ import {
     DialogTrigger,
   } from "@/Components/ui/dialog"
 
-
+import { ToastAction } from "@/Components/ui/toast"
+import { useToast } from "@/Components/ui/use-toast"
 import { useState,useEffect } from "react";
 import { useForm} from "react-hook-form"
 import { CitaModificada } from "@/app/Dashboard/Solicitudes/actions";
 
 
 export default function ModificarCita({cita,servicios}) {
+    const { toast } = useToast()
     const {setValue,register,handleSubmit, formState:{errors}} = useForm();
     const [enviando, setEnviando] = useState(false);
     const [open,setOpen]=useState(false)
@@ -28,6 +30,12 @@ export default function ModificarCita({cita,servicios}) {
         if(res){
             setEnviando(false)
             setOpen(false)
+            toast({
+                title: "Cita modificada",
+                description: "",
+                action: (
+                  <ToastAction altText="Entendido">Entendido</ToastAction>
+            )})
         }
 
     });
@@ -71,7 +79,7 @@ export default function ModificarCita({cita,servicios}) {
             <div className="px-2 h-[600px] relative overflow-y-auto scrollbar-thin scrollbar-track-white scrollbar-thumb-verde">
             <form className="w-full flex flex-col gap-7 text-sm" onSubmit={onSubmit}>
                 <div className="flex flex-col gap-5 relative w-full">
-                    <span className="text-xl text-verde-rgb filter saturate-200">Información del Dueño :</span>
+                    <span className="text-xl text-verde">Información del Dueño :</span>
                     <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                         <input 
                         type="text"
@@ -143,7 +151,7 @@ export default function ModificarCita({cita,servicios}) {
                 </div>
                 
                 <div className="flex flex-col gap-5 relative w-full">
-                    <span className="text-xl text-verde-rgb filter saturate-200 ">Información de la mascota :</span>
+                    <span className="text-xl text-verde ">Información de la mascota :</span>
                     <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                         <input 
                         type="text"
@@ -222,7 +230,7 @@ export default function ModificarCita({cita,servicios}) {
                     </label>
                 </div>
                 <div className="flex flex-col gap-3 w-full relative">
-                    <span className="text-xl text-verde-rgb filter saturate-200">Información de la cita :</span>
+                    <span className="text-xl text-verde">Información de la cita :</span>
                     <div className="relative w-full gap-3 flex max-sm:flex-col ">
                         <label htmlFor="" className="flex flex-col-reverse gap-1  max-sm:w-full sm:w-1/2 text-black">
                             <input 
@@ -295,10 +303,8 @@ export default function ModificarCita({cita,servicios}) {
                                 >
                                 <option value="" disabled >Seleccionar</option>
                                 <option value="PENDIENTE" selected={cita.estado == "PENDIENTE"}>PENDIENTE</option>
-                                <option value="APROBADO" selected={cita.estado == "APROBADO"}>APROBADO</option>
-                                <option value="RECHAZADO" selected={cita.estado == "RECHAZADO"}>RECHAZADO</option>
-                                <option value="EN CURSO" selected={cita.estado == "EN CURSO"}>EN CURSO</option>
-                                <option value="TERMINADO" selected={cita.estado == "TERMINADO"}>TERMINADO</option>
+                                <option value="APROBADA" selected={cita.estado == "APROBADA"}>APROBADA</option>
+                                <option value="RECHAZADA" selected={cita.estado == "RECHAZADA"}>RECHAZADA</option>
                             </select>
                             {errors.estado && (
                                 <span className="text-red-500 text-xs">{errors.estado.message} </span>

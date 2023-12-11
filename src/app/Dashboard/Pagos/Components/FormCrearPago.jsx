@@ -109,7 +109,8 @@ function FormCrearPago() {
               <label htmlFor="" className="flex flex-col-reverse gap-1 w-full text-black">
                   <input 
                     type="number"
-                    min="0" 
+                    min="0"
+                    step={0.1} 
                     name="" 
                     id=""
                     {... register("adicional",{

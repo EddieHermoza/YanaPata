@@ -9,7 +9,7 @@ export default async function TablaSolicitudes({cliente,page}) {
                 <table className="w-full h-auto text-center text-xs relative">
                     <thead className=" border-b border-black">
                         <tr>
-                            <th className="py-4">Enviada</th>
+                            <th className="py-4">F. Enviada</th>
                             <th className="py-4 max-[400px]:hidden">F. solicitada</th>
                             <th className="py-4 max-md:hidden">H. Solicitada</th>
                             <th className="py-4">Mascota</th>

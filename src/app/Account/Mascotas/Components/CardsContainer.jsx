@@ -1,7 +1,6 @@
 import { MascotasClienteLista } from "../actions";
 import CardMascota from "./CardMascota";
-import Pagination from "@/Components/ui/Pagination";
-import { getMascotasPages } from "../actions";
+
 
 
 export default async function CardsContainer({id, query, page }) {

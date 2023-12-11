@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { getDataCalendar } from '../actions';
 import es from 'date-fns/locale/es';
 import { startOfMonth, formatISO } from 'date-fns';
+import FormCitaCalendar from './Forms/FormCitaCalendar';
 
-function CalendarPage() {
-  const [events, setEvents] = useState([]);
+function CalendarPage({events}) {
   const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth <= 600 : false);
 
   useEffect(() => {
@@ -24,14 +23,6 @@ function CalendarPage() {
       window.removeEventListener('resize', checkScreenSize);
     };
   }, [isSmallScreen]);
-
-  useEffect(() => {
-    async function fetchEvents() {
-      const res = await getDataCalendar();
-      setEvents(res);
-    }
-    fetchEvents();
-  }, []);
 
   return (
     <FullCalendar
@@ -68,10 +59,7 @@ function CalendarPage() {
 const renderEventContent = (eventInfo) => {
   return (
     <>
-      <div className='flex bg-white text-black gap-1 items-center cursor-pointer relative h-auto overflow-hidden text-xs hover:bg-black group hover:text-white transform duration-300 p-1 w-full'>
-        <span className='cursor-pointer'>{eventInfo.timeText}:</span>
-        <p className='text-wrap'>{eventInfo.event.title}</p>
-      </div>
+      <FormCitaCalendar event={eventInfo}/>
     </>
   );
 };

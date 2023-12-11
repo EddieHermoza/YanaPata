@@ -16,12 +16,12 @@ export const metadata = {
   description: 'Veterinaria Peruana',
 }
 
-export default function RootLayout({ children }) {
-
+export default async function RootLayout({ children }) {
+  const sesion = await getUserSession()
  return (
     <html lang="es" className=' scrollbar-thin scrollbar-track-transparent scrollbar-thumb-verde'>
       <body className={comfo.className}>
-        <Navbar/>
+        <Navbar sesion={sesion.data.session}/>
         <AOSInitializer/>
         {children}
         <Toaster/>
