@@ -1,50 +1,37 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server"
+import { getToken } from "next-auth/jwt"
 
 export async function middleware(request) {
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
+  const token = await getToken({
+    req: request,
+    secret: process.env.NEXTAUTH_SECRET
   })
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    {
-      cookies: {
-        get(name) {
-          return request.cookies.get(name)?.value
-        },
-        set(name, value, options) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-        },
-        remove(name, options) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-        },
-      },
-    }
+  // Define protected routes
+  const protectedRoutes = ["/Dashboard", "/Account"]
+  const authRoutes = ["/auth/Login", "/auth/Registro"]
+
+  const isProtectedRoute = protectedRoutes.some(route =>
+    request.nextUrl.pathname.startsWith(route)
   )
 
-  await supabase.auth.getSession()
+  const isAuthRoute = authRoutes.some(route =>
+    request.nextUrl.pathname.startsWith(route)
+  )
 
-  return response
+  // Redirect to login if accessing protected route without auth
+  if (isProtectedRoute && !token) {
+    return NextResponse.redirect(new URL("/auth/Login", request.url))
+  }
+
+  // Redirect to home if accessing auth routes while logged in
+  if (isAuthRoute && token) {
+    return NextResponse.redirect(new URL("/", request.url))
+  }
+
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: ["/Dashboard/:path*", "/Account/:path*", "/auth/:path*"]
 }

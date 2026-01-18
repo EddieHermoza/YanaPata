@@ -1,34 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YanaPata - Sistema Veterinario
 
-## Getting Started
+Bienvenido al repositorio de **YanaPata**, una aplicación web para la gestión de servicios veterinarios, citas, y administración de clientes y mascotas.
 
-First, run the development server:
+Este proyecto ha sido refactorizado para utilizar las tecnologías más recientes del ecosistema Next.js.
+
+## Tecnologías
+
+El proyecto está construido sobre el siguiente stack tecnológico:
+
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Lenguaje**: JavaScript / React
+- **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
+- **Base de Datos**: [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres) (PostgreSQL)
+- **ORM**: [Prisma](https://www.prisma.io/)
+- **Autenticación**: [Auth.js v5](https://authjs.dev/) (NextAuth) con Credenciales
+- **Emails**: [Resend](https://resend.com/)
+- **Animaciones**: [Framer Motion](https://www.framer.com/motion/) (Reemplazando AOS)
+- **Componentes UI**: [shadcn/ui](https://ui.shadcn.com/)
+
+## Configuración e Instalación
+
+### 1. Clona el repositorio
+```bash
+git clone <url-del-repositorio>
+cd YanaPata
+```
+
+### 2. Instala las dependencias
+```bash
+npm install
+```
+
+### 3. Configura las variables de entorno
+Crea un archivo `.env` en la raíz basado en `.env.example`. Necesitarás configurar lo siguiente:
+
+```env
+# Base de Datos (Vercel Postgres / Neon)
+DATABASE_URL="postgresql://..."
+
+# Auth.js
+NEXTAUTH_URL="http://localhost:3000"
+AUTH_SECRET="tu-secreto-generado-aleatoriamente"
+
+# Resend (Emails)
+RESEND_TOKEN="re_..."
+```
+
+> **Nota**: Para generar un `AUTH_SECRET`, puedes ejecutar `openssl rand -base64 32` en tu terminal o usar un generador online.
+
+### 4. Configura la Base de Datos
+Sincroniza el esquema de Prisma con tu base de datos:
+
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+### 5. Ejecuta el servidor de desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Scripts Disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Compila la aplicación para producción (incluye generación de Prisma).
+- `npm start`: Inicia el servidor de producción.
+- `npm run lint`: Ejecuta ESLint para verificar el código.
+- `npx prisma studio`: Abre una interfaz web para gestionar la base de datos localmente.
 
-## Learn More
+## Estructura del Proyecto
 
-To learn more about Next.js, take a look at the following resources:
+- `/src/app`: Rutas y páginas de la aplicación (App Router).
+- `/src/Components`: Componentes reutilizables.
+- `/src/lib`: Utilidades, configuración de DB (`db.js`), acciones de servidor (`actions.js`, `auth_actions.js`).
+- `/src/auth.js`: Configuración central de Auth.js.
+- `/src/middleware.js`: Middleware para protección de rutas.
+- `/prisma`: Esquema de la base de datos.
+- `/public`: Archivos estáticos e imágenes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Funcionalidades Clave
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Autenticación Segura**: Login y Registro de clientes y administradores.
+- **Gestión de Citas**: Solicitud de citas con notificaciones por correo.
+- **Panel de Administración**: Dashboard para gestionar usuarios, mascotas, servicios y solicitudes.
+- **Animaciones Suaves**: Experiencia de usuario mejorada con Framer Motion.
+- **Diseño Responsivo**: Adaptado a móviles y escritorio.

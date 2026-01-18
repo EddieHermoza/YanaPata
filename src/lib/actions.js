@@ -1,80 +1,82 @@
 'use server'
 import db from "@/lib/db"
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 
-export async function ListarServicios () {
-    try { 
+const resend = new Resend(process.env.RESEND_TOKEN)
+
+export async function ListarServicios() {
+    try {
         const servicios = await db.servicio.findMany({
             where: {
-                estado:'Habilitado'
-              },
-              select: {
+                estado: 'Habilitado'
+            },
+            select: {
                 id: true,
                 nombre: true,
                 precio_min: true,
-              }
+            }
         });
 
         const serviciosFormateados = servicios.map((servicio) => ({
             ...servicio,
-            precio_min: parseFloat(servicio.precio_min),  
+            precio_min: parseFloat(servicio.precio_min),
         }));
 
         return serviciosFormateados;
 
-      } catch (error) {
+    } catch (error) {
         console.error('Error en la consulta:', error);
         return []
-      }
+    }
 }
 
-export const CitaEnviada = async (data) =>{
+export const CitaEnviada = async (data) => {
     try {
         const noti = await Notificacion(data)
 
         if (!noti) {
             return {
-                ok:false,
-                message:'Hubo un error en el envio de la Solicitud'
-            }  
+                ok: false,
+                message: 'Hubo un error en el envio de la Solicitud'
+            }
         }
-        
+
         const newSolicitud = await db.cita.create({
-        data: {
-            nombreCliente: data.ClienteInfo.nombre +" "+ data.ClienteInfo.apellidos,
-            nombreMascota:data.MascotaInfo.nombre,
-            fechaSolicitud:data.fechaSolicitud.toISOString().slice(0, 10),
-            horaSolicitud: data.horaSolicitud,
-            ClienteInfo: data.ClienteInfo,
-            MascotaInfo: data.MascotaInfo,
-            servicio_id:data.servicio,
-            asunto:data.asunto,
+            data: {
+                nombreCliente: data.ClienteInfo.nombre + " " + data.ClienteInfo.apellidos,
+                nombreMascota: data.MascotaInfo.nombre,
+                fechaSolicitud: data.fechaSolicitud.toISOString().slice(0, 10),
+                horaSolicitud: data.horaSolicitud,
+                ClienteInfo: data.ClienteInfo,
+                MascotaInfo: data.MascotaInfo,
+                servicio_id: data.servicio,
+                asunto: data.asunto,
             },
         });
 
-        if(newSolicitud) {
+        if (newSolicitud) {
             return {
-                ok:true,
-                message:'Se envio la Solicitud de Cita correctamente'
+                ok: true,
+                message: 'Se envio la Solicitud de Cita correctamente'
             }
         }
 
         return {
-                ok:false,
-                message:'Hubo un error en el envio de la Solicitud'
+            ok: false,
+            message: 'Hubo un error en el envio de la Solicitud'
         }
-    
-        
+
+
     } catch (error) {
         console.error("Error:", error);
         return {
-            ok:false,
-            message:'Hubo un error en el envio de la Solicitud'
+            ok: false,
+            message: 'Hubo un error en el envio de la Solicitud'
         }
     }
 }
 
-export async function getRol(email){
+export async function getRol(email) {
     try {
         const userRole = await db.usuario.findUnique({
             where: {
@@ -85,15 +87,15 @@ export async function getRol(email){
             }
         });
 
-        if(userRole) return {
-            ok:true,
-            rol:userRole.rol
-        } 
+        if (userRole) return {
+            ok: true,
+            rol: userRole.rol
+        }
 
     } catch (error) {
         console.log(error)
-        return{
-            ok:false
+        return {
+            ok: false
         }
     }
 }
@@ -107,7 +109,7 @@ export async function getInfoCliente(email) {
             include: {
                 cliente: {
                     select: {
-                        telefono: true 
+                        telefono: true
                     }
                 }
             }
@@ -119,22 +121,13 @@ export async function getInfoCliente(email) {
     }
 }
 
-const Notificacion = async (data) =>{
+const Notificacion = async (data) => {
     try {
-        const transporter =nodemailer.createTransport({
-            service: 'Gmail',
-            auth:{
-                user: 'eddie.ehc04@gmail.com',
-                pass:'atruslumwofdcrxl'
-            }
-    })
-    
-        const mailOptions = {
-            from:'"VeterinariaYanaPata" <eddie.ehc04@gmail.com>',
-            to: 'eddie.ehc04@gmail.com',
+        const { data: emailData, error } = await resend.emails.send({
+            from: 'VeterinariaYanaPata <onboarding@resend.dev>',
+            to: ['eddie.ehc04@gmail.com'],
             subject: 'Solicitud de Cita',
-            html: 
-            `
+            html: `
             <div style="font-family: 'Comfortaa', sans-serif; color: #000; margin: 0; padding: 20px;">
                 <h2 style="background-color: #00CED1; color: #fff; padding: 10px; text-align: center;">Solicitud de Cita</h2>
                 <ul>
@@ -155,14 +148,17 @@ const Notificacion = async (data) =>{
                     <li style="color: #000; margin: 10px 0;">Detalles: ${data.asunto}</li>
                 </ul>
             </div>
-    `
-        };
+            `
+        });
 
-        const res = await transporter.sendMail(mailOptions)
-        if (res) {
-            return true
+        if (error) {
+            console.error('Error sending email:', error)
+            return false
         }
+
+        return true
     } catch (error) {
+        console.error('Error in Notificacion:', error)
         return false
     }
 }

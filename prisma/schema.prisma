@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("SUPABASE_DB")
+  url      = env("DATABASE_URL")
 }
 
 model Servicio{
@@ -26,7 +26,6 @@ model Usuario{
   id Int @id @default(autoincrement())
   creacion DateTime @default(now())
   modificacion DateTime @updatedAt
-  supabaseId String? @default(uuid())
   nombres String
   apellidos String
   email String @unique

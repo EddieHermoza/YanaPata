@@ -1,66 +1,30 @@
 "use server"
 import db from "@/lib/db"
-import createSupaBaseServerClient from "./supabase/server"
-import {  cookies } from 'next/headers'
 import bcrypt from "bcrypt"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
+import { auth, signIn, signOut } from "@/auth"
+import { AuthError } from "next-auth"
 
 export async function CerrarSesionAdmin() {
-    revalidatePath('/','layout')
-    redirect('/')
+    await signOut({ redirectTo: "/" })
 }
 
 export async function CerrarSesion() {
-
-    const supabase = await createSupaBaseServerClient();
-    async function signOut() {
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-            return false
-        } else {
-            return true
-        }
-    }
-
-    const res = await signOut();
-    if (res) {
-        revalidatePath('/','layout')
-        redirect('/')
-    }
+    await signOut({ redirectTo: "/" })
 }
 
-
-export async function RegisterAction(data){
+export async function RegisterAction(data) {
     try {
-        const supabase = await createSupaBaseServerClient()
-        const res = await supabase.auth.signUp({
-            email:data.email,
-            password:data.password
+        const userFound = await db.usuario.findUnique({
+            where: { email: data.email }
         })
 
-        if (res.error) {
-            return {
-                ok:false,
-                message:"Hubo un error en el registro"
-            }
-        }
-
-        const userFound = await db.usuario.findUnique({
-            where: {
-                email: data.email,
-            },
-        });
-
         if (userFound) {
-            return {
-                ok:false,
-                message:"El correo ya esta registrado"
-            }
-
+            return { ok: false, message: "El correo ya esta registrado" }
         }
 
-        const hashPassword = await bcrypt.hash(data.password, 10);
+        const hashPassword = await bcrypt.hash(data.password, 10)
 
         const newUser = await db.usuario.create({
             data: {
@@ -69,91 +33,71 @@ export async function RegisterAction(data){
                 email: data.email,
                 password: hashPassword,
                 rol: "cliente",
-                estado:"Habilitado"
-            },
-        });
+                estado: "Habilitado"
+            }
+        })
 
         const newClient = await db.cliente.create({
-            data:{
+            data: {
                 usuario_id: newUser.id,
-                telefono:data.telefono
+                telefono: data.telefono
             }
         })
 
         if (newClient) {
-            return{
-                ok:true,
-                message:"Usuario registrado"
-            }
+            return { ok: true, message: "Usuario registrado" }
         }
-        
     } catch (error) {
-        console.error("Error:", error);
-        return {
-            ok:false,
-            message:"Error en el registro"
-        }
+        console.error("Error:", error)
+        return { ok: false, message: "Error en el registro" }
     }
 }
 
-export async function LoginAction (data) {
-
+export async function LoginAction(data) {
     try {
         const userFound = await db.usuario.findUnique({
-            where: {
-                email: data.email
-            }
-        });
-        
-        if (!userFound) {
-            return {ok:false,message:"Correo no registrado"}
-        }
-
-        if (userFound.estado==="Deshabilitado") {
-            return {ok:false,message:"Usuario no habilitado"}
-        }
-
-
-        const match = await bcrypt.compare(data.password, userFound.password);
-
-        if (!match) {
-            return {ok:false,message:"Las contraseñas no coinciden"}
-        }
-
-        const supabase = await createSupaBaseServerClient()
-        const res = await supabase.auth.signInWithPassword({
-            email:data.email,
-            password:data.password
+            where: { email: data.email }
         })
 
+        if (!userFound) {
+            return { ok: false, message: "Correo no registrado" }
+        }
 
-        if (res) {
+        if (userFound.estado === "Deshabilitado") {
+            return { ok: false, message: "Usuario no habilitado" }
+        }
 
-            if (!userFound.supabaseId) {
-                await db.usuario.update({
-                    where: { email: data.email },
-                    data: {
-                        supabaseId: res.data.user.id
-                    }
-                });
-            }
-            return {
-                ok: true,
-                rol:userFound.rol,
-                message: "Inicio de Sesión exitoso"
-            };
+        const match = await bcrypt.compare(data.password, userFound.password)
 
-        } else {
-            return {ok:false,message:"Correo no validado"};
+        if (!match) {
+            return { ok: false, message: "Las contraseñas no coinciden" }
+        }
+
+        await signIn("credentials", {
+            email: data.email,
+            password: data.password,
+            redirect: false,
+        })
+
+        return {
+            ok: true,
+            rol: userFound.rol,
+            message: "Inicio de Sesión exitoso"
         }
     } catch (error) {
-        console.error("Error en el controlador POST:", error);
-        return {ok:false,message:"Error en el inicio de sesion"};
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case "CredentialsSignin":
+                    return { ok: false, message: "Credenciales inválidas" }
+                default:
+                    return { ok: false, message: "Error desconocido" }
+            }
+        }
+        console.error("Error en el controlador POST:", error)
+        return { ok: false, message: "Error en el inicio de sesion" }
     }
 }
 
-export async function getUserSession(){
-    const supabase = await createSupaBaseServerClient()
-    return supabase.auth.getSession()
+export async function getUserSession() {
+    return await auth()
 }
-

@@ -1,24 +1,19 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_TOKEN);
 
 export async function POST(request) {
-    
+
     try {
-        const {nombres,apellidos,numero,correo,nombreMasc,sexoMasc,tipo,raza,dia,hora,servicio,motivo} =await request.json();
-        const transporter =nodemailer.createTransport({
-            service: 'Gmail',
-            auth:{
-                user: 'eddie.ehc04@gmail.com',
-                pass:'uesb owlq zyqf prur'
-            }
-    })
-    
-        const mailOptions = {
-            from:'VeterinariaYanaPata <eddie.ehc04@gmail.com>',
-            to: correo,
+        const { nombres, apellidos, numero, correo, nombreMasc, sexoMasc, tipo, raza, dia, hora, servicio, motivo } = await request.json();
+
+        const { data, error } = await resend.emails.send({
+            from: 'VeterinariaYanaPata <onboarding@resend.dev>',
+            to: [correo],
             subject: 'Solicitud de Cita',
-            html: 
-            `
+            html:
+                `
             <div style="font-family: 'Comfortaa', sans-serif; color: #000; margin: 0; padding: 20px;">
                 <h2 style="background-color: #00CED1; color: #fff; padding: 10px; text-align: center;">Solicitud de Cita</h2>
                 <ul>
@@ -40,13 +35,17 @@ export async function POST(request) {
                 </ul>
             </div>
     `
-        };
-        console.log(mailOptions)
+        });
 
-        await transporter.sendMail(mailOptions)
-        return NextResponse.json({message:'mensaje enviado correctamente'},{status: 200})
+        if (error) {
+            console.error('Error sending email:', error);
+            return NextResponse.json({ message: 'Hubo un error en el envio del mensaje' }, { status: 500 });
+        }
+
+        return NextResponse.json({ message: 'mensaje enviado correctamente' }, { status: 200 })
     } catch (error) {
-        return NextResponse.json({message:'Hubo un error en el envio del mensaje'},{status: 500})
+        console.error('Error handler:', error);
+        return NextResponse.json({ message: 'Hubo un error en el envio del mensaje' }, { status: 500 })
     }
-    
+
 }

@@ -1,21 +1,16 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_TOKEN);
 
 export async function POST(request) {
-    
+
     try {
-        const {subject,email,message,number} =await request.json();
-        const transporter =nodemailer.createTransport({
-            service: 'Gmail',
-            auth:{
-                user: 'eddie.ehc04@gmail.com',
-                pass:'atruslumwofdcrxl'
-            }
-    })
-    
-        const mailOptions = {
-            from:'"VeterinariaYanaPata" <eddie.ehc04@gmail.com>',
-            to: 'eddie.ehc04@gmail.com',
+        const { subject, email, message, number } = await request.json();
+
+        const { data, error } = await resend.emails.send({
+            from: 'VeterinariaYanaPata <onboarding@resend.dev>',
+            to: ['eddie.ehc04@gmail.com'],
             subject: 'Contacto',
             html: `
             <div style="font-family: 'Comfortaa', sans-serif; color: #000; margin: 0; padding: 20px;">
@@ -30,12 +25,17 @@ export async function POST(request) {
             </div>
                 
             `
-        };
+        });
 
-        await transporter.sendMail(mailOptions)
-        return NextResponse.json({message:'mensaje enviado correctamente'},{status: 200})
+        if (error) {
+            console.error('Error sending email:', error);
+            return NextResponse.json({ message: 'Hubo un error en el envio del mensaje' }, { status: 500 });
+        }
+
+        return NextResponse.json({ message: 'mensaje enviado correctamente' }, { status: 200 })
     } catch (error) {
-        return NextResponse.json({message:'Hubo un error en el envio del mensaje'},{status: 500})
+        console.error('Error handler:', error);
+        return NextResponse.json({ message: 'Hubo un error en el envio del mensaje' }, { status: 500 })
     }
-    
+
 }
