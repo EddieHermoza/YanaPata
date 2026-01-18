@@ -109,7 +109,8 @@ export async function getInfoCliente(email) {
             include: {
                 cliente: {
                     select: {
-                        telefono: true
+                        telefono: true,
+                        id: true,
                     }
                 }
             }

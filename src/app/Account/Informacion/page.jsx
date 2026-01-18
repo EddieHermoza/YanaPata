@@ -8,8 +8,8 @@ import FormModificarTelefono from "./Components/FormModificarTelefono";
 export default async function page() {
     const UserSession = await getUserSession();
 
-    if (UserSession.data.session !==null && UserSession.data.session !== undefined) {
-        const rol = await getRol(UserSession.data.session.user.email)
+    if (UserSession.user !==null && UserSession.user !== undefined) {
+        const rol = await getRol(UserSession.user.email)
         if(rol.ok){
             if (rol.rol !== "cliente") {
                 redirect("/")
@@ -21,7 +21,7 @@ export default async function page() {
         redirect("/")
     }
     
-    const cliente = await getInfoCliente(UserSession.data.session.user.email)
+    const cliente = await getInfoCliente(UserSession.user.email)
     return (
         <div className="w-full h-full flex flex-col gap-5 bg-white p-5 overflow-y-auto scrollbar-thin relative">
             <h2 className="text-3xl">Información de Cuenta</h2>

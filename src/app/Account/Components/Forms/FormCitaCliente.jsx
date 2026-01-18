@@ -113,7 +113,7 @@ export default function FormCitaCliente({ cliente }) {
         }
 
         async function fetchMascotas() {
-            const mascotasList = await MascotasClienteLista(cliente)
+            const mascotasList = await MascotasClienteLista(cliente.cliente.id)
             setMascotas(mascotasList)
         }
 

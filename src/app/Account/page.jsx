@@ -7,8 +7,8 @@ import FormEnviarMensaje from "./Informacion/Components/FormEnviarMensaje";
 async function page() {
     const UserSession = await getUserSession();
 
-    if (UserSession.data.session !==null && UserSession.data.session !== undefined) {
-        const rol = await getRol(UserSession.data.session.user.email)
+    if (UserSession.user !==null && UserSession.user !== undefined) {
+        const rol = await getRol(UserSession.user.email)
         if(rol.ok){
             if (rol.rol !== "cliente") {
                 redirect("/")
@@ -20,7 +20,7 @@ async function page() {
         redirect("/")
     }
     
-    const cliente = await getInfoCliente(UserSession.data.session.user.email)
+    const cliente = await getInfoCliente(UserSession.user.email)
     return (
         <div className="w-full h-full bg-white p-10 flex flex-col items-start justify-center gap-10">
             <h2 className="text-5xl animate-fade-right animate-duration-1000 animate-ease-in-out">Bienvenido</h2>

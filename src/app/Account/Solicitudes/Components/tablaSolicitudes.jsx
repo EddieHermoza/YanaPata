@@ -2,8 +2,8 @@
 import { getSolicitudesList } from "../actions"
 import { IoMdEye } from "react-icons/io"
 
-export default async function TablaSolicitudes({cliente,page}) {
-    const Solicitudes = await getSolicitudesList(page,cliente)
+export default async function TablaSolicitudes({cliente_id,page}) {
+    const Solicitudes = await getSolicitudesList(page,cliente_id)
     return (
         <>
                 <table className="w-full h-auto text-center text-xs relative">

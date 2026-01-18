@@ -21,8 +21,7 @@ function Register() {
         const res = await RegisterAction(data)
         if (res.ok) {
             toast({
-                title: "Verificacion de correo",
-                description: "Enviamos una verificacion de correo",
+                title: "Te registraste exitosamente",
                 action: (
                   <ToastAction altText="Entendido">Entendido</ToastAction>
             )})

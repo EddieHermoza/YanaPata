@@ -3,6 +3,7 @@ import db from "@/lib/db"
 import { revalidatePath } from "next/cache";
 
 export const CitaEnviada = async (data) =>{
+    console.log(data)
     try {
         
         const newSolicitud = await db.cita.create({
@@ -23,7 +24,7 @@ export const CitaEnviada = async (data) =>{
             nombreMascota:data.MascotaInfo.nombre,
             fechaSolicitud:data.fechaSolicitud.toISOString().slice(0, 10),
             horaSolicitud: data.horaSolicitud,
-            cliente_id:data.ClienteInfo.id,
+            cliente_id:data.ClienteInfo.cliente.id,
             mascota_id:data.mascota_id,
             servicio_id:data.servicio_id,
             asunto:data.asunto,
@@ -74,7 +75,7 @@ export const MascotasClienteLista = async (data)=>{
     }
 }
 
-export async function getSolicitudesList(page, cliente) {
+export async function getSolicitudesList(page, cliente_id) {
     try {
         const pages = page || 1;
         const itemsPerPage = 10;
@@ -82,7 +83,7 @@ export async function getSolicitudesList(page, cliente) {
 
         const SolicitudesList = await db.Cita.findMany({
             where: {
-                cliente_id: cliente.id
+                cliente_id: cliente_id
             },
             select: {
                 creacion: true,

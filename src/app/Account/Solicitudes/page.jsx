@@ -11,8 +11,8 @@ import { getRol } from "@/lib/actions";
 export default async function page({searchParams}) {
     const UserSession = await getUserSession();
 
-    if (UserSession.data.session !==null && UserSession.data.session !== undefined) {
-        const rol = await getRol(UserSession.data.session.user.email)
+    if (UserSession.user !==null && UserSession.user !== undefined) {
+        const rol = await getRol(UserSession.user.email)
         if(rol.ok){
             if (rol.rol !== "cliente") {
                 redirect("/")
@@ -24,7 +24,7 @@ export default async function page({searchParams}) {
         redirect("/")
     }
     
-    const cliente = await getInfoCliente(UserSession.data.session.user.email)
+    const cliente = await getInfoCliente(UserSession.user.email)
     const currentPage = Number(searchParams?.page) || 1;
     const pages = await getSolicitudesClientePages(cliente.id)
 
@@ -37,7 +37,7 @@ export default async function page({searchParams}) {
             </div>
             <Suspense fallback={<div>Cargando..</div>}>
                 <div className="flex flex-col gap-5 w-full h-[600px] justify-between items-center border bg-white shadow-lg">
-                    <TablaSolicitudes page={currentPage} cliente={cliente}/>
+                    <TablaSolicitudes page={currentPage} cliente_id={cliente.cliente.id}/>
                     <Pagination totalPages={pages} />
                 </div>               
             </Suspense>
